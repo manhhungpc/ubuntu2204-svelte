@@ -16,19 +16,19 @@
             <span class="name-current-app">Terminal</span>
         </div>
     </div>
-    <div class="flex align-middle">
+    <div class="flex items-center">
         <button class="calendar">
             {formatDate.split(",")[0]}&nbsp;{formatDate.split(",")[2]}
         </button>
     </div>
     <div class="utils">
-        <div>en</div>
-        <div class="text-sm group-utils-icon">
+        <button class="lang">en</button>
+        <button class="menu-btn">
             <img src="/img/icons/network-signal-good-symbolic.svg" alt="wifi" class="utils-icon" />
             <img src="/img/icons/audio-volume-low-symbolic.svg" alt="audio" class="utils-icon" />
             <img src="/img/icons/battery-80-symbolic.svg" alt="battery" class="utils-icon" />
-            <span> 80 % </span>
-        </div>
+            <span class="percent-battery"> 80 % </span>
+        </button>
     </div>
 </div>
 
@@ -51,18 +51,26 @@
     }
 
     .activities,
-    .calendar {
+    .calendar,
+    .menu-btn,
+    .lang {
         background-color: var(--bg-dark-1);
         border: none;
         color: var(--white);
         font-family: "Ubuntu", sans-serif;
-        font-size: 15px;
+        font-size: 0.9rem;
     }
 
     .activities:hover,
-    .calendar:hover {
+    .calendar:hover,
+    .menu-btn:hover,
+    .lang:hover {
         background-color: var(--bg-light-white);
         border-radius: 20px;
+    }
+
+    .calendar {
+        height: max-content;
     }
 
     .activities {
@@ -92,16 +100,20 @@
     }
 
     .utils-icon {
-        height: 16px;
+        height: 14px;
         filter: brightness(0) invert(1);
     }
 
-    .group-utils-icon {
-        height: 100%;
+    .menu-btn {
+        height: max-content;
         width: 6.5rem;
         display: flex;
         align-items: center;
         justify-content: space-between;
-        margin: 0 13px 0 20px;
+        margin: 0 13px 0 10px;
+    }
+
+    .percent-battery {
+        font-size: 0.84rem;
     }
 </style>
