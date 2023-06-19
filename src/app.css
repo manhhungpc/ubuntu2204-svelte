@@ -1,0 +1,29 @@
+@import url("https://fonts.googleapis.com/css2?family=Ubuntu&display=swap");
+/* @tailwind base;
+@tailwind components; */
+@tailwind utilities;
+:root {
+    font-family: "Ubuntu", sans-serif;
+    /* text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-text-size-adjust: 100%; */
+
+    --bg-grey-1: #333333;
+    --bg-dark-1: #111111;
+    --white: #fff;
+    --bg-light-white: #ffffff38;
+}
+*{
+    letter-spacing: 0.5px;
+}
+body {
+    font-family: "Ubuntu", sans-serif;
+    margin: 0;
+    display: flex;
+    background-image: url(/img/Wallpaper/Jammy-Jellyfish_WP_2560x1440.jpg);
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;
+    background-size: cover;
+}
