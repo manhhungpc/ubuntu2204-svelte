@@ -10,12 +10,20 @@
     -webkit-text-size-adjust: 100%; */
 
     --bg-grey-1: #333333;
+    --warm-grey: #aea79f;
     --bg-dark-1: #111111;
     --white: #fff;
     --bg-light-white: #ffffff38;
+    --bg-dark-trans: #1c1017ca;
 }
-*{
+* {
     letter-spacing: 0.5px;
+}
+
+button {
+    background-color: transparent;
+    border: none;
+    padding: 0;
 }
 body {
     font-family: "Ubuntu", sans-serif;

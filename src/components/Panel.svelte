@@ -25,9 +25,12 @@
         <button class="lang">en</button>
         <button class="menu-btn">
             <img src="/img/icons/network-signal-good-symbolic.svg" alt="wifi" class="utils-icon" />
+            <img src="/img/icons/bluetooth-active-symbolic.svg" alt="bluetooth" class="utils-icon" />
             <img src="/img/icons/audio-volume-low-symbolic.svg" alt="audio" class="utils-icon" />
-            <img src="/img/icons/battery-80-symbolic.svg" alt="battery" class="utils-icon" />
-            <span class="percent-battery"> 80 % </span>
+            <span class="flex items-center utils-icon">
+                <img src="/img/icons/battery-80-symbolic.svg" alt="battery" class="h-4" />
+                &nbsp;80 %
+            </span>
         </button>
     </div>
 </div>
@@ -59,6 +62,7 @@
         color: var(--white);
         font-family: "Ubuntu", sans-serif;
         font-size: 0.9rem;
+        padding: 1.5px 14px 1.5px 14px;
     }
 
     .activities:hover,
@@ -75,15 +79,13 @@
 
     .activities {
         font-size: 14px;
-        margin-left: 12px;
+        margin-left: 2px;
     }
 
     .current-app {
+        @apply absolute flex items-center;
         font-size: 13px;
-        position: absolute;
         left: 5.5rem;
-        display: flex;
-        align-items: center;
         margin-left: 30px;
     }
 
@@ -100,20 +102,18 @@
     }
 
     .utils-icon {
-        height: 14px;
+        height: 1rem;
+        margin: 0 5px 0 5px;
         filter: brightness(0) invert(1);
     }
 
     .menu-btn {
+        @apply flex items-center justify-between px-2;
         height: max-content;
-        width: 6.5rem;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        margin: 0 13px 0 10px;
+        width: max-content;
     }
 
-    .percent-battery {
-        font-size: 0.84rem;
+    .lang {
+        @apply px-3;
     }
 </style>
