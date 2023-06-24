@@ -2,92 +2,71 @@
     import { flip } from "svelte/animate";
     import { quintOut } from "svelte/easing";
     import { crossfade } from "svelte/transition";
-    let hovering = 0;
+    let hovering = 0,
+        dragId = "";
 
-    const [send, receive] = crossfade({
-        duration: (d) => Math.sqrt(d * 200),
-
-        fallback(node, params) {
-            const style = getComputedStyle(node);
-            const transform = style.transform === "none" ? "" : style.transform;
-
-            return {
-                duration: 600,
-                easing: quintOut,
-                css: (t) => `
-					transform: ${transform} scale(${t});
-					opacity: ${t}
-				`,
-            };
-        },
-    });
     let apps = [
         {
-            id: 0,
+            id: crypto.randomUUID(),
             name: "gg-chrome",
             imgSrc: "/img/apps/google-chrome.png",
         },
         {
-            id: 1,
+            id: crypto.randomUUID(),
             name: "file-manager",
             imgSrc: "/img/apps/filemanager-app.png",
         },
         {
-            id: 2,
+            id: crypto.randomUUID(),
             name: "vscode",
             imgSrc: "/img/apps/vscode.png",
         },
         {
-            id: 3,
+            id: crypto.randomUUID(),
             name: "terminal",
             imgSrc: "/img/apps/terminal-app.png",
         },
         {
-            id: 4,
+            id: crypto.randomUUID(),
             name: "setting",
             imgSrc: "/img/apps/system-settings.png",
         },
     ];
 
     const dragStart = (event: DragEvent, target: any) => {
-        const element = event.target as HTMLElement;
-        const childImg = element.children[0];
+        const sourceElement = event.target as HTMLElement;
+        dragId = sourceElement.id;
+        console.log("🚀 ~ file: Dock.svelte:54 ~ element:", sourceElement);
+        sourceElement.style.cursor = "grabbing";
+
+        const childImg = sourceElement.children[0];
         childImg.style.backgroundColor = "transparent";
-        // childImg.style.opacity = "0.2";
-        // element.style.backgroundColor = "transparent";
-        // element.style.pointerEvents = "none";
-        // element.style.position = "relative";
-        // element.style.zIndex = "1";
-        // element.style.transform = "translate(0, 0)";
-        // element.style.pointerEvents = "none";
 
         event.dataTransfer.effectAllowed = "move";
         event.dataTransfer.dropEffect = "move";
-        event.dataTransfer.setData("text/plain", target);
+        event.dataTransfer.setData("text/plain", JSON.stringify({ sourceId: sourceElement.id, start: target }));
     };
 
-    const dragging = (event: DragEvent) => {
-        const element = event.target as HTMLElement;
-        const childImg = element.children[0];
-        childImg.style.backgroundColor = "transparent";
-        childImg.style.opacity = "0.2";
-        element.style.backgroundColor = "transparent";
+    const dragging = (e: DragEvent) => {
+        e.target.style.cursor = "grabbing";
     };
 
-    const drop = (event: DragEvent, target: any) => {
-        const element = event.target as HTMLElement;
-        // element.style.border = "2px solid blue";
-        element.style.backgroundColor = "transparent";
+    const drop = (event: DragEvent, targetIndex: any) => {
+        //event.target is a TARGET element, not the SOURCE element
+        const targetElement = event.target as HTMLElement;
 
         event.dataTransfer.dropEffect = "move";
-        const start = parseInt(event.dataTransfer.getData("text/plain"));
+        const { sourceId, start } = JSON.parse(event.dataTransfer.getData("text/plain"));
+        document.getElementById(
+            sourceId
+        ).children[0].style.cssText = `#${sourceId}:hover {background-color: var(--bg-light-white)}`;
         const newTracklist = apps;
 
-        if (start < target) {
-            newTracklist.splice(target + 1, 0, newTracklist[start]);
+        if (start < targetIndex) {
+            newTracklist.splice(targetIndex + 1, 0, newTracklist[start]);
             newTracklist.splice(start, 1);
         } else {
-            newTracklist.splice(target, 0, newTracklist[start]);
+            newTracklist.splice(targetIndex, 0, newTracklist[start]);
             newTracklist.splice(start + 1, 1);
         }
         apps = newTracklist;
@@ -100,18 +79,24 @@
         {#each apps as app, i (app.id)}
             <button
                 class="btn-app"
-                in:receive={{ key: app.id }}
-                out:send={{ key: app.id }}
-                animate:flip
+                id={String(app.id)}
+                animate:flip={{ duration: 300 }}
                 draggable="true"
                 on:dragstart={(event) => dragStart(event, i)}
-                on:drag={(event) => dragging(event)}
-                on:drop|preventDefault={(event) => drop(event, i)}
-                ondragover="return false"
+                on:drag={(e) => dragging(e)}
                 on:dragenter={() => (hovering = i)}
-                class:is-active={hovering === i}
+                on:dragover|preventDefault={(e) => {
+                    // const placeholder = document.createElement("div");
+                    // placeholder.style.cssText = `
+                    //     height: 50px
+                    // `;
+                    // e.target.append(placeholder);
+                    e.dataTransfer.dropEffect = "move";
+                    return false;
+                }}
+                on:drop|preventDefault={(event) => drop(event, i)}
             >
-                <img src={app.imgSrc} alt={app.name} class="app-icon" />
+                <img src={app.imgSrc} id={String(app.id)} alt={app.name} class="app-icon" />
             </button>
         {/each}
         <hr class="w-12 my-2" style="border-color: var(--warm-grey); border-width: 1px 0 0 0;" />
@@ -165,12 +150,21 @@
     .app-icon {
         width: 50px;
         padding: 0.4rem;
-        margin: 0.05rem 0.3rem;
+        z-index: 1;
         -webkit-user-drag: none;
+    }
+
+    .btn-app {
+        margin: 1px 0.3rem;
+        /* cursor: grabbing; */
     }
 
     .app-icon:hover {
         border-radius: 10px;
         background-color: var(--bg-light-white);
+    }
+
+    [draggable="true"] {
+        z-index: 1;
     }
 </style>

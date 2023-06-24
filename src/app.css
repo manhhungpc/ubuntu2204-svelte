@@ -19,6 +19,7 @@
 }
 * {
     letter-spacing: 0.5px;
+    cursor: url("/cursor/arrow_24x24.png"), auto;
 }
 
 button {
