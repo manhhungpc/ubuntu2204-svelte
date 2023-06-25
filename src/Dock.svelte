@@ -1,8 +1,7 @@
 <script lang="ts">
     import { flip } from "svelte/animate";
-    import { quintOut } from "svelte/easing";
-    import { crossfade } from "svelte/transition";
     let hovering = 0,
+        drag = false,
         dragId = "";
 
     let apps = [
@@ -36,11 +35,7 @@
     const dragStart = (event: DragEvent, target: any) => {
         const sourceElement = event.target as HTMLElement;
         dragId = sourceElement.id;
-        console.log("🚀 ~ file: Dock.svelte:54 ~ element:", sourceElement);
-        sourceElement.style.cursor = "grabbing";
-
-        const childImg = sourceElement.children[0];
-        childImg.style.backgroundColor = "transparent";
+        drag = true;
 
         event.dataTransfer.effectAllowed = "move";
         event.dataTransfer.dropEffect = "move";
@@ -48,18 +43,20 @@
     };
 
     const dragging = (e: DragEvent) => {
-        e.target.style.cursor = "grabbing";
+        drag = true;
+    };
+
+    const dragEnd = (e: any) => {
+        drag = false;
     };
 
     const drop = (event: DragEvent, targetIndex: any) => {
+        drag = false;
         //event.target is a TARGET element, not the SOURCE element
         const targetElement = event.target as HTMLElement;
 
         event.dataTransfer.dropEffect = "move";
         const { sourceId, start } = JSON.parse(event.dataTransfer.getData("text/plain"));
-        document.getElementById(
-            sourceId
-        ).children[0].style.cssText = `#${sourceId}:hover {background-color: var(--bg-light-white)}`;
         const newTracklist = apps;
 
         if (start < targetIndex) {
@@ -84,7 +81,8 @@
                 draggable="true"
                 on:dragstart={(event) => dragStart(event, i)}
                 on:drag={(e) => dragging(e)}
-                on:dragenter={() => (hovering = i)}
+                on:dragend={(e) => dragEnd(e)}
+                on:dragenter={(e) => (hovering = i)}
                 on:dragover|preventDefault={(e) => {
                     // const placeholder = document.createElement("div");
                     // placeholder.style.cssText = `
@@ -95,6 +93,8 @@
                     return false;
                 }}
                 on:drop|preventDefault={(event) => drop(event, i)}
+                class:drag={drag && app.id == dragId}
+                class:end-drag={!drag}
             >
                 <img src={app.imgSrc} id={String(app.id)} alt={app.name} class="app-icon" />
             </button>
@@ -156,7 +156,6 @@
 
     .btn-app {
         margin: 1px 0.3rem;
-        /* cursor: grabbing; */
     }
 
     .app-icon:hover {
@@ -166,5 +165,21 @@
 
     [draggable="true"] {
         z-index: 1;
+    }
+
+    .drag,
+    .drag img {
+        background-color: transparent !important;
+        cursor: -webkit-grabbing !important;
+        cursor: url("/cursor/dnd-none-24x24.png") grabbing !important;
+        /* border: 1px solid red; */
+    }
+
+    .drag {
+        margin: 1px 0.3rem;
+    }
+
+    .end-drag {
+        margin: 1px 0.3rem;
     }
 </style>
