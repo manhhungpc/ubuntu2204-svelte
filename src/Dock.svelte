@@ -1,43 +1,105 @@
 <script lang="ts">
-    const apps = [
+    import { flip } from "svelte/animate";
+    let hovering = 0,
+        drag = false,
+        dragId = "";
+
+    let apps = [
         {
-            id: 0,
+            id: crypto.randomUUID(),
             name: "gg-chrome",
             imgSrc: "/img/apps/google-chrome.png",
         },
         {
-            id: 1,
+            id: crypto.randomUUID(),
             name: "file-manager",
             imgSrc: "/img/apps/filemanager-app.png",
         },
         {
-            id: 2,
+            id: crypto.randomUUID(),
             name: "vscode",
             imgSrc: "/img/apps/vscode.png",
         },
         {
-            id: 3,
+            id: crypto.randomUUID(),
             name: "terminal",
             imgSrc: "/img/apps/terminal-app.png",
         },
         {
-            id: 4,
+            id: crypto.randomUUID(),
             name: "setting",
             imgSrc: "/img/apps/system-settings.png",
         },
     ];
+
+    const dragStart = (event: DragEvent, target: any) => {
+        const sourceElement = event.target as HTMLElement;
+        dragId = sourceElement.id;
+        drag = true;
+
+        event.dataTransfer.effectAllowed = "move";
+        event.dataTransfer.dropEffect = "move";
+        event.dataTransfer.setData("text/plain", JSON.stringify({ sourceId: sourceElement.id, start: target }));
+    };
+
+    const dragging = (e: DragEvent) => {
+        drag = true;
+    };
+
+    const dragEnd = (e: any) => {
+        drag = false;
+    };
+
+    const drop = (event: DragEvent, targetIndex: any) => {
+        drag = false;
+        //event.target is a TARGET element, not the SOURCE element
+        const targetElement = event.target as HTMLElement;
+
+        event.dataTransfer.dropEffect = "move";
+        const { sourceId, start } = JSON.parse(event.dataTransfer.getData("text/plain"));
+        const newTracklist = apps;
+
+        if (start < targetIndex) {
+            newTracklist.splice(targetIndex + 1, 0, newTracklist[start]);
+            newTracklist.splice(start, 1);
+        } else {
+            newTracklist.splice(targetIndex, 0, newTracklist[start]);
+            newTracklist.splice(start + 1, 1);
+        }
+        apps = newTracklist;
+        hovering = null;
+    };
 </script>
 
 <div class="wrap-dock">
     <div class="grid-apps">
-        {#each apps as app, i}
-            <button class="btn-app">
-                <img src={app.imgSrc} alt={app.name} class="app-icon" />
+        {#each apps as app, i (app.id)}
+            <button
+                class="btn-app"
+                id={String(app.id)}
+                animate:flip={{ duration: 300 }}
+                draggable="true"
+                on:dragstart={(event) => dragStart(event, i)}
+                on:drag={(e) => dragging(e)}
+                on:dragend={(e) => dragEnd(e)}
+                on:dragenter={(e) => (hovering = i)}
+                on:dragover|preventDefault={(e) => {
+                    // const placeholder = document.createElement("div");
+                    // placeholder.style.cssText = `
+                    //     height: 50px
+                    // `;
+                    // e.target.append(placeholder);
+                    e.dataTransfer.dropEffect = "move";
+                    return false;
+                }}
+                on:drop|preventDefault={(event) => drop(event, i)}
+                class:drag={drag && app.id == dragId}
+                class:end-drag={!drag}
+            >
+                <img src={app.imgSrc} id={String(app.id)} alt={app.name} class="app-icon" />
             </button>
-            {#if i === 3}
-                <hr class="w-12 my-2" style="border-color: var(--warm-grey); border-width: 1px 0 0 0;" />
-            {/if}
         {/each}
+        <hr class="w-12 my-2" style="border-color: var(--warm-grey); border-width: 1px 0 0 0;" />
     </div>
     <button class="mb-1">
         <img src="/img/icons/view-app-grid-symbolic.svg" alt="show-app" class="icon-show-app" />
@@ -88,11 +150,36 @@
     .app-icon {
         width: 50px;
         padding: 0.4rem;
-        margin: 0.08rem 0.3rem;
+        z-index: 1;
+        -webkit-user-drag: none;
+    }
+
+    .btn-app {
+        margin: 1px 0.3rem;
     }
 
     .app-icon:hover {
         border-radius: 10px;
         background-color: var(--bg-light-white);
+    }
+
+    [draggable="true"] {
+        z-index: 1;
+    }
+
+    .drag,
+    .drag img {
+        background-color: transparent !important;
+        cursor: -webkit-grabbing !important;
+        cursor: url("/cursor/dnd-none-24x24.png") grabbing !important;
+        /* border: 1px solid red; */
+    }
+
+    .drag {
+        margin: 1px 0.3rem;
+    }
+
+    .end-drag {
+        margin: 1px 0.3rem;
     }
 </style>

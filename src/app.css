@@ -13,11 +13,13 @@
     --warm-grey: #aea79f;
     --bg-dark-1: #111111;
     --white: #fff;
-    --bg-light-white: #ffffff38;
+    /* --bg-light-white: #ffffff00; */
+    --bg-light-white: #ffffff1f;
     --bg-dark-trans: #1c1017ca;
 }
 * {
     letter-spacing: 0.5px;
+    cursor: url("/cursor/arrow_24x24.png"), auto;
 }
 
 button {
