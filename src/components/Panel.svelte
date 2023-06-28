@@ -1,13 +1,28 @@
 <script lang="ts">
     import { Popover } from "flowbite-svelte";
     import SystemMenu from "./SystemMenu.svelte";
+    import { audio, datetime } from "src/store";
 
-    const date = new Date();
+    const date = $datetime;
     const formatDate = new Intl.DateTimeFormat("en-US", {
         dateStyle: "medium",
         hourCycle: "h23",
         timeStyle: "short",
     }).format(date);
+
+    let audioImg = "";
+
+    $: {
+        if ($audio === 0) {
+            audioImg = "/img/icons/audio-volume-muted-symbolic.svg";
+        } else if ($audio < 33) {
+            audioImg = "/img/icons/audio-volume-low-symbolic.svg";
+        } else if ($audio < 66) {
+            audioImg = "/img/icons/audio-volume-medium-symbolic.svg";
+        } else {
+            audioImg = "/img/icons/audio-volume-high-symbolic.svg";
+        }
+    }
 </script>
 
 <div class="wrap-panel">
@@ -29,7 +44,8 @@
         <button class="menu-btn" id="system-menu">
             <img src="/img/icons/network-signal-good-symbolic.svg" alt="wifi" class="utils-icon" />
             <img src="/img/icons/bluetooth-active-symbolic.svg" alt="bluetooth" class="utils-icon" />
-            <img src="/img/icons/audio-volume-low-symbolic.svg" alt="audio" class="utils-icon" />
+            <img src={audioImg} alt="audio" class="utils-icon" />
+            <!-- <img src="/img/icons/audio-volume-low-symbolic.svg" alt="audio" class="utils-icon" /> -->
             <span class="flex items-center utils-icon">
                 <img src="/img/icons/battery-80-symbolic.svg" alt="battery" class="h-4" />
                 &nbsp;80 %

@@ -2,14 +2,17 @@
     import { AccordionItem, Accordion } from "flowbite-svelte";
     import Slider from "./common/Slider.svelte";
     import { onMount } from "svelte";
-    let audio = 0,
-        brightness = 0;
+    import { brightness, audio } from "src/store";
+
+    let audioLevel = $audio,
+        brightnessLevel = $brightness,
+        audioImg = "";
 
     let menuDropdown = [],
         battery: any;
     onMount(async () => {
         //@ts-ignore
-        battery = await navigator.getBattery();
+        battery = navigator.getBattery ? await navigator.getBattery() : {};
         menuDropdown = [
             {
                 name: "WiFi",
@@ -33,16 +36,28 @@
             },
         ];
     });
+
+    $: {
+        if ($audio === 0) {
+            audioImg = "/img/icons/audio-volume-muted-symbolic.svg";
+        } else if ($audio < 33) {
+            audioImg = "/img/icons/audio-volume-low-symbolic.svg";
+        } else if ($audio < 66) {
+            audioImg = "/img/icons/audio-volume-medium-symbolic.svg";
+        } else {
+            audioImg = "/img/icons/audio-volume-high-symbolic.svg";
+        }
+    }
 </script>
 
 <div class="cont-menu">
     <div class="flex items-center menu-item">
-        <img src="/img/icons/audio-volume-high-symbolic.svg" alt="audio" class="menu-icon" />
-        <Slider percent={audio} />
+        <img src={audioImg} alt="audio" class="menu-icon" />
+        <Slider percent={audioLevel} isAudio={true} />
     </div>
     <div class="flex items-center menu-item">
-        <img src="/img/icons/display-brightness-symbolic.svg" alt="audio" class="menu-icon" />
-        <Slider percent={brightness} />
+        <img src="/img/icons/display-brightness-symbolic.svg" alt="brightness" class="menu-icon" />
+        <Slider percent={brightnessLevel} isBrightness={true} />
     </div>
     <hr class="bg-soft-white border-none h-[1px] w-[96%]" />
 

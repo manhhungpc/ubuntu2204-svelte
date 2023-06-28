@@ -1,6 +1,12 @@
 <script lang="ts">
     import { Range } from "flowbite-svelte";
-    export let percent: number;
+    import { brightness, audio } from "src/store";
+    export let percent: number,
+        isBrightness = false,
+        isAudio = false;
+
+    $: isBrightness && brightness.set(percent < 10 ? 10 : percent);
+    $: isAudio && audio.set(percent);
 </script>
 
 <Range bind:value={percent} size="sm" class="w-full accent-white bg-transparent" id="slider" />
