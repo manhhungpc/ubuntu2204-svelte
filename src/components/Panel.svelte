@@ -1,4 +1,7 @@
 <script lang="ts">
+    import { Popover } from "flowbite-svelte";
+    import SystemMenu from "./SystemMenu.svelte";
+
     const date = new Date();
     const formatDate = new Intl.DateTimeFormat("en-US", {
         dateStyle: "medium",
@@ -23,7 +26,7 @@
     </div>
     <div class="utils">
         <button class="lang">en</button>
-        <button class="menu-btn">
+        <button class="menu-btn" id="system-menu">
             <img src="/img/icons/network-signal-good-symbolic.svg" alt="wifi" class="utils-icon" />
             <img src="/img/icons/bluetooth-active-symbolic.svg" alt="bluetooth" class="utils-icon" />
             <img src="/img/icons/audio-volume-low-symbolic.svg" alt="audio" class="utils-icon" />
@@ -32,6 +35,17 @@
                 &nbsp;80 %
             </span>
         </button>
+        <div class="mr-2">
+            <Popover
+                trigger="click"
+                triggeredBy="#system-menu"
+                placement="bottom"
+                defaultClass=""
+                class="!-left-2 bg-dark-2"
+            >
+                <SystemMenu />
+            </Popover>
+        </div>
     </div>
 </div>
 

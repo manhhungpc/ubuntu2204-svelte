@@ -12,9 +12,13 @@
     --bg-grey-1: #333333;
     --warm-grey: #aea79f;
     --bg-dark-1: #111111;
+    --bg-dark-2: #1f1f1f;
     --white: #fff;
+    --main-orange: #e95420;
     /* --bg-light-white: #ffffff00; */
     --bg-light-white: #ffffff1f;
+    --bg-darker-white: #ffffff1d;
+    --bg-soft-white: #ffffff43;
     --bg-dark-trans: #1c1017ca;
 }
 * {
@@ -36,4 +40,8 @@ body {
     background-attachment: fixed;
     background-position: center;
     background-size: cover;
+}
+
+h2 {
+    margin: 0;
 }
