@@ -1,10 +1,12 @@
 <script lang="ts">
+    import VsCode from "src/apps/VSCode.svelte";
 </script>
 
 <div class="wrap-app-grid">
     <button>
         <img src="/img/apps/user-home.png" alt="home-folder" class="app-item" />
     </button>
+    <VsCode />
 </div>
 
 <style>

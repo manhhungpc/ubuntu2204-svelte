@@ -20,6 +20,7 @@
     --bg-darker-white: #ffffff1d;
     --bg-soft-white: #ffffff43;
     --bg-dark-trans: #1c1017ca;
+    --bg-window-bar: #222222;
 }
 * {
     letter-spacing: 0.5px;
@@ -35,6 +36,7 @@ body {
     font-family: "Ubuntu", sans-serif;
     margin: 0;
     display: flex;
+    overflow: hidden;
     /* background-image: url(/img/Wallpaper/Jammy-Jellyfish_WP_2560x1440.jpg);
     background-repeat: no-repeat;
     background-attachment: fixed;

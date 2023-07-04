@@ -1,5 +1,7 @@
 <script lang="ts">
     import { flip } from "svelte/animate";
+    import { openApps } from "src/store";
+    import VsCode from "./apps/VSCode.svelte";
     let hovering = 0,
         drag = false,
         dragId = "";
@@ -19,6 +21,9 @@
             id: crypto.randomUUID(),
             name: "vscode",
             imgSrc: "/img/apps/vscode.png",
+            open: function () {
+                openApps.update((opens) => (opens = [...opens, { name: "vscode", component: VsCode }]));
+            },
         },
         {
             id: crypto.randomUUID(),
@@ -31,6 +36,8 @@
             imgSrc: "/img/apps/system-settings.png",
         },
     ];
+
+    $: console.log($openApps);
 
     const dragStart = (event: DragEvent, target: any) => {
         const sourceElement = event.target as HTMLElement;
@@ -79,6 +86,7 @@
                 id={String(app.id)}
                 animate:flip={{ duration: 300 }}
                 draggable="true"
+                on:click={(e) => app.open()}
                 on:dragstart={(event) => dragStart(event, i)}
                 on:drag={(e) => dragging(e)}
                 on:dragend={(e) => dragEnd(e)}
