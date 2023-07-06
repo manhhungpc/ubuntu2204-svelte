@@ -74,6 +74,7 @@
         width: 100%;
         height: 1.7rem;
         color: var(--white);
+        z-index: 99;
     }
 
     .activity-info {

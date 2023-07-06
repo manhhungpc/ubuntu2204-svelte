@@ -3,19 +3,15 @@
     import WindowBar from "src/components/common/WindowBar.svelte";
 </script>
 
-<div class="vscode" use:draggable={{ handle: ".window-bar" }}>
-    <WindowBar name="vscode" />
+<div class="gg-chrome" use:draggable={{ handle: ".window-bar" }}>
+    <WindowBar name="gg-chrome" />
     <div class="main-app">
-        <iframe
-            src="https://stackblitz.com/github/manhhungpc/ubuntu2204-svelte?file=README.md"
-            title="vscode"
-            frameborder="0"
-        />
+        <iframe src="https://www.google.com/?igu=1" title="gg-chrome" frameborder="0" />
     </div>
 </div>
 
 <style>
-    .vscode {
+    .gg-chrome {
         position: absolute;
         inset: 10%;
         resize: both;

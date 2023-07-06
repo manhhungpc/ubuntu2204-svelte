@@ -1,18 +1,25 @@
 <script lang="ts">
+    import { openApps } from "src/store";
+    export let name = "";
+
+    function onClose() {
+        console.log($openApps, name);
+        $openApps = $openApps.filter((e) => e.name != name);
+    }
 </script>
 
 <div class="window-bar">
     <div />
     <div class="flex justify-end items-center h-[48px]">
-        <div class="bar-button">
+        <button class="bar-button">
             <img src="/img/icons/window-minimize-symbolic.svg" alt="minimize" class="window-icon" />
-        </div>
-        <div class="bar-button">
+        </button>
+        <button class="bar-button">
             <img src="/img/icons/window-maximize-symbolic.svg" alt="minimize" class="window-icon" />
-        </div>
-        <div class="bar-button">
+        </button>
+        <button class="bar-button" on:click={onClose}>
             <img src="/img/icons/window-close-symbolic.svg" alt="minimize" class="window-icon" />
-        </div>
+        </button>
     </div>
 </div>
 

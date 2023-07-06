@@ -2,6 +2,7 @@
     import { flip } from "svelte/animate";
     import { openApps } from "src/store";
     import VsCode from "./apps/VSCode.svelte";
+    import GoogleChrome from "./apps/GoogleChrome.svelte";
     let hovering = 0,
         drag = false,
         dragId = "";
@@ -11,33 +12,38 @@
             id: crypto.randomUUID(),
             name: "gg-chrome",
             imgSrc: "/img/apps/google-chrome.png",
+            component: GoogleChrome,
         },
         {
             id: crypto.randomUUID(),
             name: "file-manager",
             imgSrc: "/img/apps/filemanager-app.png",
+            component: null,
         },
         {
             id: crypto.randomUUID(),
             name: "vscode",
             imgSrc: "/img/apps/vscode.png",
-            open: function () {
-                openApps.update((opens) => (opens = [...opens, { name: "vscode", component: VsCode }]));
-            },
+            component: VsCode,
         },
         {
             id: crypto.randomUUID(),
             name: "terminal",
             imgSrc: "/img/apps/terminal-app.png",
+            component: null,
         },
         {
             id: crypto.randomUUID(),
             name: "setting",
             imgSrc: "/img/apps/system-settings.png",
+            component: null,
         },
     ];
 
-    $: console.log($openApps);
+    function open(name: string, component: any) {
+        if ($openApps.find((app) => app.name === name)) return;
+        openApps.update((opens) => (opens = [...opens, { name, component }]));
+    }
 
     const dragStart = (event: DragEvent, target: any) => {
         const sourceElement = event.target as HTMLElement;
@@ -86,7 +92,7 @@
                 id={String(app.id)}
                 animate:flip={{ duration: 300 }}
                 draggable="true"
-                on:click={(e) => app.open()}
+                on:click={(e) => open(app.name, app.component)}
                 on:dragstart={(event) => dragStart(event, i)}
                 on:drag={(e) => dragging(e)}
                 on:dragend={(e) => dragEnd(e)}

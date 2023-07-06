@@ -1,11 +1,18 @@
 <script lang="ts">
     import AppGrid from "./components/AppGrid.svelte";
     import Panel from "./components/Panel.svelte";
+    // import VsCode from "./apps/VSCode.svelte";
+    import { openApps } from "src/store";
+
+    $: console.log($openApps);
 </script>
 
 <main class="desktop">
     <Panel />
     <AppGrid />
+    {#each $openApps as app}
+        <svelte:component this={app.component} />
+    {/each}
 </main>
 
 <style>
