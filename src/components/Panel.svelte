@@ -1,7 +1,8 @@
 <script lang="ts">
-    import { Popover } from "flowbite-svelte";
+    import { Dropdown, Popover } from "flowbite-svelte";
     import SystemMenu from "./SystemMenu.svelte";
     import { audio, datetime } from "src/store";
+    import Calendar from "./Calendar.svelte";
 
     const date = $datetime;
     const formatDate = new Intl.DateTimeFormat("en-US", {
@@ -38,6 +39,9 @@
         <button class="calendar">
             {formatDate.split(",")[0]}&nbsp;{formatDate.split(",")[2]}
         </button>
+        <Dropdown class="p-0 m-0 rounded-full">
+            <Calendar />
+        </Dropdown>
     </div>
     <div class="utils">
         <button class="lang">en</button>

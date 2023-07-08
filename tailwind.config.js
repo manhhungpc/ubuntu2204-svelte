@@ -26,6 +26,7 @@ export default {
             "light-white": "var(--bg-light-white)",
             "warm-grey": "var(--warm-grey)",
             "soft-white": "var(--bg-soft-white)",
+            "darker-white": "var(--bg-darker-white)",
         },
     },
     plugins: [require("flowbite/plugin")],
