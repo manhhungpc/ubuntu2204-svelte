@@ -3,7 +3,7 @@
     import WindowBar from "src/components/common/WindowBar.svelte";
 </script>
 
-<div class="vscode" use:draggable={{ handle: ".window-bar" }}>
+<div class="vscode" use:draggable={{ handle: ".window-bar", bounds: { top: 25 } }}>
     <WindowBar name="vscode" />
     <div class="main-app">
         <iframe

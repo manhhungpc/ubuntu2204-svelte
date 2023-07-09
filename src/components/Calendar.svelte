@@ -8,6 +8,7 @@
 
     let currYear = today.getFullYear();
     let currMonth = today.getMonth();
+    let currDate = today.getDate();
     let offset = 1;
     let labels = ["M", "T", "W", "T", "F", "S", "S"];
     let months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "July", "Aug", "Sep", "Oct", "Nov", "Dec"];
@@ -53,6 +54,10 @@
 
                 if (currentDate === 0 && i == 0) dates.push("prev|" + lastPrevWeek[j]);
                 else if (currentDate === 0 && i == current.length - 1) dates.push("next|" + firstNextWeek[j]);
+                else if (
+                    new Date(currYear, currMonth, currentDate).toLocaleDateString() === new Date().toLocaleDateString()
+                )
+                    dates.push("today|" + currDate);
                 else dates.push(String(currentDate));
             }
         }
@@ -90,8 +95,15 @@
             </div>
             <div class="dates">
                 {#each dates as date}
+                    <!-- Conditional render if it is date of previous/next month, today or the other day in month -->
                     {#if date.includes("prev") || date.includes("next")}
                         <div class="date out_month">
+                            {Number(date.split("|")[1]) < 10
+                                ? `0${Number(date.split("|")[1])}`
+                                : Number(date.split("|")[1])}
+                        </div>
+                    {:else if date.includes("today")}
+                        <div class="date today">
                             {Number(date.split("|")[1]) < 10
                                 ? `0${Number(date.split("|")[1])}`
                                 : Number(date.split("|")[1])}
@@ -147,6 +159,14 @@
         opacity: 0.5;
     }
 
+    .today {
+        background-color: var(--main-orange);
+    }
+
+    .today:hover {
+        background-color: var(--main-orange) !important;
+    }
+
     .arrow_months {
         height: 16px;
         filter: brightness(0) invert(1);
@@ -199,6 +219,6 @@
     }
 
     .date:hover {
-        background-color: var(--main-orange);
+        background-color: var(--bg-soft-white);
     }
 </style>

@@ -3,7 +3,7 @@
     import WindowBar from "src/components/common/WindowBar.svelte";
 </script>
 
-<div class="gg-chrome" use:draggable={{ handle: ".window-bar" }}>
+<div class="gg-chrome" use:draggable={{ handle: ".window-bar", bounds: { top: 25 } }}>
     <WindowBar name="gg-chrome" />
     <div class="main-app">
         <iframe src="https://www.google.com/?igu=1" title="gg-chrome" frameborder="0" />
