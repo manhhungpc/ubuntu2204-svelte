@@ -1,15 +1,14 @@
 <script lang="ts">
     import { Dropdown, Popover } from "flowbite-svelte";
     import SystemMenu from "./SystemMenu.svelte";
-    import { audio, datetime } from "src/store";
-    import Calendar from "./Calendar.svelte";
+    import { audio, datetime, doNotDisturb } from "src/store";
+    import CalendarView from "./CalendarView.svelte";
 
-    const date = $datetime;
     const formatDate = new Intl.DateTimeFormat("en-US", {
         dateStyle: "medium",
         hourCycle: "h23",
         timeStyle: "short",
-    }).format(date);
+    });
 
     let audioImg = "";
 
@@ -37,10 +36,17 @@
     </div>
     <div class="flex items-center">
         <button class="calendar">
-            {formatDate.split(",")[0]}&nbsp;{formatDate.split(",")[2]}
+            {formatDate.format($datetime).split(",")[0]}&nbsp;{formatDate.format($datetime).split(",")[2]}
         </button>
+        {#if $doNotDisturb}
+            <img
+                src="/img/icons/notifications-disabled-symbolic.svg"
+                alt="dnd"
+                style:filter="brightness(0) invert(1)"
+            />
+        {/if}
         <Dropdown class="p-0 m-0 rounded-full">
-            <Calendar />
+            <CalendarView />
         </Dropdown>
     </div>
     <div class="utils">

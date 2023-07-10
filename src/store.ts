@@ -14,3 +14,4 @@ export const datetime = readable(new Date(), function start(set) {
 });
 
 export const openApps = writable([]);
+export const doNotDisturb = writable(false);

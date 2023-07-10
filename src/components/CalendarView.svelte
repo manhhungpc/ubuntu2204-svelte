@@ -2,16 +2,18 @@
     import { Card } from "flowbite-svelte";
     import { Toggle } from "flowbite-svelte";
     import calendarize from "calendarize";
+    import { doNotDisturb } from "src/store";
+    $: console.log($doNotDisturb);
 
     const weekday = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+    const labels = ["M", "T", "W", "T", "F", "S", "S"];
+    const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "July", "Aug", "Sep", "Oct", "Nov", "Dec"];
     let today = new Date();
 
     let currYear = today.getFullYear();
     let currMonth = today.getMonth();
     let currDate = today.getDate();
     let offset = 1;
-    let labels = ["M", "T", "W", "T", "F", "S", "S"];
-    let months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "July", "Aug", "Sep", "Oct", "Nov", "Dec"];
     let dates: string[] = [];
 
     let prev = calendarize(new Date(currYear, currMonth - 1), offset);
@@ -67,15 +69,15 @@
     getMonthDates();
 </script>
 
-<Card class="h-max w-max bg-dark-2 !p-0 flex flex-row" size="lg">
+<Card class="h-max w-max bg-dark-2 !p-0 flex flex-row" size="xl">
     <div class="notif">
-        <div class="flex justify-start ml-2">
-            <p class="text-xs font-extralight mr-3">Do Not Disturb</p>
-            <Toggle />
+        <div class="flex justify-start ml-4">
+            <p class="text-sm font-extralight mr-3">Do Not Disturb</p>
+            <Toggle on:change={(e) => doNotDisturb.set(!$doNotDisturb)} />
         </div>
-        <button class="bg-darker-white px-4 py-[6px] text-white rounded mb-2 ml-32 mr-[10px]">Clear</button>
+        <button class="bg-darker-white px-6 py-[5px] text-white text-sm rounded mb-2 mr-[15px]">Clear</button>
     </div>
-    <div>
+    <div class="calendar-view">
         <div class="calendar">
             <div class="mx-[10px] text-sm opacity-50">{weekday[today.getDay()]}</div>
             <div class="mx-[10px] text-xl opacity-50">{months[today.getMonth()]} {today.getDate()} {currYear}</div>
@@ -109,15 +111,17 @@
                                 : Number(date.split("|")[1])}
                         </div>
                     {:else}
-                        <div class="date">{Number(date) < 10 ? `0${date}` : date}</div>
+                        <div class="date">
+                            {Number(date) < 10 ? `0${date}` : date}
+                        </div>
                     {/if}
                 {/each}
             </div>
         </div>
-        <button class="mx-3 mb-2 bg-darker-white text-start rounded w-[210px]">
+        <button class="mx-3 mb-4 bg-darker-white text-start rounded w-[92%]">
             <div class="pl-2 py-2">
-                <p class="text-white text-xs opacity-50 m-0 mb-2">Today</p>
-                <span class="text-white">No Events</span>
+                <p class="text-white text-sm opacity-50 m-0 mb-2">Today</p>
+                <span class="text-white text-sm">No Events</span>
             </div>
         </button>
     </div>
@@ -127,22 +131,25 @@
     .notif {
         display: flex;
         align-items: flex-end;
+        justify-content: space-between;
+        width: 26rem;
+        margin-bottom: 8px;
         color: var(--white);
     }
 
-    .notif::after {
-        display: flex;
-        align-self: center;
+    .calendar-view::before {
+        position: absolute;
+        top: 10px;
         height: 96%;
         content: " ";
         border-right: 1px solid var(--bg-soft-white);
     }
 
     .calendar {
-        width: 210px;
+        width: max-content;
         min-height: 305px;
         border-radius: 5px;
-        padding: 10px;
+        padding: 20px;
         color: var(--white);
         font-weight: 300;
     }
@@ -152,7 +159,7 @@
         justify-content: space-between;
         align-items: center;
         margin: 10px;
-        margin-top: 20px;
+        margin-top: 30px;
     }
 
     .out_month {
@@ -212,10 +219,10 @@
     .date {
         text-align: center;
         cursor: pointer;
-        padding: 8px 2px;
+        padding: 10px;
         border-radius: 50%;
         transition: background-color 0.3s;
-        font-size: 10px;
+        font-size: 12px;
     }
 
     .date:hover {
