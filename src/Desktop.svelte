@@ -1,14 +1,22 @@
 <script lang="ts">
     import AppGrid from "./components/AppGrid.svelte";
-    import Panel from "./components/Panel.svelte";
-    // import VsCode from "./apps/VSCode.svelte";
-    import { openApps } from "src/store";
+    import { tweened } from "svelte/motion";
+    import { cubicOut } from "svelte/easing";
+    import { openApps, showApplication } from "src/store";
 
-    $: console.log($openApps);
+    const scale = tweened(1, { duration: 300, easing: cubicOut });
+    const xPos = tweened(0, { duration: 300, easing: cubicOut });
+    const yPos = tweened(0, { duration: 300, easing: cubicOut });
+
+    $: {
+        scale.set($showApplication ? 0.25 : 1);
+        xPos.set($showApplication ? -400 : 0);
+        yPos.set($showApplication ? -400 : 0);
+    }
+    scale.subscribe((s) => console.log(s));
 </script>
 
-<main class="desktop">
-    <Panel />
+<main class="desktop" style:transform="scale({$scale}) translate({$xPos}px, {$yPos}px)">
     <AppGrid />
     {#each $openApps as app}
         <svelte:component this={app.component} />
@@ -24,5 +32,12 @@
         background-attachment: fixed;
         background-position: center;
         background-size: cover;
+    }
+
+    .thumbnail-desktop {
+        /* transform: translate(50px, 100px); */
+        position: relative;
+        bottom: 25vh;
+        right: 20vw;
     }
 </style>

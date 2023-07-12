@@ -1,4 +1,4 @@
-import { writable, readable } from "svelte/store";
+import { writable, readable, type Writable } from "svelte/store";
 
 export const brightness = writable(100);
 export const audio = writable(40);
@@ -13,5 +13,7 @@ export const datetime = readable(new Date(), function start(set) {
     };
 });
 
-export const openApps = writable([]);
+export const openApps: Writable<OpenApps[]> = writable([]);
+export const topApp = writable("");
 export const doNotDisturb = writable(false);
+export const showApplication = writable(false);

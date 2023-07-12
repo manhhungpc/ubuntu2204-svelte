@@ -1,8 +1,9 @@
 <script lang="ts">
     import { flip } from "svelte/animate";
-    import { openApps } from "src/store";
+    import { openApps, showApplication, topApp } from "src/store";
     import VsCode from "./apps/VSCode.svelte";
     import GoogleChrome from "./apps/GoogleChrome.svelte";
+    import { Indicator } from "flowbite-svelte";
     let hovering = 0,
         drag = false,
         dragId = "";
@@ -40,9 +41,9 @@
         },
     ];
 
-    function open(name: string, component: any) {
+    function open(name: string, component: any, img: string) {
         if ($openApps.find((app) => app.name === name)) return;
-        openApps.update((opens) => (opens = [...opens, { name, component }]));
+        openApps.update((opens) => (opens = [...opens, { name, component, img }]));
     }
 
     const dragStart = (event: DragEvent, target: any) => {
@@ -92,7 +93,7 @@
                 id={String(app.id)}
                 animate:flip={{ duration: 300 }}
                 draggable="true"
-                on:click={(e) => open(app.name, app.component)}
+                on:click={(e) => open(app.name, app.component, app.imgSrc)}
                 on:dragstart={(event) => dragStart(event, i)}
                 on:drag={(e) => dragging(e)}
                 on:dragend={(e) => dragEnd(e)}
@@ -110,12 +111,21 @@
                 class:drag={drag && app.id == dragId}
                 class:end-drag={!drag}
             >
-                <img src={app.imgSrc} id={String(app.id)} alt={app.name} class="app-icon" />
+                {#if $topApp === app.name}
+                    <div class="top-app" />
+                {/if}
+                <img
+                    src={app.imgSrc}
+                    id={String(app.id)}
+                    alt={app.name}
+                    class="app-icon"
+                    class:top-app={$topApp === app.name}
+                />
             </button>
         {/each}
         <hr class="w-12 my-2" style="border-color: var(--warm-grey); border-width: 1px 0 0 0;" />
     </div>
-    <button class="mb-1">
+    <button class="mb-1" on:click={(e) => showApplication.update((curr) => !curr)}>
         <img src="/img/icons/view-app-grid-symbolic.svg" alt="show-app" class="icon-show-app" />
     </button>
 </div>
@@ -128,6 +138,7 @@
         width: 72px;
         height: calc(100vh - 1.7rem); /* minus the panel height*/
         background-color: var(--bg-dark-trans);
+        z-index: 98;
     }
 
     .grid-apps {
@@ -148,17 +159,19 @@
     }
 
     /* find way to style active apps with dots*/
-    .app-active:before {
+    .top-app {
+        border-radius: 10px;
+        background-color: var(--bg-light-white);
+    }
+    .top-app::before {
         content: "\A";
-        width: 7px;
-        height: 7px;
+        width: 6px;
+        height: 6px;
         border-radius: 50%;
         background: #b83b3b;
-        margin: 0 12px;
-        display: block;
+        margin-top: 40%;
         position: absolute;
-        top: 2.5rem;
-        right: 50px;
+        left: 5px;
     }
 
     .app-icon {
@@ -168,13 +181,13 @@
         -webkit-user-drag: none;
     }
 
-    .btn-app {
-        margin: 1px 0.3rem;
-    }
-
     .app-icon:hover {
         border-radius: 10px;
         background-color: var(--bg-light-white);
+    }
+
+    .btn-app {
+        margin: 1px 0.3rem;
     }
 
     [draggable="true"] {
