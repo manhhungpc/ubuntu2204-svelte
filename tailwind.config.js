@@ -21,6 +21,7 @@ export default {
             },
         },
         colors: {
+            "dark-1": "var(--bg-dark-1)",
             "dark-2": "var(--bg-dark-2)",
             "main-orange": "var(--main-orange)",
             "light-white": "var(--bg-light-white)",

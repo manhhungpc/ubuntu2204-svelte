@@ -126,7 +126,12 @@
         <hr class="w-12 my-2" style="border-color: var(--warm-grey); border-width: 1px 0 0 0;" />
     </div>
     <button class="mb-1" on:click={(e) => showApplication.update((curr) => !curr)}>
-        <img src="/img/icons/view-app-grid-symbolic.svg" alt="show-app" class="icon-show-app" />
+        <img
+            src="/img/icons/view-app-grid-symbolic.svg"
+            alt="show-app"
+            class="icon-show-app"
+            class:show-app-active={$showApplication}
+        />
     </button>
 </div>
 
@@ -154,6 +159,11 @@
     }
 
     .icon-show-app:hover {
+        border-radius: 10px;
+        background-color: var(--bg-light-white);
+    }
+
+    .show-app-active {
         border-radius: 10px;
         background-color: var(--bg-light-white);
     }

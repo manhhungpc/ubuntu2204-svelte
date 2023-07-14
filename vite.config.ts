@@ -9,4 +9,7 @@ export default defineConfig({
             src: "/src",
         },
     },
+    optimizeDeps: {
+        include: ["lodash.get", "lodash.isequal", "lodash.clonedeep"],
+    },
 });

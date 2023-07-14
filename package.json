@@ -27,6 +27,7 @@
     "calendarize": "^1.1.1",
     "flowbite": "^1.6.6",
     "flowbite-svelte": "^0.38.5",
+    "svelte-carousel": "^1.0.25",
     "tailwind-merge": "^1.13.2"
   }
 }

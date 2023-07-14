@@ -16,6 +16,9 @@ dependencies:
   flowbite-svelte:
     specifier: ^0.38.5
     version: 0.38.5(svelte@3.58.0)
+  svelte-carousel:
+    specifier: ^1.0.25
+    version: 1.0.25
   tailwind-merge:
     specifier: ^1.13.2
     version: 1.13.2
@@ -496,6 +499,14 @@ packages:
     resolution: {integrity: sha512-+HlytyjlPKnIG8XuRG8WvmBP8xs8P71y+SKKS6ZXWoEgLuePxtDoUEiH7WkdePWrQ5JBpE6aoVqfZfJUQkjXwA==}
     dev: true
 
+  /easy-reactive@1.0.4:
+    resolution: {integrity: sha512-dFVouegPctMf6XT5si+sRByBWUQE30n99TW0Y45Y7mccmNsbSl4uXA2sBGI8zCDZqXjhb8ouA3wVVhSSGpXk5Q==}
+    dependencies:
+      lodash.clonedeep: 4.5.0
+      lodash.get: 4.4.2
+      lodash.isequal: 4.5.0
+    dev: false
+
   /electron-to-chromium@1.4.433:
     resolution: {integrity: sha512-MGO1k0w1RgrfdbLVwmXcDhHHuxCn2qRgR7dYsJvWFKDttvYPx6FNzCGG0c/fBBvzK2LDh3UV7Tt9awnHnvAAUQ==}
     dev: true
@@ -716,6 +727,18 @@ packages:
   /lines-and-columns@1.2.4:
     resolution: {integrity: sha512-7ylylesZQ/PV29jhEDl3Ufjo6ZX7gCqJr5F7PKrqc93v7fzSymt1BpwEU8nAUXs8qzzvqhbjhK5QZg6Mt/HkBg==}
     dev: true
+
+  /lodash.clonedeep@4.5.0:
+    resolution: {integrity: sha512-H5ZhCF25riFd9uB5UCkVKo61m3S/xZk1x4wA6yp/L3RFP6Z/eHH1ymQcGLo7J3GMPfm0V/7m1tryHuGVxpqEBQ==}
+    dev: false
+
+  /lodash.get@4.4.2:
+    resolution: {integrity: sha512-z+Uw/vLuy6gQe8cfaFWD7p0wVv8fJl3mbzXh33RS+0oW2wvUqiRXiQ69gLWSLpgB5/6sU+r6BlQR0MBILadqTQ==}
+    dev: false
+
+  /lodash.isequal@4.5.0:
+    resolution: {integrity: sha512-pDo3lu8Jhfjqls6GkMgpahsF9kCyayhgykjyLMNFTKWrpVdAQtYyB4muAMWozBB4ig/dtWAmsMxLEI8wuz+DYQ==}
+    dev: false
 
   /magic-string@0.27.0:
     resolution: {integrity: sha512-8UnnX2PeRAPZuN12svgR9j7M1uWMovg/CEnIwIG0LFkXSJJe4PdfUGiTGl8V9bsBHFUtfVINcSyYxd7q+kx9fA==}
@@ -1042,6 +1065,12 @@ packages:
     resolution: {integrity: sha512-ot0WnXS9fgdkgIcePe6RHNk1WA8+muPa6cSjeR3V8K27q9BB1rTE3R1p7Hv0z1ZyAc8s6Vvv8DIyWf681MAt0w==}
     engines: {node: '>= 0.4'}
     dev: true
+
+  /svelte-carousel@1.0.25:
+    resolution: {integrity: sha512-vR/AbGYwlh3fgWaB5PJg+iqZFvoVCJq4JWdmlXvPtdG9TLlKJWBcoiKlMZt3MnFF7AqNW46tOH/O+uVMWQzyWQ==}
+    dependencies:
+      easy-reactive: 1.0.4
+    dev: false
 
   /svelte-check@3.3.1(postcss@8.4.24)(svelte@3.58.0):
     resolution: {integrity: sha512-+Yb1F50M76JRPdZlxB8/blg75GiqKH/8QJTNtC3cKvxCbrRK7zpgmOg2oxem9n4eDAIllesm74guR3AnlAtNVg==}
