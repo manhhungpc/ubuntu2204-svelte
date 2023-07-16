@@ -9,7 +9,9 @@
 </script>
 
 <div class="window-bar">
-    <div />
+    <div class="flex items-center w-full">
+        <slot />
+    </div>
     <div class="flex justify-end items-center h-[48px]">
         <button class="bar-button">
             <img src="/img/icons/window-minimize-symbolic.svg" alt="minimize" class="window-icon" />
@@ -25,6 +27,8 @@
 
 <style>
     .window-bar {
+        display: flex;
+        justify-content: space-between;
         height: 48px;
         background-color: var(--bg-window-bar);
     }

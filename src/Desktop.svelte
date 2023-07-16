@@ -3,6 +3,7 @@
     import { tweened } from "svelte/motion";
     import { cubicOut } from "svelte/easing";
     import { openApps, showApplication } from "src/store";
+    import Setting from "./apps/Setting.svelte";
 
     const scale = tweened(1, { duration: 300, easing: cubicOut });
     const xPos = tweened(0, { duration: 300, easing: cubicOut });
@@ -21,6 +22,7 @@
     {#each $openApps as app}
         <svelte:component this={app.component} />
     {/each}
+    <Setting />
 </main>
 
 <style>
