@@ -3,6 +3,7 @@
     import { tweened } from "svelte/motion";
     import { cubicOut } from "svelte/easing";
     import { openApps, showApplication } from "src/store";
+    import Setting from "./apps/Setting.svelte";
 
     const scale = tweened(1, { duration: 300, easing: cubicOut });
     const xPos = tweened(0, { duration: 300, easing: cubicOut });
@@ -32,12 +33,5 @@
         background-attachment: fixed;
         background-position: center;
         background-size: cover;
-    }
-
-    .thumbnail-desktop {
-        /* transform: translate(50px, 100px); */
-        position: relative;
-        bottom: 25vh;
-        right: 20vw;
     }
 </style>

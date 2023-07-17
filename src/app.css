@@ -14,6 +14,8 @@
     --bg-dark-1: #111111;
     --bg-dark-2: #1f1f1f;
     --white: #fff;
+    --grey-1: #6b6b6b;
+    --grey-2: #7b7b7b6d;
     --main-orange: #e95420;
     /* --bg-light-white: #ffffff00; */
     --bg-light-white: #ffffff2a;
@@ -24,6 +26,8 @@
     --light-purple: #77216f;
     --mid-purple: #5e2750;
     --dark-purple: #2c001e;
+    --bg-dark-3: #272727;
+    --bg-dark-hover: #ffffff0d;
 }
 * {
     letter-spacing: 0.5px;
@@ -49,4 +53,32 @@ body {
 
 h2 {
     margin: 0;
+}
+
+@layer utilities {
+    .img-icon {
+        filter: brightness(0) invert(1);
+    }
+
+    .scrollbar-thin::-webkit-scrollbar {
+        width: 6px;
+        background-color: transparent;
+        /* position: absolute;
+        z-index: 5;
+        right: 0; */
+    }
+
+    .scrollbar-thin::-webkit-scrollbar-track {
+        background-color: transparent;
+    }
+
+    .scrollbar-thin::-webkit-scrollbar-thumb {
+        width: 100%;
+        background-color: var(--grey-1);
+        border-radius: 100vh;
+    }
+
+    .scrollbar-thin::-webkit-scrollbar-thumb:hover {
+        background-color: var(--grey-1);
+    }
 }
