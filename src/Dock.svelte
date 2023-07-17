@@ -3,7 +3,7 @@
     import { openApps, showApplication, topApp } from "src/store";
     import VsCode from "./apps/VSCode.svelte";
     import GoogleChrome from "./apps/GoogleChrome.svelte";
-    import { Indicator } from "flowbite-svelte";
+    import Terminal from "./apps/Terminal.svelte";
     let hovering = 0,
         drag = false,
         dragId = "";
@@ -31,7 +31,7 @@
             id: crypto.randomUUID(),
             name: "terminal",
             imgSrc: "/img/apps/terminal-app.png",
-            component: null,
+            component: Terminal,
         },
         {
             id: crypto.randomUUID(),
