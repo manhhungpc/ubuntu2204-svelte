@@ -22,7 +22,6 @@
     {#each $openApps as app}
         <svelte:component this={app.component} />
     {/each}
-    <Setting />
 </main>
 
 <style>
@@ -34,12 +33,5 @@
         background-attachment: fixed;
         background-position: center;
         background-size: cover;
-    }
-
-    .thumbnail-desktop {
-        /* transform: translate(50px, 100px); */
-        position: relative;
-        bottom: 25vh;
-        right: 20vw;
     }
 </style>

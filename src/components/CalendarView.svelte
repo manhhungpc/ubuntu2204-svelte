@@ -3,6 +3,7 @@
     import { Toggle } from "flowbite-svelte";
     import calendarize from "calendarize";
     import { doNotDisturb } from "src/store";
+    import ToggleSwitch from "./common/ToggleSwitch.svelte";
     $: console.log($doNotDisturb);
 
     const weekday = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
@@ -73,7 +74,8 @@
     <div class="notif">
         <div class="flex justify-start ml-4">
             <p class="text-sm font-extralight mr-3">Do Not Disturb</p>
-            <Toggle on:change={(e) => doNotDisturb.set(!$doNotDisturb)} />
+            <ToggleSwitch />
+            <!-- <Toggle on:change={(e) => doNotDisturb.set(!$doNotDisturb)} /> -->
         </div>
         <button class="bg-darker-white px-6 py-[5px] text-white text-sm rounded mb-2 mr-[15px]">Clear</button>
     </div>

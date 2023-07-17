@@ -1,10 +1,10 @@
 <script lang="ts">
-    import { openApps } from "src/store";
+    import { openApps, topApp } from "src/store";
     export let name = "";
 
     function onClose() {
-        console.log($openApps, name);
         $openApps = $openApps.filter((e) => e.name != name);
+        if ($openApps.length == 0) topApp.set("");
     }
 </script>
 

@@ -3,6 +3,7 @@
     import WindowBar from "src/components/common/WindowBar.svelte";
     import { topApp } from "src/store";
     import { Listgroup, ListgroupItem } from "flowbite-svelte";
+    import WiFi from "src/components/settings-app/WiFi.svelte";
 
     const settings = [
         { name: "Wi-Fi", icon: "/img/icons/network-wireless-symbolic.svg" },
@@ -57,7 +58,7 @@
     class:top-app={isTopApp}
 >
     <WindowBar name="setting">
-        <div class="flex justify-between items-center min-w-[13rem] w-52 h-full" style="border-right: 1px solid #000;">
+        <div class="flex justify-between items-center min-w-[15rem] w-52 h-full" style="border-right: 1px solid #000;">
             <button class="ml-2 bg-grey-2 pt-2 pb-1 px-2 rounded-md">
                 <img
                     src="/img/icons/preferences-system-search-symbolic.svg"
@@ -69,30 +70,24 @@
             </button>
             <span class="text-white text-sm">Settings</span>
             <button class="mr-2 bg-grey-2 pt-2 pb-1 px-2 rounded-md">
-                <img
-                    src="/img/icons/preferences-system-search-symbolic.svg"
-                    alt="search-btn"
-                    width="15"
-                    height="15"
-                    class="img-icon"
-                />
+                <img src="/img/icons/open-menu-symbolic.svg" alt="search-btn" width="15" height="15" class="img-icon" />
             </button>
         </div>
         <div class="w-[200px]" />
-        <div class="text-white w-full flex justify-center">{selectSetting}</div>
+        <div class="text-white text-sm font-bold w-full flex justify-center">{selectSetting}</div>
     </WindowBar>
     <div class="main-app">
         <div class="list-setting">
             <Listgroup
                 active
-                class="w-52 h-full overflow-hidden hover:overflow-y-scroll scrollbar-thin bg-dark-3 rounded-none"
+                class="w-60 h-full overflow-hidden hover:overflow-y-scroll scrollbar-thin bg-dark-3 rounded-none"
                 on:click={console.log}
             >
                 {#each settings as setting}
                     <ListgroupItem
                         hoverClass=""
-                        on:click={(e) => (selectSetting = setting.name)}
-                        class="text-white hover:bg-dark-hover focus:bg-main-orange focus:text-white"
+                        on:focus={(e) => (selectSetting = setting.name)}
+                        class="text-white h-[45px] hover:bg-dark-hover hover:rounded-none focus:bg-main-orange focus:text-white focus:rounded-none"
                     >
                         <img src={setting.icon} alt={setting.name} width="15" class="img-icon" />
                         <span class="setting-name">
@@ -102,22 +97,24 @@
                             <img
                                 src="/img/icons/pan-end-symbolic.svg"
                                 alt={setting.name}
-                                width="15"
-                                class="absolute left-44 img-icon"
+                                width="20"
+                                class="absolute left-52 img-icon"
                             />
                         {/if}
                     </ListgroupItem>
                 {/each}
             </Listgroup>
         </div>
-        <div class="setting-info" />
+        <div class="setting-info">
+            <WiFi />
+        </div>
     </div>
 </div>
 
 <style>
     .setting {
         position: absolute;
-        inset: 10% 40% 20% 10%;
+        inset: 10% 36% 6% 10%;
         resize: both;
         overflow: hidden;
         border-radius: 12px;
@@ -125,20 +122,19 @@
         /* height: max-content; */
     }
 
+    * {
+        letter-spacing: 0px !important;
+    }
+
     .top-app {
         z-index: 9;
     }
 
     .main-app {
-        /* display: flex; */
-        /* position: absolute; */
         height: calc(100% - 48px);
         width: 100%;
-        background-color: bisque;
+        background-color: var(--bg-grey-1);
         display: flex;
-
-        /* display: grid;
-        grid-template-columns: 1fr 1fr; */
     }
 
     .list-setting {
@@ -164,8 +160,12 @@
     }
 
     .setting-name {
-        margin-left: 8px;
-        font-size: 13px;
+        margin-left: 12px;
+        font-size: 15px;
         font-weight: 100;
+    }
+
+    .setting-info {
+        width: 100%;
     }
 </style>

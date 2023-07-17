@@ -1,49 +1,52 @@
 <script lang="ts">
     import { flip } from "svelte/animate";
     import { openApps, showApplication, topApp } from "src/store";
-    import VsCode from "./apps/VSCode.svelte";
-    import GoogleChrome from "./apps/GoogleChrome.svelte";
-    import { Indicator } from "flowbite-svelte";
     let hovering = 0,
         drag = false,
         dragId = "";
 
+    // change to dynamic import
     let apps = [
         {
             id: crypto.randomUUID(),
             name: "gg-chrome",
             imgSrc: "/img/apps/google-chrome.png",
-            component: GoogleChrome,
+            componentPath: "./apps/GoogleChrome.svelte",
         },
         {
             id: crypto.randomUUID(),
             name: "file-manager",
             imgSrc: "/img/apps/filemanager-app.png",
-            component: null,
+            componentPath: null,
         },
         {
             id: crypto.randomUUID(),
             name: "vscode",
             imgSrc: "/img/apps/vscode.png",
-            component: VsCode,
+            componentPath: "./apps/VSCode.svelte",
         },
         {
             id: crypto.randomUUID(),
             name: "terminal",
             imgSrc: "/img/apps/terminal-app.png",
-            component: null,
+            componentPath: null,
         },
         {
             id: crypto.randomUUID(),
             name: "setting",
             imgSrc: "/img/apps/system-settings.png",
-            component: null,
+            componentPath: "./apps/Setting.svelte",
         },
     ];
+
+    async function loadComponent(path: string) {
+        return (await import(/* @vite-ignore */ path)).default;
+    }
 
     function open(name: string, component: any, img: string) {
         if ($openApps.find((app) => app.name === name)) return;
         openApps.update((opens) => (opens = [...opens, { name, component, img }]));
+        topApp.set(name);
     }
 
     const dragStart = (event: DragEvent, target: any) => {
@@ -83,6 +86,8 @@
         apps = newTracklist;
         hovering = null;
     };
+
+    $: console.log($topApp);
 </script>
 
 <div class="wrap-dock">
@@ -93,17 +98,15 @@
                 id={String(app.id)}
                 animate:flip={{ duration: 300 }}
                 draggable="true"
-                on:click={(e) => open(app.name, app.component, app.imgSrc)}
+                on:click={async (e) => {
+                    const component = await loadComponent(app.componentPath);
+                    open(app.name, component, app.imgSrc);
+                }}
                 on:dragstart={(event) => dragStart(event, i)}
                 on:drag={(e) => dragging(e)}
                 on:dragend={(e) => dragEnd(e)}
                 on:dragenter={(e) => (hovering = i)}
                 on:dragover|preventDefault={(e) => {
-                    // const placeholder = document.createElement("div");
-                    // placeholder.style.cssText = `
-                    //     height: 50px
-                    // `;
-                    // e.target.append(placeholder);
                     e.dataTransfer.dropEffect = "move";
                     return false;
                 }}
