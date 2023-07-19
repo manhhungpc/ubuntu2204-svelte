@@ -50,6 +50,7 @@
     }
 
     .main-app {
+        background-color: var(--bg-window-bar);
         height: 100%;
         width: 100%;
     }

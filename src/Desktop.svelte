@@ -10,9 +10,9 @@
     const yPos = tweened(0, { duration: 300, easing: cubicOut });
 
     $: {
-        scale.set($showApplication ? 0.2 : 1);
-        xPos.set($showApplication ? 3.8 : 0);
-        yPos.set($showApplication ? -25 : 0);
+        scale.set($showApplication ? 0.15 : 1);
+        xPos.set($showApplication ? 2 : 0);
+        yPos.set($showApplication ? -31 : 0);
     }
     scale.subscribe((s) => console.log(s));
 </script>
