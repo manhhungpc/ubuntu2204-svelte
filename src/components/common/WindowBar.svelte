@@ -1,6 +1,7 @@
 <script lang="ts">
     import { openApps, topApp } from "src/store";
-    export let name = "";
+    export let name = "",
+        classStyle = "";
 
     function onClose() {
         $openApps = $openApps.filter((e) => e.name != name);
@@ -9,7 +10,7 @@
 </script>
 
 <div class="window-bar">
-    <div class="flex items-center w-full">
+    <div class="flex items-center w-full {classStyle}">
         <slot />
     </div>
     <div class="flex justify-end items-center h-[48px]">

@@ -29,7 +29,7 @@
             id: crypto.randomUUID(),
             name: "terminal",
             imgSrc: "/img/apps/terminal-app.png",
-            componentPath: null,
+            componentPath: "./apps/Terminal.svelte",
         },
         {
             id: crypto.randomUUID(),
@@ -90,7 +90,7 @@
     $: console.log($topApp);
 </script>
 
-<div class="wrap-dock" class:show-app-bg={$showApplication}>
+<div class="wrap-dock">
     <div class="grid-apps">
         {#each apps as app, i (app.id)}
             <button
@@ -166,9 +166,6 @@
         background-color: var(--bg-light-white);
     }
 
-    .show-app-bg {
-        background-color: var(--bg-dark-1);
-    }
     .show-app-active {
         border-radius: 10px;
         background-color: var(--bg-light-white);
