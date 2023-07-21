@@ -64,12 +64,21 @@
 
         {#if $showApplication}
             <div class="all-apps" on:wheel={(e) => swipingHorizontal(e)} transition:fly={{ y: 500, duration: 300 }}>
-                <Carousel infinite={false} arrows={false} swiping={true} bind:this={carousel}>
-                    <div class="grid grid-cols-8 h-max gap-y-2 mb-20">
+                <Carousel
+                    infinite={false}
+                    arrows={false}
+                    swiping={true}
+                    duration={400}
+                    bind:this={carousel}
+                    let:currentPageIndex
+                    let:pagesCount
+                    let:showPage
+                >
+                    <div class="grid grid-cols-8 h-full gap-x-8 gap-y-6">
                         {#each apps_first as app}
                             <button class="button-app">
-                                <div class="px-8 py-4 rounded-xl hover:bg-darker-white w-[95px]">
-                                    <img src={app.icon} alt={app.name} width="95" />
+                                <div class="rounded-xl">
+                                    <img src={app.icon} alt={app.name} width="90" />
                                     <div class="text-base leading-tight">
                                         {app.name}
                                     </div>
@@ -77,11 +86,11 @@
                             </button>
                         {/each}
                     </div>
-                    <div class="grid grid-cols-8 h-max gap-y-2" style="grid-auto-rows: 1fr;">
+                    <div class="grid grid-cols-8 h-full gap-x-8 gap-y-6" style="grid-auto-rows: 1fr;">
                         {#each apps_second as app}
                             <button class="button-app">
-                                <div class="px-8 py-4 rounded-xl hover:bg-darker-white w-[95px]">
-                                    <img src={app.icon} alt={app.name} width="95" />
+                                <div class="rounded-xl">
+                                    <img src={app.icon} alt={app.name} width="90" />
                                     <div class="text-base leading-tight">
                                         {app.name}
                                     </div>
@@ -90,6 +99,16 @@
                         {/each}
                         {#each { length: 14 } as _, i}
                             <div class="h-full" />
+                        {/each}
+                    </div>
+                    <div slot="dots" class="flex gap-6 absolute bottom-3">
+                        {#each { length: 2 } as _, i}
+                            <!-- svelte-ignore a11y-click-events-have-key-events -->
+                            <button
+                                class:active-dot={currentPageIndex == i}
+                                class="dots"
+                                on:click={() => showPage(i)}
+                            />
                         {/each}
                     </div>
                 </Carousel>
@@ -122,7 +141,9 @@
     }
 
     .button-app {
-        @apply flex flex-col justify-center items-center min-h-[16vh] text-white;
+        @apply flex flex-col justify-center items-center text-white;
+        /* grid-column: span 1;
+        grid-row: span 1; */
         /* white-space: normal;
         overflow: hidden; */
     }
@@ -130,5 +151,20 @@
     .button-app:hover {
         white-space: normal;
         overflow: visible;
+        background-color: var(--bg-darker-white);
+        border-radius: 12px;
+    }
+
+    .dots {
+        height: 7px;
+        width: 7px;
+        border-radius: 50%;
+        background-color: var(--bg-soft-white);
+        transition: all 0.2s ease-in-out;
+    }
+
+    .active-dot {
+        transform: scale(1.3);
+        background-color: var(--white);
     }
 </style>

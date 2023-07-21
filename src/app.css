@@ -82,3 +82,15 @@ h2 {
         background-color: var(--grey-1);
     }
 }
+
+@media screen and (max-height: 762px){
+    :root{
+        font-size: 12px;
+    }
+}
+
+@media screen and (max-height: 782px){
+    :root{
+        font-size: 14px;
+    }
+}

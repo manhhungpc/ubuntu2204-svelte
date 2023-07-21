@@ -12,7 +12,7 @@
     $: {
         scale.set($showApplication ? 0.15 : 1);
         xPos.set($showApplication ? 2 : 0);
-        yPos.set($showApplication ? -31 : 0);
+        yPos.set($showApplication ? -28 : 0);
     }
     scale.subscribe((s) => console.log(s));
 </script>
