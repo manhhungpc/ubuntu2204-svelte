@@ -1,4 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Ubuntu&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Ubuntu+Mono&display=swap");
 /* @tailwind base;
 @tailwind components; */
 @tailwind utilities;
@@ -25,7 +26,7 @@
     --bg-window-bar: #222222;
     --light-purple: #77216f;
     --mid-purple: #5e2750;
-    --dark-purple: #2c001e;
+    --dark-purple: #300a24;
     --bg-dark-3: #272727;
     --bg-dark-hover: #ffffff0d;
 }

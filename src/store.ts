@@ -17,3 +17,5 @@ export const openApps: Writable<OpenApps[]> = writable([]);
 export const topApp = writable("");
 export const doNotDisturb = writable(false);
 export const showApplication = writable(false);
+export const prompts = writable([{ done: false, file: "" }]);
+export const cmdRunning = writable(true);

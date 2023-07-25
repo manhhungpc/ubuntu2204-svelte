@@ -1,0 +1,39 @@
+Reading package lists... Done
+Building dependency tree... Done
+Reading state information... Done
+The following packages were automatically installed and are no longer required:
+  libflashrom1 libftdi1-2 libllvm13 mongodb-database-tools
+Use 'sudo apt autoremove' to remove them.
+The following additional packages will be installed:
+  libgtkglext1
+The following NEW packages will be installed:
+  anydesk libgtkglext1
+0 upgraded, 2 newly installed, 0 to remove and 135 not upgraded.
+Need to get 6.691 kB of archives.
+After this operation, 16,7 MB of additional disk space will be used.
+Do you want to continue? [Y/n] ---WaitingConfirm()--- y
+---COMMENT---
+---COMMENT---
+---COMMENT---
+Get:1 http://vn.archive.ubuntu.com/ubuntu jammy/universe amd64 libgtkglext1 amd64 1.2.0-11 [73,9 kB]
+Get:2 http://deb.anydesk.com all/main amd64 anydesk amd64 6.2.1 [6.617 kB]     
+Fetched 6.691 kB in 16s (426 kB/s)                                             
+Selecting previously unselected package libgtkglext1:amd64.
+(Reading database ... 211222 files and directories currently installed.)
+Preparing to unpack .../libgtkglext1_1.2.0-11_amd64.deb ...
+Unpacking libgtkglext1:amd64 (1.2.0-11) ...
+Selecting previously unselected package anydesk.
+Preparing to unpack .../anydesk_6.2.1_amd64.deb ...
+Failed to stop anydesk.service: Unit anydesk.service not loaded.
+Unpacking anydesk (6.2.1) ...
+Setting up libgtkglext1:amd64 (1.2.0-11) ...
+Setting up anydesk (6.2.1) ...
+Created symlink /etc/systemd/system/multi-user.target.wants/anydesk.service → /e
+tc/systemd/system/anydesk.service.
+Processing triggers for hicolor-icon-theme (0.17-2) ...
+Processing triggers for gnome-menus (3.36.0-1ubuntu3) ...
+Processing triggers for libc-bin (2.35-0ubuntu3.1) ...
+Processing triggers for mailcap (3.70+nmu1ubuntu1) ...
+Processing triggers for desktop-file-utils (0.26-1ubuntu3) ...
+
+---PlayingProgressVideo()---

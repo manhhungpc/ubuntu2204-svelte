@@ -129,6 +129,7 @@
     .main-screen {
         margin-left: 72px;
         margin-top: calc(1.7rem + 1.7rem);
+        height: calc(100vh - 1.7rem);
         display: flex;
         flex-direction: column;
         justify-content: center;
@@ -136,7 +137,7 @@
     }
 
     .all-apps {
-        height: calc(70vh - 3.4rem);
+        height: 100%;
         width: calc(80vw - 72px);
     }
 
