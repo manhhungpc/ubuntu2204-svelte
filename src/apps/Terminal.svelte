@@ -1,13 +1,11 @@
 <script lang="ts">
     import { draggable } from "@neodrag/svelte";
+    import Prompts from "src/components/Prompts.svelte";
     import WindowBar from "src/components/common/WindowBar.svelte";
-    import { topApp } from "src/store";
-    import { execute } from "src/utils/execute";
+    import { prompts, cmdRunning, topApp } from "src/store";
 
     const prefix = "user@user-administrator";
     const cd = "~";
-    let lines = [],
-        isDone = false;
 
     // Make iframe on top the others if clicked/selected
     setInterval(function () {
@@ -23,35 +21,19 @@
     }
 
     function focusOnLine() {
-        const line = document.getElementById("cmdline");
-        line.focus();
+        const line = document.getElementById(`cmdline-${$prompts.length - 1}`);
+        line.focus({ preventScroll: true });
         window.getSelection().selectAllChildren(line);
         window.getSelection().collapseToEnd();
     }
 
-    async function onExecuteCommand(event) {
-        isDone = false;
-        if (event.key === "Enter" || event.keyCode === 13) {
-            event.preventDefault();
-            event.target.contentEditable = false;
-
-            const fileContent = await execute(event.target.textContent);
-            console.log(event.target.textContent);
-            let i = 0;
-            function displayLine() {
-                if (i >= fileContent.length) {
-                    isDone = true;
-                    return;
-                }
-
-                lines = [...lines, fileContent[i]];
-                i++;
-
-                setTimeout(displayLine, Math.floor(Math.random() * (400 - 10 + 1)) + 10);
-            }
-            displayLine();
+    $: scroll = setInterval(() => {
+        const cmdContent = document.getElementById("cmd-content");
+        if ($cmdRunning == false) {
+            clearInterval(scroll);
         }
-    }
+        cmdContent.scrollTop = cmdContent.scrollHeight;
+    }, 100);
 
     $: isTopApp = $topApp == "terminal";
 </script>
@@ -82,23 +64,15 @@
             </button>
         </div>
     </WindowBar>
-    <div class="main-app">
-        <div class="cmd-content">
-            <div class="absolute -z-10">
+    <div class="main-app" id="main-terminal">
+        <div class="cmd-content" id="cmd-content">
+            <!-- <div class="absolute -z-10">
                 <span class="text-[#269D64] font-bold">{prefix}</span>:<span class="text-[#1A3D72] font-bold">{cd}</span
                 >$
-            </div>
-            <div
-                contenteditable="true"
-                on:keydown={(e) => onExecuteCommand(e)}
-                id="cmdline"
-                class="outline-none indent-[14.2rem]"
-            />
-            <div class="show-progress">
-                {#each lines as line}
-                    <p class="my-0">{line}</p>
-                {/each}
-            </div>
+            </div> -->
+            {#each $prompts as prompt, i}
+                <Prompts isDone={prompt.done} index={i} />
+            {/each}
         </div>
     </div>
 </div>
@@ -115,10 +89,6 @@
         overflow: hidden;
         border: 1px solid #000;
         border-top: none;
-    }
-
-    #cmdline {
-        caret-color: var(--white);
     }
 
     .main-app {
