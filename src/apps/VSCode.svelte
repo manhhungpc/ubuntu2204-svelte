@@ -1,30 +1,11 @@
 <script lang="ts">
-    import { draggable } from "@neodrag/svelte";
+    import SkelentonApp from "src/components/common/SkelentonApp.svelte";
     import WindowBar from "src/components/common/WindowBar.svelte";
-    import { topApp } from "src/store";
-
-    // Make iframe on top the others if clicked/selected
-    setInterval(function () {
-        let elem = document.activeElement;
-        if (elem && elem.id == "iframe-vscode") {
-            setTopApp();
-        }
-    }, 100);
-
-    function setTopApp() {
-        topApp.set("vscode");
-    }
-
-    $: isTopApp = $topApp == "vscode";
+    import { AppName } from "src/interfaces/AppName";
 </script>
 
 <!-- svelte-ignore a11y-click-events-have-key-events -->
-<div
-    class="vscode"
-    use:draggable={{ handle: ".window-bar", bounds: { top: 25 } }}
-    on:click={setTopApp}
-    class:top-app={isTopApp}
->
+<SkelentonApp appName={AppName.vscode}>
     <WindowBar name="vscode" />
     <div class="main-app">
         <iframe
@@ -34,21 +15,9 @@
             id="iframe-vscode"
         />
     </div>
-</div>
+</SkelentonApp>
 
 <style>
-    .vscode {
-        position: absolute;
-        inset: 10%;
-        resize: both;
-        overflow: hidden;
-        border-radius: 12px;
-    }
-
-    .top-app {
-        z-index: 9;
-    }
-
     .main-app {
         background-color: var(--bg-window-bar);
         height: 100%;

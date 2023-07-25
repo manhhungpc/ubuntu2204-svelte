@@ -1,6 +1,7 @@
 <script lang="ts">
     import { flip } from "svelte/animate";
     import { openApps, showApplication, topApp } from "src/store";
+    import { AppName } from "./interfaces/AppName";
     let hovering = 0,
         drag = false,
         dragId = "";
@@ -9,7 +10,7 @@
     let apps = [
         {
             id: crypto.randomUUID(),
-            name: "gg-chrome",
+            name: AppName.ggchrome,
             imgSrc: "/img/apps/google-chrome.png",
             componentPath: "./apps/GoogleChrome.svelte",
         },
@@ -21,7 +22,7 @@
         },
         {
             id: crypto.randomUUID(),
-            name: "vscode",
+            name: AppName.vscode,
             imgSrc: "/img/apps/vscode.png",
             componentPath: "./apps/VSCode.svelte",
         },
@@ -33,7 +34,7 @@
         },
         {
             id: crypto.randomUUID(),
-            name: "setting",
+            name: AppName.settings,
             imgSrc: "/img/apps/system-settings.png",
             componentPath: "./apps/Setting.svelte",
         },
@@ -45,7 +46,7 @@
 
     function open(name: string, component: any, img: string) {
         if ($openApps.find((app) => app.name === name)) return;
-        openApps.update((opens) => (opens = [...opens, { name, component, img }]));
+        openApps.update((opens) => [...opens, { name, component, img }]);
         topApp.set(name);
     }
 
@@ -86,8 +87,6 @@
         apps = newTracklist;
         hovering = null;
     };
-
-    $: console.log($topApp);
 </script>
 
 <div class="wrap-dock" class:show-app-bg={$showApplication}>

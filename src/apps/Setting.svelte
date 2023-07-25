@@ -1,9 +1,9 @@
 <script lang="ts">
-    import { draggable } from "@neodrag/svelte";
     import WindowBar from "src/components/common/WindowBar.svelte";
-    import { topApp } from "src/store";
     import { Listgroup, ListgroupItem } from "flowbite-svelte";
     import WiFi from "src/components/settings-app/WiFi.svelte";
+    import SkelentonApp from "src/components/common/SkelentonApp.svelte";
+    import { AppName } from "src/interfaces/AppName";
 
     const settings = [
         { name: "Wi-Fi", icon: "/img/icons/network-wireless-symbolic.svg" },
@@ -35,29 +35,11 @@
     ];
 
     let selectSetting = "Wi-Fi";
-
-    setInterval(function () {
-        let elem = document.activeElement;
-        if (elem && elem.id == "iframe-setting") {
-            setTopApp();
-        }
-    }, 100);
-
-    function setTopApp() {
-        topApp.set("setting");
-    }
-
-    $: isTopApp = $topApp == "setting";
 </script>
 
 <!-- svelte-ignore a11y-click-events-have-key-events -->
-<div
-    class="setting"
-    use:draggable={{ handle: ".window-bar", bounds: { top: 25 } }}
-    on:click={setTopApp}
-    class:top-app={isTopApp}
->
-    <WindowBar name="setting">
+<SkelentonApp appName={AppName.settings} addStyles="inset: 10% 36% 6% 10%;">
+    <WindowBar name={AppName.settings}>
         <div class="flex justify-between items-center min-w-[15rem] w-52 h-full" style="border-right: 1px solid #000;">
             <button class="ml-2 bg-grey-2 pt-2 pb-1 px-2 rounded-md">
                 <img
@@ -109,25 +91,11 @@
             <WiFi />
         </div>
     </div>
-</div>
+</SkelentonApp>
 
 <style>
-    .setting {
-        position: absolute;
-        inset: 10% 36% 6% 10%;
-        resize: both;
-        overflow: hidden;
-        border-radius: 12px;
-        /* height: 100px; */
-        /* height: max-content; */
-    }
-
     * {
         letter-spacing: 0px !important;
-    }
-
-    .top-app {
-        z-index: 9;
     }
 
     .main-app {
