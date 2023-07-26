@@ -12,36 +12,45 @@
             id: crypto.randomUUID(),
             name: AppName.ggchrome,
             imgSrc: "/img/apps/google-chrome.png",
-            componentPath: "./apps/GoogleChrome.svelte",
+            // componentPath: "./apps/GoogleChrome.svelte",
         },
         {
             id: crypto.randomUUID(),
             name: "file-manager",
             imgSrc: "/img/apps/filemanager-app.png",
-            componentPath: null,
+            // componentPath: null,
         },
         {
             id: crypto.randomUUID(),
             name: AppName.vscode,
             imgSrc: "/img/apps/vscode.png",
-            componentPath: "./apps/VSCode.svelte",
+            // componentPath: "./apps/VSCode.svelte",
         },
         {
             id: crypto.randomUUID(),
             name: "terminal",
             imgSrc: "/img/apps/terminal-app.png",
-            componentPath: "./apps/Terminal.svelte",
+            // componentPath: "./apps/Terminal.svelte",
         },
         {
             id: crypto.randomUUID(),
             name: AppName.settings,
             imgSrc: "/img/apps/system-settings.png",
-            componentPath: "./apps/Setting.svelte",
+            // componentPath: "./apps/Setting.svelte",
         },
     ];
 
-    async function loadComponent(path: string) {
-        return (await import(/* @vite-ignore */ path)).default;
+    async function loadComponent(name: string) {
+        if (name === AppName.ggchrome) {
+            return (await import(`./apps/GoogleChrome.svelte`)).default;
+        } else if (name === AppName.vscode) {
+            return (await import(`./apps/VSCode.svelte`)).default;
+        } else if (name === AppName.terminal) {
+            return (await import(`./apps/Terminal.svelte`)).default;
+        } else if (name === AppName.settings) {
+            return (await import(`./apps/Setting.svelte`)).default;
+        }
+        return null;
     }
 
     function open(name: string, component: any, img: string) {
@@ -98,7 +107,7 @@
                 animate:flip={{ duration: 300 }}
                 draggable="true"
                 on:click={async (e) => {
-                    const component = await loadComponent(app.componentPath);
+                    const component = await loadComponent(app.name);
                     open(app.name, component, app.imgSrc);
                 }}
                 on:dragstart={(event) => dragStart(event, i)}

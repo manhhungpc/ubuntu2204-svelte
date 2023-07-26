@@ -16,7 +16,6 @@
     }
 
     $: if (!$openApps.some((app) => app.name == AppName.terminal)) {
-        console.log("Terminal closed");
         prompts.set([{ done: false, file: "" }]);
     }
 </script>
@@ -32,7 +31,7 @@
     .desktop {
         width: 100vw;
         height: 100vh;
-        background-image: url(/img/Wallpaper/Jammy-Jellyfish_WP_2560x1440.jpg);
+        background-image: url(/img/Wallpaper/Jammy-Jellyfish_WP_1920x1080.jpg);
         background-repeat: no-repeat;
         background-attachment: fixed;
         background-position: center;
