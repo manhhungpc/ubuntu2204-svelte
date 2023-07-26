@@ -1,14 +1,46 @@
 <script lang="ts">
     import { Dropdown, Popover } from "flowbite-svelte";
     import SystemMenu from "./SystemMenu.svelte";
-    import { audio, datetime, doNotDisturb } from "src/store";
+    import { audio, datetime, doNotDisturb, topApp } from "src/store";
     import CalendarView from "./CalendarView.svelte";
+    import { AppName } from "src/interfaces/AppName";
 
+    let currentAppIcon = "",
+        currentAppName = "",
+        isSvg = false;
     const formatDate = new Intl.DateTimeFormat("en-US", {
         dateStyle: "medium",
         hourCycle: "h23",
         timeStyle: "short",
     });
+
+    const apps = [
+        {
+            name: AppName.ggchrome,
+            displayName: "Google Chrome",
+            imgSrc: "/img/apps/google-chrome.png",
+        },
+        {
+            name: "file-manager",
+            displayName: "Files",
+            imgSrc: "/img/apps/filemanager-app.png",
+        },
+        {
+            name: AppName.vscode,
+            displayName: "Visual Studio Code",
+            imgSrc: "/img/apps/vscode.png",
+        },
+        {
+            name: AppName.terminal,
+            displayName: "Terminal",
+            imgSrc: "/img/icons/ui/terminal-app-symbolic.svg",
+        },
+        {
+            name: AppName.settings,
+            displayName: "Settings",
+            imgSrc: "/img/icons/system-settings-symbolic.svg",
+        },
+    ];
 
     let audioImg = "";
 
@@ -23,16 +55,30 @@
             audioImg = "/img/icons/audio-volume-high-symbolic.svg";
         }
     }
+
+    $: if ($topApp != "") {
+        const currentApp = apps.find((app) => app.name == $topApp);
+        currentAppIcon = currentApp.imgSrc;
+        currentAppName = currentApp.displayName;
+    }
 </script>
 
 <div class="wrap-panel">
     <div class="activity-info">
         <button class="activities">Activities</button>
-        <div class="current-app">
-            <img src="/img/icons/ui/terminal.svg" alt="icon-current-app" class="icon-current-app" />
-
-            <span class="name-current-app">Terminal</span>
-        </div>
+        {#if $topApp != ""}
+            <div class="current-app">
+                <img
+                    src={currentAppIcon}
+                    alt="icon-current-app"
+                    width="18"
+                    height="18"
+                    class:img-icon={currentAppIcon.split(".")[1] == "svg"}
+                    class="icon-current-app"
+                />
+                <span class="name-current-app">{currentAppName}</span>
+            </div>
+        {/if}
     </div>
     <div class="flex items-center">
         <button class="calendar">
@@ -125,15 +171,15 @@
 
     .current-app {
         @apply absolute flex items-center;
-        font-size: 13px;
+        font-size: 14px;
         left: 5.5rem;
         margin-left: 30px;
     }
 
     .icon-current-app {
-        height: 80%;
         margin-right: 8px;
-        font-size: 13px;
+        -webkit-filter: grayscale(100%);
+        filter: grayscale(100%);
     }
 
     .utils {

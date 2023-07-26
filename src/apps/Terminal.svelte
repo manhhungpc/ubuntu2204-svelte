@@ -3,7 +3,7 @@
     import Prompts from "src/components/Prompts.svelte";
     import WindowBar from "src/components/common/WindowBar.svelte";
     import { AppName } from "src/interfaces/AppName";
-    import { prompts, cmdRunning, topApp, openApps } from "src/store";
+    import { prompts, cmdRunning, topApp } from "src/store";
 
     const prefix = "user@user-administrator";
     const cd = "~";

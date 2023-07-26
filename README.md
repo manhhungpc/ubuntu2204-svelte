@@ -1,47 +1,41 @@
-# Svelte + TS + Vite
+# Ubuntu 22.04 in Svelte
 
-This template should help get you started developing with Svelte and TypeScript in Vite.
+This open-source project aims to replicate the Ubuntu 22.04 desktop experience on the web, using Svelte!
+<picture>
+<img src="./public/md/screenshot-web.png"/>
+</picture>
 
-## Recommended IDE Setup
+> The project still in development, and many new feature will be added
 
-[VS Code](https://code.visualstudio.com/) + [Svelte](https://marketplace.visualstudio.com/items?itemName=svelte.svelte-vscode).
+Try it now: 🔗 https://ubuntu2204-svelte.vercel.app/
 
-## Need an official Svelte framework?
+## What it has?
 
-Check out [SvelteKit](https://github.com/sveltejs/kit#readme), which is also powered by Vite. Deploy anywhere with its serverless-first approach and adapt to various platforms, with out of the box support for TypeScript, SCSS, and Less, and easily-added support for mdsvex, GraphQL, PostCSS, Tailwind CSS, and more.
+-   [x] Desktop, Dock (side bar) and Panel (top bar)
+-   [x] System Menu, Calendar
+-   [x] Google Chrome, VS Code, Settings (WIP), Terminal
+-   [x] A "working" terminal
+-   [x] Resizable windows
+-   [ ] (WIP) Calculator, Text Editor, File Manager
+-   [ ] (WIP) Boot screen, lock screen
 
-## Technical considerations
+📝 You can always [suggest more features](https://github.com/manhhungpc/ubuntu2204-svelte/issues)
 
-**Why use this over SvelteKit?**
+## Tech stack
 
-- It brings its own routing solution which might not be preferable for some users.
-- It is first and foremost a framework that just happens to use Vite under the hood, not a Vite app.
+-   😻 Svelte - Loved by developers. It's fun!
+-   ⚡ Vite - It's fast!
+-   🌊 Tailwind & CSS - Make it look beautiful
+-   ▶️ Flowbite Svelte - A flexible UI components library for Svelte
 
-This template contains as little as possible to get started with Vite + TypeScript + Svelte, while taking into account the developer experience with regards to HMR and intellisense. It demonstrates capabilities on par with the other `create-vite` templates and is a good starting point for beginners dipping their toes into a Vite + Svelte project.
+## FAQ
 
-Should you later need the extended capabilities and extensibility provided by SvelteKit, the template has been structured similarly to SvelteKit so that it is easy to migrate.
-
-**Why `global.d.ts` instead of `compilerOptions.types` inside `jsconfig.json` or `tsconfig.json`?**
-
-Setting `compilerOptions.types` shuts out all other types not explicitly listed in the configuration. Using triple-slash references keeps the default TypeScript setting of accepting type information from the entire workspace, while also adding `svelte` and `vite/client` type information.
-
-**Why include `.vscode/extensions.json`?**
-
-Other templates indirectly recommend extensions via the README, but this file allows VS Code to prompt the user to install the recommended extension upon opening the project.
-
-**Why enable `allowJs` in the TS template?**
-
-While `allowJs: false` would indeed prevent the use of `.js` files in the project, it does not prevent the use of JavaScript syntax in `.svelte` files. In addition, it would force `checkJs: false`, bringing the worst of both worlds: not being able to guarantee the entire codebase is TypeScript, and also having worse typechecking for the existing JavaScript. In addition, there are valid use cases in which a mixed codebase may be relevant.
-
-**Why is HMR not preserving my local component state?**
-
-HMR state preservation comes with a number of gotchas! It has been disabled by default in both `svelte-hmr` and `@sveltejs/vite-plugin-svelte` due to its often surprising behavior. You can read the details [here](https://github.com/rixo/svelte-hmr#svelte-hmr).
-
-If you have state that's important to retain within a component, consider creating an external store which would not be replaced by HMR.
-
-```ts
-// store.ts
-// An extremely simple external store
-import { writable } from 'svelte/store'
-export default writable(0)
-```
+-   Can I use this as a OS/server?
+    -   No, this is not a complete OS/server and not affiliated to Ubuntu/Linux in anyway
+        <div>
+        <img src="./public/md/well-yes-but-actually-no.gif" width="300"/>
+        </div>
+-   Can I contribute?
+    -   Yes of course! All suggestions, bugs fixing are welcome. Just open an issue and create a pull request
+-   Do you get any inspiration?
+    -   [Win11-svelte](https://github.com/yashash-pugalia/win11-svelte/tree/main) by yashash-pugalia and [macos-web](https://github.com/PuruVJ/macos-web) by PuruVJ

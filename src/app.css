@@ -58,7 +58,7 @@ h2 {
 
 @layer utilities {
     .img-icon {
-        filter: brightness(0) invert(1);
+        filter: brightness(0) invert(1) !important;
     }
 
     .scrollbar-thin::-webkit-scrollbar {
@@ -84,14 +84,14 @@ h2 {
     }
 }
 
-@media screen and (max-height: 762px){
-    :root{
+@media screen and (max-height: 762px) {
+    :root {
         font-size: 12px;
     }
 }
 
-@media screen and (max-height: 782px){
-    :root{
+@media screen and (max-height: 782px) {
+    :root {
         font-size: 14px;
     }
 }

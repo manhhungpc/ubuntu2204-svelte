@@ -9,31 +9,26 @@
     // change to dynamic import
     let apps = [
         {
-            id: crypto.randomUUID(),
             name: AppName.ggchrome,
             imgSrc: "/img/apps/google-chrome.png",
             // componentPath: "./apps/GoogleChrome.svelte",
         },
         {
-            id: crypto.randomUUID(),
             name: "file-manager",
             imgSrc: "/img/apps/filemanager-app.png",
             // componentPath: null,
         },
         {
-            id: crypto.randomUUID(),
             name: AppName.vscode,
             imgSrc: "/img/apps/vscode.png",
             // componentPath: "./apps/VSCode.svelte",
         },
         {
-            id: crypto.randomUUID(),
-            name: "terminal",
+            name: AppName.terminal,
             imgSrc: "/img/apps/terminal-app.png",
             // componentPath: "./apps/Terminal.svelte",
         },
         {
-            id: crypto.randomUUID(),
             name: AppName.settings,
             imgSrc: "/img/apps/system-settings.png",
             // componentPath: "./apps/Setting.svelte",
@@ -100,10 +95,10 @@
 
 <div class="wrap-dock">
     <div class="grid-apps">
-        {#each apps as app, i (app.id)}
+        {#each apps as app, i (app.name)}
             <button
                 class="btn-app"
-                id={String(app.id)}
+                id={String(app.name)}
                 animate:flip={{ duration: 300 }}
                 draggable="true"
                 on:click={async (e) => {
@@ -119,7 +114,7 @@
                     return false;
                 }}
                 on:drop|preventDefault={(event) => drop(event, i)}
-                class:drag={drag && app.id == dragId}
+                class:drag={drag && app.name == dragId}
                 class:end-drag={!drag}
             >
                 {#if $topApp === app.name}
@@ -127,7 +122,7 @@
                 {/if}
                 <img
                     src={app.imgSrc}
-                    id={String(app.id)}
+                    id={String(app.name)}
                     alt={app.name}
                     class="app-icon"
                     class:top-app={$topApp === app.name}
