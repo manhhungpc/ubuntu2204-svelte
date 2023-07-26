@@ -31,7 +31,7 @@
     .desktop {
         width: 100vw;
         height: 100vh;
-        background-image: url(/img/Wallpaper/Jammy-Jellyfish_WP_1920x1080.jpg);
+        background-image: url(/img/Wallpaper/Jammy-Jellyfish_WP_1920x1080.webp);
         background-repeat: no-repeat;
         background-attachment: fixed;
         background-position: center;

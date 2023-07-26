@@ -46,7 +46,7 @@
 
 <div class="base">
     <main class="main-screen">
-        <div class="h-[31vh]">
+        <div class="h-[40vh]">
             <Input
                 placeholder="Type to search"
                 size="lg"
