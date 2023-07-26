@@ -2,7 +2,8 @@
     import { draggable } from "@neodrag/svelte";
     import Prompts from "src/components/Prompts.svelte";
     import WindowBar from "src/components/common/WindowBar.svelte";
-    import { prompts, cmdRunning, topApp } from "src/store";
+    import { AppName } from "src/interfaces/AppName";
+    import { prompts, cmdRunning, topApp, openApps } from "src/store";
 
     const prefix = "user@user-administrator";
     const cd = "~";
@@ -16,7 +17,7 @@
     }, 100);
 
     function setTopApp() {
-        topApp.set("terminal");
+        topApp.set(AppName.terminal);
         focusOnLine();
     }
 
@@ -31,11 +32,12 @@
         const cmdContent = document.getElementById("cmd-content");
         if ($cmdRunning == false) {
             clearInterval(scroll);
+            return;
         }
         cmdContent.scrollTop = cmdContent.scrollHeight;
     }, 100);
 
-    $: isTopApp = $topApp == "terminal";
+    $: isTopApp = $topApp == AppName.terminal;
 </script>
 
 <!-- svelte-ignore a11y-click-events-have-key-events -->
@@ -45,7 +47,7 @@
     on:click={setTopApp}
     class:top-app={isTopApp}
 >
-    <WindowBar name="terminal" classStyle="justify-between">
+    <WindowBar name={AppName.terminal} classStyle="justify-between">
         <button class="ml-2 bg-grey-2 pt-2 pb-1 px-2 rounded-md">
             <img src="/img/icons/tab-new-symbolic.svg" alt="newtab-btn" width="15" height="15" class="img-icon" />
         </button>

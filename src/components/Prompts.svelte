@@ -12,7 +12,8 @@
         // return value include min and max
         min = Math.ceil(min);
         max = Math.floor(max);
-        return Math.floor(Math.random() * (max - min + 1) + min);
+        return 1;
+        // return Math.floor(Math.random() * (max - min + 1) + min);
     }
 
     async function onExecuteCommand(event) {
@@ -46,6 +47,8 @@
             displayLine();
         }
     }
+
+    $: console.log($cmdRunning);
 </script>
 
 <div class="absolute -z-10">

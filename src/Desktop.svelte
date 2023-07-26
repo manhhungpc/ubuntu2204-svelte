@@ -2,8 +2,8 @@
     import AppGrid from "./components/AppGrid.svelte";
     import { tweened } from "svelte/motion";
     import { cubicOut } from "svelte/easing";
-    import { openApps, showApplication } from "src/store";
-    import Setting from "./apps/Setting.svelte";
+    import { openApps, prompts, showApplication } from "src/store";
+    import { AppName } from "./interfaces/AppName";
 
     const scale = tweened(1, { duration: 300, easing: cubicOut });
     const xPos = tweened(0, { duration: 300, easing: cubicOut });
@@ -14,7 +14,11 @@
         xPos.set($showApplication ? 2 : 0);
         yPos.set($showApplication ? -28 : 0);
     }
-    scale.subscribe((s) => console.log(s));
+
+    $: if (!$openApps.some((app) => app.name == AppName.terminal)) {
+        console.log("Terminal closed");
+        prompts.set([{ done: false, file: "" }]);
+    }
 </script>
 
 <main class="desktop" style:transform="translate({$xPos}vw, {$yPos}vh) scale({$scale}) ">
