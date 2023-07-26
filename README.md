@@ -1,9 +1,8 @@
 # Ubuntu 22.04 in Svelte
 
 This open-source project aims to replicate the Ubuntu 22.04 desktop experience on the web, using Svelte!
-<picture>
-<img src="./public/md/screenshot-web.png"/>
-</picture>
+
+<img src="./public/md/Screenshot-demo.png"/>
 
 > The project still in development, and many new feature will be added
 
