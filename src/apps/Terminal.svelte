@@ -1,6 +1,7 @@
 <script lang="ts">
     import { draggable } from "@neodrag/svelte";
     import Prompts from "src/components/Prompts.svelte";
+    import SkelentonApp from "src/components/common/SkelentonApp.svelte";
     import WindowBar from "src/components/common/WindowBar.svelte";
     import { AppName } from "src/interfaces/AppName";
     import { prompts, cmdRunning, topApp } from "src/store";
@@ -40,12 +41,13 @@
     $: isTopApp = $topApp == AppName.terminal;
 </script>
 
-<!-- svelte-ignore a11y-click-events-have-key-events -->
-<div
-    class="terminal"
-    use:draggable={{ handle: ".window-bar", bounds: { top: 25 } }}
-    on:click={setTopApp}
-    class:top-app={isTopApp}
+<SkelentonApp
+    {focusOnLine}
+    appName={AppName.terminal}
+    addStyles="inset: 10% 50% 30% 10%; 
+            color: var(--white); 
+            font-family: 'Ubuntu Mono', monospace;
+            background-color: var(--dark-purple);"
 >
     <WindowBar name={AppName.terminal} classStyle="justify-between">
         <button class="ml-2 bg-grey-2 pt-2 pb-1 px-2 rounded-md">
@@ -77,10 +79,10 @@
             {/each}
         </div>
     </div>
-</div>
+</SkelentonApp>
 
 <style>
-    .terminal {
+    /* .terminal {
         color: var(--white);
         font-family: "Ubuntu Mono", monospace;
         background-color: var(--dark-purple);
@@ -91,7 +93,7 @@
         overflow: hidden;
         border: 1px solid #000;
         border-top: none;
-    }
+    } */
 
     .main-app {
         /* minus the height of window-bar */

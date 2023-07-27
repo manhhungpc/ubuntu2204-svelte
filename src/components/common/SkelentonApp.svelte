@@ -3,9 +3,11 @@
     import { openApps, topApp } from "src/store";
     import { fly, scale } from "svelte/transition";
     import { cubicOut } from "svelte/easing";
+    import { AppName } from "src/interfaces/AppName";
 
     export let appName: string,
-        addStyles = "";
+        addStyles = "",
+        focusOnLine = () => {};
     let xPos: number,
         yPos: number,
         opened = false;
@@ -22,6 +24,7 @@
     function setTopApp() {
         if ($openApps.length == 0) topApp.set("");
         else topApp.set(appName);
+        if (appName == AppName.terminal) focusOnLine();
     }
 
     function scaleInOut(node, { duration, scale }) {
