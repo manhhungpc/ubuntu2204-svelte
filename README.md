@@ -34,6 +34,8 @@ Try it now: 🔗 https://ubuntu2204-svelte.vercel.app/
         <div>
         <img src="./public/md/well-yes-but-actually-no.gif" width="300"/>
         </div>
+-   Do the commands I type in the terminal affect my computer?
+    -   No, it does nothing. It just simulate the terminal-like experience, without sending or downloading anything to your computer
 -   Can I contribute?
     -   Yes of course! All suggestions, bugs fixing are welcome. Just open an issue and create a pull request
 -   Do you get any inspiration?
