@@ -14,6 +14,7 @@
     --warm-grey: #aea79f;
     --bg-dark-1: #111111;
     --bg-dark-2: #1f1f1f;
+    --dark-4: #292929;
     --white: #fff;
     --grey-1: #6b6b6b;
     --grey-2: #7b7b7b6d;
@@ -29,6 +30,8 @@
     --dark-purple: #300a24;
     --bg-dark-3: #272727;
     --bg-dark-hover: #ffffff0d;
+    --red-1: #a11223;
+    --green-1: #0e761d;
 }
 * {
     letter-spacing: 0.5px;

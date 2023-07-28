@@ -40,6 +40,11 @@
             displayName: "Settings",
             imgSrc: "/img/icons/system-settings-symbolic.svg",
         },
+        {
+            name: AppName.calculator,
+            displayName: "Calculator",
+            imgSrc: "/img/apps/accessories-calculator.png",
+        },
     ];
 
     let audioImg = "";
@@ -56,6 +61,7 @@
         }
     }
 
+    $: console.log();
     $: if ($topApp != "") {
         const currentApp = apps.find((app) => app.name == $topApp);
         currentAppIcon = currentApp.imgSrc;

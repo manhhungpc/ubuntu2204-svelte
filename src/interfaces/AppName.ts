@@ -3,4 +3,5 @@ export enum AppName {
     ggchrome = "gg-chrome",
     settings = "settings",
     terminal = "terminal",
+    calculator = "calculator",
 }

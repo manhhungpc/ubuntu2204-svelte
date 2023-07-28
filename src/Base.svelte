@@ -2,33 +2,35 @@
     import { Input } from "flowbite-svelte";
     import Carousel from "svelte-carousel";
     import { fly } from "svelte/transition";
-    import { showApplication } from "src/store";
+    import { openApps, showApplication, topApp } from "src/store";
+    import { AppName } from "./interfaces/AppName";
 
     let carousel; // for calling methods of the carousel instance
     const apps_first = [
-        { name: "Additional Drivers", icon: "/img/apps/cpu-x.png" },
-        { name: "AisleRiot Solitaire", icon: "/img/apps/gnome-aisleriot.png" },
-        { name: "Calendar", icon: "/img/apps/calendar-app.png" },
-        { name: "Language Support", icon: "/img/apps/preferences-desktop-locale.png" },
-        { name: "Videos", icon: "/img/apps/applications-multimedia.png" },
-        { name: "Text Editor", icon: "/img/apps/text-editor.png" },
-        { name: "Document Scanner", icon: "/img/apps/scanner.png" },
-        { name: "Disks", icon: "/img/apps/disk-utility-app.png" },
-        { name: "Help", icon: "/img/apps/system-help.png" },
-        { name: "Mines", icon: "/img/apps/gnome-mines.png" },
-        { name: "Cheese", icon: "/img/apps/cheese.png" },
-        { name: "Settings", icon: "/img/apps/system-settings.png" },
-        { name: "Shotwell", icon: "/img/apps/shotwell.png" },
-        { name: "Power Statistics", icon: "/img/apps/power-statistics.png" },
-        { name: "Sudoku", icon: "/img/apps/sudoku-app.png" },
-        { name: "Ubuntu Software", icon: "/img/apps/software-center.png" },
-        { name: "Rhythmbox", icon: "/img/apps/rhythmbox.png" },
+        { name: AppName.calculator, displayName: "Calculator", icon: "/img/apps/accessories-calculator.png" },
+        { displayName: "Text Editor", icon: "/img/apps/text-editor.png" },
+        { displayName: "Additional Drivers", icon: "/img/apps/cpu-x.png" },
+        { displayName: "AisleRiot Solitaire", icon: "/img/apps/gnome-aisleriot.png" },
+        { displayName: "Calendar", icon: "/img/apps/calendar-app.png" },
+        { displayName: "Language Support", icon: "/img/apps/preferences-desktop-locale.png" },
+        { displayName: "Videos", icon: "/img/apps/applications-multimedia.png" },
+        { displayName: "Document Scanner", icon: "/img/apps/scanner.png" },
+        { displayName: "Disks", icon: "/img/apps/disk-utility-app.png" },
+        { displayName: "Help", icon: "/img/apps/system-help.png" },
+        { displayName: "Mines", icon: "/img/apps/gnome-mines.png" },
+        { displayName: "Cheese", icon: "/img/apps/cheese.png" },
+        { displayName: "Settings", icon: "/img/apps/system-settings.png" },
+        { displayName: "Shotwell", icon: "/img/apps/shotwell.png" },
+        { displayName: "Power Statistics", icon: "/img/apps/power-statistics.png" },
+        { displayName: "Sudoku", icon: "/img/apps/sudoku-app.png" },
+        { displayName: "Ubuntu Software", icon: "/img/apps/software-center.png" },
+        { displayName: "Rhythmbox", icon: "/img/apps/rhythmbox.png" },
     ];
     const apps_second = [
-        { name: "Softwares & Updates", icon: "/img/apps/software-properties.png" },
-        { name: "Software Updater", icon: "/img/apps/software-updater.png" },
-        { name: "Startup Disk Creator", icon: "/img/apps/usb-creator-gtk.png" },
-        { name: "To Do", icon: "/img/apps/to-do-app.png" },
+        { displayName: "Softwares & Updates", icon: "/img/apps/software-properties.png" },
+        { displayName: "Software Updater", icon: "/img/apps/software-updater.png" },
+        { displayName: "Startup Disk Creator", icon: "/img/apps/usb-creator-gtk.png" },
+        { displayName: "To Do", icon: "/img/apps/to-do-app.png" },
     ];
 
     const swipingHorizontal = (e: WheelEvent) => {
@@ -42,6 +44,24 @@
             carousel.goToPrev();
         }
     };
+
+    async function loadComponent(name: string) {
+        if (name === AppName.calculator) {
+            return (await import(`./apps/Calculator.svelte`)).default;
+        }
+        return null;
+    }
+
+    async function open(name: string, img: string) {
+        $showApplication = false;
+        const component = await loadComponent(name);
+        if (!component) return;
+
+        // if app already open, return
+        if ($openApps.find((app) => app.name === name)) return;
+        openApps.update((opens) => [...opens, { name, component, img }]);
+        topApp.set(name);
+    }
 </script>
 
 <div class="base">
@@ -76,11 +96,11 @@
                 >
                     <div class="grid grid-cols-8 h-full gap-x-8 gap-y-6">
                         {#each apps_first as app}
-                            <button class="button-app">
+                            <button class="button-app" on:click={async () => await open(app.name, app.icon)}>
                                 <div class="rounded-xl">
-                                    <img src={app.icon} alt={app.name} width="90" />
+                                    <img src={app.icon} alt={app.displayName} width="90" />
                                     <div class="text-base leading-tight">
-                                        {app.name}
+                                        {app.displayName}
                                     </div>
                                 </div>
                             </button>
@@ -90,9 +110,9 @@
                         {#each apps_second as app}
                             <button class="button-app">
                                 <div class="rounded-xl">
-                                    <img src={app.icon} alt={app.name} width="90" />
+                                    <img src={app.icon} alt={app.displayName} width="90" />
                                     <div class="text-base leading-tight">
-                                        {app.name}
+                                        {app.displayName}
                                     </div>
                                 </div>
                             </button>
