@@ -12,10 +12,10 @@ Try it now: 🔗 https://ubuntu2204-svelte.vercel.app/
 
 -   [x] Desktop, Dock (side bar) and Panel (top bar)
 -   [x] System Menu, Calendar
--   [x] Google Chrome, VS Code, Settings (WIP), Terminal
+-   [x] Google Chrome, VS Code, Settings (WIP), Terminal, Calculator
 -   [x] A "working" terminal
 -   [x] Resizable windows
--   [ ] (WIP) Calculator, Text Editor, File Manager
+-   [ ] (WIP) Text Editor, File Manager
 -   [ ] (WIP) Boot screen, lock screen
 
 📝 You can always [suggest more features](https://github.com/manhhungpc/ubuntu2204-svelte/issues)

@@ -130,6 +130,11 @@
             </button>
         {/each}
         <hr class="w-12 my-2" style="border-color: var(--warm-grey); border-width: 1px 0 0 0;" />
+        <button
+            class="btn-app"
+            on:click={(e) => window.open("https://github.com/manhhungpc/ubuntu2204-svelte", "_blank")}
+            ><img src="/img/apps/github.svg" alt="Github" class="app-icon" /></button
+        >
     </div>
     <button class="mb-1" on:click={(e) => showApplication.update((curr) => !curr)}>
         <img

@@ -157,7 +157,7 @@
 </script>
 
 <SkelentonApp appName={AppName.calculator} addStyles="height: 40rem; width: 30rem">
-    <WindowBar>
+    <WindowBar name={AppName.calculator}>
         <div class="flex justify-between items-center w-full">
             <button class="ml-2 bg-grey-2 pt-2 pb-1 px-4 rounded-md outline outline-1 outline-black">
                 <span class="text-white text-base font-thin"> Undo </span>
