@@ -1,19 +1,32 @@
 import commands from "src/data/commands.json";
+
 export const execute = async (cmd: string, file: string) => {
-    console.log(commands);
+    let lines = [];
+    const sudoCommand = cmd.includes("sudo") ? cmd : "sudo" + cmd;
+
     // check if type wrong command or exceed "sudo" wrong command
-    const actualCommand = cmd.split(" ")[1];
-    if (!commands[cmd] && !commands[actualCommand]) {
-        return [`${cmd}: command not found`];
+    if (!commands[cmd] && !commands[sudoCommand]) {
+        return [
+            `${cmd}: command not found`,
+            "Type `help` to see available commands",
+            "Or type `sudo apt-get` if you want it look cool!",
+        ];
     }
 
-    // check command need "sudo"
-    if (commands[cmd]?.includes("sudo") && commands[actualCommand]?.includes("sudo")) {
-        if (!cmd.includes("sudo")) return [`${cmd}: cannot execute: Permission denied`];
+    // checkdo command
+    if (commands[sudoCommand] && !cmd.includes("sudo")) {
+        return [`${cmd}: cannot execute: Permission denied`];
+    }
+
+    if (cmd === "help" || sudoCommand === "sudo help") {
+        for (let i in commands) {
+            lines.push([i, commands[i]]);
+        }
+        return lines;
     }
 
     const fileContent = await fetch(file).then((res) => res.text());
 
-    const lines = fileContent.split("\n");
+    lines = fileContent.split("\n");
     return lines;
 };

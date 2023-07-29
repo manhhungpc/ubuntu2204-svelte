@@ -11,10 +11,7 @@ The following NEW packages will be installed:
 0 upgraded, 2 newly installed, 0 to remove and 135 not upgraded.
 Need to get 6.691 kB of archives.
 After this operation, 16,7 MB of additional disk space will be used.
-Do you want to continue? [Y/n] ---WaitingConfirm()--- y
----COMMENT---
----COMMENT---
----COMMENT---
+Do you want to continue? [Y/n] ---WaitingConfirm()---
 Get:1 http://vn.archive.ubuntu.com/ubuntu jammy/universe amd64 libgtkglext1 amd64 1.2.0-11 [73,9 kB]
 Get:2 http://deb.anydesk.com all/main amd64 anydesk amd64 6.2.1 [6.617 kB]     
 Fetched 6.691 kB in 16s (426 kB/s)                                             
@@ -35,5 +32,3 @@ Processing triggers for gnome-menus (3.36.0-1ubuntu3) ...
 Processing triggers for libc-bin (2.35-0ubuntu3.1) ...
 Processing triggers for mailcap (3.70+nmu1ubuntu1) ...
 Processing triggers for desktop-file-utils (0.26-1ubuntu3) ...
-
----PlayingProgressVideo()---

@@ -9,7 +9,7 @@
     <WindowBar name="vscode" />
     <div class="main-app">
         <iframe
-            src="https://stackblitz.com/github/manhhungpc/ubuntu2204-svelte?file=README.md"
+            src="https://stackblitz.com/github/manhhungpc/ubuntu2204-svelte?embed=1&file=README.md"
             title="vscode"
             frameborder="0"
             id="iframe-vscode"

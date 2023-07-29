@@ -53,6 +53,7 @@
     "du": "Estimate file and directory space usage",
     "free": "Display memory usage and information",
     "history": "Display command history",
+    "help": "Display all available commands",
     "man": "Display manual pages for commands",
     "apt-cache": "Query the APT package cache for package information",
     "aptitude": "Terminal-based package manager with a command-line interface",

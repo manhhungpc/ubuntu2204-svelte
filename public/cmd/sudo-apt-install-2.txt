@@ -33,10 +33,7 @@ The following packages will be upgraded:
 1 upgraded, 157 newly installed, 0 to remove and 75 not upgraded.
 Need to get 73.3 MB of archives.
 After this operation, 308 MB of additional disk space will be used.
-Do you want to continue? [Y/n] ---WaitingConfirm()--- y
----COMMENT---
----COMMENT---
----COMMENT---
+Do you want to continue? [Y/n] ---WaitingConfirm()---
 Get:1 http://ap-southeast-1.ec2.archive.ubuntu.com/ubuntu jammy/universe amd64 libdouble-conversion3 amd64 3.1.7-4 [39.0 kB]
 Get:2 http://ap-southeast-1.ec2.archive.ubuntu.com/ubuntu jammy-updates/main amd64 libpcre2-16-0 amd64 10.39-3ubuntu0.1 [203 kB]
 Get:3 http://ap-southeast-1.ec2.archive.ubuntu.com/ubuntu jammy-updates/universe amd64 libqt5core5a amd64 5.15.3+dfsg-2ubuntu0.2 [2006 kB]

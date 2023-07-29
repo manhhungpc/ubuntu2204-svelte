@@ -47,7 +47,8 @@
     addStyles="inset: 10% 50% 30% 10%; 
             color: var(--white); 
             font-family: 'Ubuntu Mono', monospace;
-            background-color: var(--dark-purple);"
+            background-color: var(--dark-purple);
+            border-radius: 12px 12px 0 0"
 >
     <WindowBar name={AppName.terminal} classStyle="justify-between">
         <button class="ml-2 bg-grey-2 pt-2 pb-1 px-2 rounded-md">
@@ -82,27 +83,15 @@
 </SkelentonApp>
 
 <style>
-    /* .terminal {
-        color: var(--white);
-        font-family: "Ubuntu Mono", monospace;
-        background-color: var(--dark-purple);
-        border-radius: 12px 12px 0 0;
-        position: absolute;
-        inset: 10% 50% 30% 10%;
-        resize: both;
-        overflow: hidden;
-        border: 1px solid #000;
-        border-top: none;
-    } */
-
     .main-app {
         /* minus the height of window-bar */
         height: calc(100% - 48px);
         width: 100%;
+        padding-bottom: 2px;
     }
 
     .cmd-content {
-        @apply overflow-y-scroll h-full relative;
+        @apply overflow-y-scroll h-full relative ml-[2px];
         -ms-overflow-style: none; /* IE and Edge */
         scrollbar-width: none; /* Firefox */
     }
