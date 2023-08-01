@@ -4,6 +4,7 @@
     import WiFi from "src/components/settings-app/WiFi.svelte";
     import SkelentonApp from "src/components/common/SkelentonApp.svelte";
     import { AppName } from "src/interfaces/AppName";
+    import Network from "src/components/settings-app/Network.svelte";
 
     const settings = [
         { name: "Wi-Fi", icon: "/img/icons/network-wireless-symbolic.svg" },
@@ -34,7 +35,36 @@
         { name: "About", icon: "/img/icons/dialog-information-symbolic.svg" },
     ];
 
-    let selectSetting = "Wi-Fi";
+    let selectSetting = { name: "Wi-Fi", component: WiFi };
+
+    async function loadSettings(name: string) {
+        switch (name) {
+            case "Wi-Fi":
+                selectSetting = {
+                    name: "Wi-Fi",
+                    component: (await import(`src/components/settings-app/WiFi.svelte`)).default,
+                };
+                break;
+            case "Network":
+                selectSetting = {
+                    name: "Network",
+                    component: (await import(`src/components/settings-app/Network.svelte`)).default,
+                };
+                break;
+            case "Bluetooth":
+                selectSetting = {
+                    name: "Bluetooth",
+                    component: (await import(`src/components/settings-app/Bluetooth.svelte`)).default,
+                };
+                break;
+            default:
+                selectSetting = {
+                    name: name,
+                    component: (await import(`src/components/WIP.svelte`)).default,
+                };
+                break;
+        }
+    }
 </script>
 
 <!-- svelte-ignore a11y-click-events-have-key-events -->
@@ -63,12 +93,12 @@
             <Listgroup
                 active
                 class="w-60 h-full overflow-hidden hover:overflow-y-scroll scrollbar-thin bg-dark-3 rounded-none"
-                on:click={console.log}
             >
                 {#each settings as setting}
                     <ListgroupItem
                         hoverClass=""
-                        on:focus={(e) => (selectSetting = setting.name)}
+                        on:focus={(e) => (selectSetting.name = setting.name)}
+                        on:click={(e) => loadSettings(setting.name)}
                         class="text-white h-[45px] hover:bg-dark-hover hover:rounded-none focus:bg-main-orange focus:text-white focus:rounded-none"
                     >
                         <img src={setting.icon} alt={setting.name} width="15" class="img-icon" />
@@ -88,7 +118,7 @@
             </Listgroup>
         </div>
         <div class="setting-info">
-            <WiFi />
+            <svelte:component this={selectSetting.component} />
         </div>
     </div>
 </SkelentonApp>
