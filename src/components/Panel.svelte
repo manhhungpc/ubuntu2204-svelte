@@ -1,7 +1,7 @@
 <script lang="ts">
     import { Dropdown, Popover } from "flowbite-svelte";
     import SystemMenu from "./SystemMenu.svelte";
-    import { audio, datetime, doNotDisturb, topApp } from "src/store";
+    import { audio, datetime, doNotDisturb, locked, menuIcon, topApp } from "src/store";
     import CalendarView from "./CalendarView.svelte";
     import { AppName } from "src/interfaces/AppName";
 
@@ -69,7 +69,7 @@
     }
 </script>
 
-<div class="wrap-panel">
+<div class="wrap-panel" style:background-color={$locked ? "var(--bg-grey-1)" : ""}>
     <div class="activity-info">
         <button class="activities">Activities</button>
         {#if $topApp != ""}
@@ -104,8 +104,10 @@
     <div class="utils">
         <button class="lang">en</button>
         <button class="menu-btn" id="system-menu">
-            <img src="/img/icons/network-signal-good-symbolic.svg" alt="wifi" class="utils-icon" />
-            <img src="/img/icons/bluetooth-active-symbolic.svg" alt="bluetooth" class="utils-icon" />
+            {#each $menuIcon as icon}
+                <img src={icon} alt="menu-icon" class="utils-icon" />
+            {/each}
+            <!-- <img src="/img/icons/bluetooth-active-symbolic.svg" alt="bluetooth" class="utils-icon" /> -->
             <img src={audioImg} alt="audio" class="utils-icon" />
             <!-- <img src="/img/icons/audio-volume-low-symbolic.svg" alt="audio" class="utils-icon" /> -->
             <span class="flex items-center utils-icon">
@@ -150,7 +152,7 @@
     .calendar,
     .menu-btn,
     .lang {
-        background-color: var(--bg-dark-1);
+        background-color: transparent;
         border: none;
         color: var(--white);
         font-family: "Ubuntu", sans-serif;

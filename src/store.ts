@@ -13,9 +13,15 @@ export const datetime = readable(new Date(), function start(set) {
     };
 });
 
+export const menuIcon = writable([
+    "/img/icons/network-signal-good-symbolic.svg",
+    "/img/icons/bluetooth-active-symbolic.svg",
+]);
 export const openApps: Writable<OpenApps[]> = writable([]);
 export const topApp = writable("");
 export const doNotDisturb = writable(false);
 export const showApplication = writable(false);
 export const prompts = writable([{ done: false, file: "" }]);
 export const cmdRunning = writable(true);
+
+export const locked = writable(true);

@@ -2,8 +2,10 @@
     import AppGrid from "./components/AppGrid.svelte";
     import { tweened } from "svelte/motion";
     import { cubicOut } from "svelte/easing";
-    import { openApps, prompts, showApplication } from "src/store";
+    import { locked, openApps, prompts, showApplication } from "src/store";
     import { AppName } from "./interfaces/AppName";
+    import LockScreen from "./components/LockScreen.svelte";
+    import Dock from "./Dock.svelte";
 
     const scale = tweened(1, { duration: 300, easing: cubicOut });
     const xPos = tweened(0, { duration: 300, easing: cubicOut });
@@ -21,7 +23,11 @@
 </script>
 
 <main class="desktop" style:transform="translate({$xPos}vw, {$yPos}vh) scale({$scale}) ">
+    {#if $locked}
+        <LockScreen />
+    {/if}
     <AppGrid />
+    <Dock />
     {#each $openApps as app}
         <svelte:component this={app.component} />
     {/each}
