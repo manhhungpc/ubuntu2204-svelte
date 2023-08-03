@@ -2,7 +2,9 @@
     import { AccordionItem, Accordion } from "flowbite-svelte";
     import Slider from "./common/Slider.svelte";
     import { onMount } from "svelte";
-    import { brightness, audio } from "src/store";
+    import { brightness, audio, openApps, menuIcon, locked } from "src/store";
+    import { showApp } from "src/utils/open";
+    import { AppName } from "src/interfaces/AppName";
 
     let audioLevel = $audio,
         brightnessLevel = $brightness,
@@ -36,6 +38,30 @@
             },
         ];
     });
+
+    function toggleArray(arr: string[], val: string) {
+        if (arr.indexOf(val) === -1) arr.push(val);
+        else arr.splice(arr.indexOf(val), 1);
+        return arr;
+    }
+
+    async function menuAction(option: string, subOptionIndex: number) {
+        if (option == "WiFi" && subOptionIndex == 1) {
+            const wifiTurn = menuDropdown[0].subOptions[1];
+            $menuIcon = toggleArray($menuIcon, "/img/icons/network-signal-good-symbolic.svg");
+            menuDropdown[0].subOptions[1] = wifiTurn == "Turn Off" ? "Turn On" : "Turn Off";
+        } else if (option == "WiFi" && subOptionIndex == 2) {
+            showApp(
+                AppName.settings,
+                (await import(`../apps/Setting.svelte`)).default,
+                "/img/apps/system-settings.png"
+            );
+        } else if (option == "Bluetooth" && subOptionIndex == 0) {
+            const bltTurn = menuDropdown[1].subOptions[0];
+            $menuIcon = toggleArray($menuIcon, "/img/icons/bluetooth-active-symbolic.svg");
+            menuDropdown[1].subOptions[0] = bltTurn == "Turn Off" ? "Turn On" : "Turn Off";
+        }
+    }
 
     $: {
         if ($audio === 0) {
@@ -78,8 +104,10 @@
                     <img src="/img/icons/pan-down-symbolic.svg" alt="arrow-end" class="menu-icon !m-0" />
                 </div>
                 <div class="dropdown">
-                    {#each item.subOptions as subOption}
-                        <button class="dropdown-item">{subOption}</button>
+                    {#each item.subOptions as subOption, i}
+                        <button class="dropdown-item" on:click={(e) => menuAction(item.name, i)}>
+                            {subOption}
+                        </button>
                     {/each}
                     <!-- <button class="dropdown-item">Turn Off</button>
                 <button class="dropdown-item">Wi-Fi Settings</button> -->
@@ -89,13 +117,21 @@
     </Accordion>
     <hr class="bg-soft-white border-none h-[1px] w-[96%]" />
 
-    <button class="flex items-center w-full menu-item">
+    <button
+        class="flex items-center w-full menu-item"
+        on:click={async (e) =>
+            showApp(
+                AppName.settings,
+                (await import(`../apps/Setting.svelte`)).default,
+                "/img/apps/system-settings.png"
+            )}
+    >
         <img src="/img/icons/system-settings-symbolic.svg" alt="setting" class="menu-icon" />
         <div class="flex justify-between items-center w-full">
             <span class="text-sm">Settings</span>
         </div>
     </button>
-    <button class="flex items-center w-full menu-item">
+    <button class="flex items-center w-full menu-item" on:click={(e) => ($locked = true)}>
         <img src="/img/icons/lock-symbolic.svg" alt="setting" class="menu-icon" />
         <div class="flex justify-between items-center w-full">
             <span class="text-sm">Lock</span>
