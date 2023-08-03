@@ -1,7 +1,8 @@
 <script lang="ts">
+    import { fade } from "svelte/transition";
 </script>
 
-<div class="wrap-network">
+<div class="wrap-network" in:fade={{ duration: 200 }}>
     <div class="flex justify-between w-full h-full mb-2">
         <div class="font-bold text-sm text-white">VPN</div>
         <button

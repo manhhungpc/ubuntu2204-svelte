@@ -57,6 +57,12 @@
                     component: (await import(`src/components/settings-app/Bluetooth.svelte`)).default,
                 };
                 break;
+            case "Background":
+                selectSetting = {
+                    name: "Background",
+                    component: (await import(`src/components/settings-app/Background.svelte`)).default,
+                };
+                break;
             default:
                 selectSetting = {
                     name: name,
@@ -86,7 +92,7 @@
             </button>
         </div>
         <div class="w-[200px]" />
-        <div class="text-white text-sm font-bold w-full flex justify-center">{selectSetting}</div>
+        <div class="text-white text-sm font-bold w-full flex justify-center">{selectSetting.name}</div>
     </WindowBar>
     <div class="main-app">
         <div class="list-setting">
@@ -137,6 +143,7 @@
 
     .list-setting {
         height: 100%;
+        border-right: 1px solid #000;
     }
 
     .list-setting::-webkit-scrollbar {

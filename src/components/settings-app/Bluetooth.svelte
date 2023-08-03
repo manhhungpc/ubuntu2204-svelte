@@ -1,5 +1,6 @@
 <script lang="ts">
     import { Listgroup, ListgroupItem } from "flowbite-svelte";
+    import { fade } from "svelte/transition";
 
     const bluetooths = [
         {
@@ -17,7 +18,7 @@
     ];
 </script>
 
-<div class="wrap-blt">
+<div class="wrap-blt" in:fade={{ duration: 200 }}>
     <div class="text-sm">
         Visible as "my-ASUSLaptop-1080A" and available for Bluetooth file transfer. Transferred files are placed in the
     </div>
