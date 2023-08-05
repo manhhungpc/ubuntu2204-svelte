@@ -63,6 +63,12 @@
                     component: (await import(`src/components/settings-app/Background.svelte`)).default,
                 };
                 break;
+            case "Appearance":
+                selectSetting = {
+                    name: "Appearance",
+                    component: (await import(`src/components/settings-app/Appearance.svelte`)).default,
+                };
+                break;
             default:
                 selectSetting = {
                     name: name,

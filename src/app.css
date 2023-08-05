@@ -32,6 +32,16 @@
     --bg-dark-hover: #ffffff0d;
     --red-1: #a11223;
     --green-1: #0e761d;
+
+    --bark: #787859;
+    --sage: #657b69;
+    --olive: #4b8501;
+    --viridian: #03875b;
+    --prussian-green: #308280;
+    --blue: #0073e5;
+    --purple: #7764d8;
+    --magenta: #b34cb3;
+    --red-theme: #da3450;
 }
 * {
     letter-spacing: 0.5px;
