@@ -5,7 +5,6 @@
     import { locked, openApps, prompts, showApplication, background } from "src/store";
     import { AppName } from "./interfaces/AppName";
     import LockScreen from "./components/LockScreen.svelte";
-    import Dock from "./Dock.svelte";
 
     const scale = tweened(1, { duration: 300, easing: cubicOut });
     const xPos = tweened(0, { duration: 300, easing: cubicOut });
@@ -31,7 +30,6 @@
         <LockScreen />
     {/if}
     <AppGrid />
-    <Dock />
     {#each $openApps as app}
         <svelte:component this={app.component} />
     {/each}

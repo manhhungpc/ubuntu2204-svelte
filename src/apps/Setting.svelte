@@ -4,7 +4,6 @@
     import WiFi from "src/components/settings-app/WiFi.svelte";
     import SkelentonApp from "src/components/common/SkelentonApp.svelte";
     import { AppName } from "src/interfaces/AppName";
-    import Network from "src/components/settings-app/Network.svelte";
 
     const settings = [
         { name: "Wi-Fi", icon: "/img/icons/network-wireless-symbolic.svg" },
@@ -67,6 +66,24 @@
                 selectSetting = {
                     name: "Appearance",
                     component: (await import(`src/components/settings-app/Appearance.svelte`)).default,
+                };
+                break;
+            case "Notifications":
+                selectSetting = {
+                    name: "Notifications",
+                    component: (await import(`src/components/settings-app/Notifications.svelte`)).default,
+                };
+                break;
+            case "Search":
+                selectSetting = {
+                    name: "Search",
+                    component: (await import(`src/components/settings-app/Search.svelte`)).default,
+                };
+                break;
+            case "Multitasking":
+                selectSetting = {
+                    name: "Multitasking",
+                    component: (await import(`src/components/settings-app/Multitasking.svelte`)).default,
                 };
                 break;
             default:
@@ -178,5 +195,6 @@
 
     .setting-info {
         width: 100%;
+        background-color: var(--bg-dark-app);
     }
 </style>

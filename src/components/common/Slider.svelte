@@ -13,7 +13,7 @@
 </script>
 
 <div class="flex flex-col items-centerh-min w-full">
-    <Range bind:value={percent} {min} {max} {step} size="sm" class="w-full accent-white bg-soft-white" id="slider" />
+    <Range bind:value={percent} {min} {max} {step} size="sm" class="w-full !accent-white bg-soft-white" id="slider" />
     <div class="overlay">
         <div class="bg-main-orange" style="height: 4px; border-radius: 3px; width: {percent}%;" />
     </div>
