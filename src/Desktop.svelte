@@ -2,10 +2,9 @@
     import AppGrid from "./components/AppGrid.svelte";
     import { tweened } from "svelte/motion";
     import { cubicOut } from "svelte/easing";
-    import { locked, openApps, prompts, showApplication } from "src/store";
+    import { locked, openApps, prompts, showApplication, background } from "src/store";
     import { AppName } from "./interfaces/AppName";
     import LockScreen from "./components/LockScreen.svelte";
-    import Dock from "./Dock.svelte";
 
     const scale = tweened(1, { duration: 300, easing: cubicOut });
     const xPos = tweened(0, { duration: 300, easing: cubicOut });
@@ -22,12 +21,15 @@
     }
 </script>
 
-<main class="desktop" style:transform="translate({$xPos}vw, {$yPos}vh) scale({$scale}) ">
+<main
+    class="desktop"
+    style:transform="translate({$xPos}vw, {$yPos}vh) scale({$scale})"
+    style:background-image="url({$background})"
+>
     {#if $locked}
         <LockScreen />
     {/if}
     <AppGrid />
-    <Dock />
     {#each $openApps as app}
         <svelte:component this={app.component} />
     {/each}
@@ -37,7 +39,7 @@
     .desktop {
         width: 100vw;
         height: 100vh;
-        background-image: url(/img/Wallpaper/Jammy-Jellyfish_WP_1920x1080.webp);
+        /* background-image: url(/img/Wallpaper/Jammy-Jellyfish_WP_1920x1080.webp); */
         background-repeat: no-repeat;
         background-attachment: fixed;
         background-position: center;

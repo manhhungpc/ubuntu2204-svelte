@@ -34,7 +34,66 @@
         { name: "About", icon: "/img/icons/dialog-information-symbolic.svg" },
     ];
 
-    let selectSetting = "Wi-Fi";
+    let selectSetting = { name: "Wi-Fi", component: WiFi };
+
+    async function loadSettings(name: string) {
+        switch (name) {
+            case "Wi-Fi":
+                selectSetting = {
+                    name: "Wi-Fi",
+                    component: (await import(`src/components/settings-app/WiFi.svelte`)).default,
+                };
+                break;
+            case "Network":
+                selectSetting = {
+                    name: "Network",
+                    component: (await import(`src/components/settings-app/Network.svelte`)).default,
+                };
+                break;
+            case "Bluetooth":
+                selectSetting = {
+                    name: "Bluetooth",
+                    component: (await import(`src/components/settings-app/Bluetooth.svelte`)).default,
+                };
+                break;
+            case "Background":
+                selectSetting = {
+                    name: "Background",
+                    component: (await import(`src/components/settings-app/Background.svelte`)).default,
+                };
+                break;
+            case "Appearance":
+                selectSetting = {
+                    name: "Appearance",
+                    component: (await import(`src/components/settings-app/Appearance.svelte`)).default,
+                };
+                break;
+            case "Notifications":
+                selectSetting = {
+                    name: "Notifications",
+                    component: (await import(`src/components/settings-app/Notifications.svelte`)).default,
+                };
+                break;
+            case "Search":
+                selectSetting = {
+                    name: "Search",
+                    component: (await import(`src/components/settings-app/Search.svelte`)).default,
+                };
+                break;
+            case "Multitasking":
+                selectSetting = {
+                    name: "Multitasking",
+                    component: (await import(`src/components/settings-app/Multitasking.svelte`)).default,
+                };
+                break;
+            default:
+                selectSetting = {
+                    name: name,
+                    component: (await import(`src/components/WIP.svelte`)).default,
+                };
+                break;
+        }
+    }
 </script>
 
 <!-- svelte-ignore a11y-click-events-have-key-events -->
@@ -56,19 +115,19 @@
             </button>
         </div>
         <div class="w-[200px]" />
-        <div class="text-white text-sm font-bold w-full flex justify-center">{selectSetting}</div>
+        <div class="text-white text-sm font-bold w-full flex justify-center">{selectSetting.name}</div>
     </WindowBar>
     <div class="main-app">
         <div class="list-setting">
             <Listgroup
                 active
                 class="w-60 h-full overflow-hidden hover:overflow-y-scroll scrollbar-thin bg-dark-3 rounded-none"
-                on:click={console.log}
             >
                 {#each settings as setting}
                     <ListgroupItem
                         hoverClass=""
-                        on:focus={(e) => (selectSetting = setting.name)}
+                        on:focus={(e) => (selectSetting.name = setting.name)}
+                        on:click={(e) => loadSettings(setting.name)}
                         class="text-white h-[45px] hover:bg-dark-hover hover:rounded-none focus:bg-main-orange focus:text-white focus:rounded-none"
                     >
                         <img src={setting.icon} alt={setting.name} width="15" class="img-icon" />
@@ -88,7 +147,7 @@
             </Listgroup>
         </div>
         <div class="setting-info">
-            <WiFi />
+            <svelte:component this={selectSetting.component} />
         </div>
     </div>
 </SkelentonApp>
@@ -107,6 +166,7 @@
 
     .list-setting {
         height: 100%;
+        border-right: 1px solid #000;
     }
 
     .list-setting::-webkit-scrollbar {
@@ -135,5 +195,6 @@
 
     .setting-info {
         width: 100%;
+        background-color: var(--bg-dark-app);
     }
 </style>

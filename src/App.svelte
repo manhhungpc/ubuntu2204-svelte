@@ -3,15 +3,14 @@
     import Base from "./Base.svelte";
     import Desktop from "./Desktop.svelte";
     import Panel from "./components/Panel.svelte";
-    import { brightness } from "./store";
+    import Dock from "./Dock.svelte";
+    import { brightness, locked } from "./store";
     import BootScreen from "./components/BootScreen.svelte";
 
     let booting = true;
 
     onMount(() => {
-        setTimeout(() => {
-            booting = false;
-        }, 1500);
+        booting = false;
     });
 </script>
 
@@ -22,4 +21,7 @@
     <Panel />
     <Base />
     <Desktop />
+    {#if !$locked}
+        <Dock />
+    {/if}
 </main>

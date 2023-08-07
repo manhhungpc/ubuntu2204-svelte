@@ -1,7 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Ubuntu&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Ubuntu+Mono&display=swap");
-/* @tailwind base;
-@tailwind components; */
+/* @tailwind base; */
+/* @tailwind components; */
 @tailwind utilities;
 :root {
     font-family: "Ubuntu", sans-serif;
@@ -30,8 +30,19 @@
     --dark-purple: #300a24;
     --bg-dark-3: #272727;
     --bg-dark-hover: #ffffff0d;
+    --bg-dark-app: #2c2c2c;
     --red-1: #a11223;
     --green-1: #0e761d;
+
+    --bark: #787859;
+    --sage: #657b69;
+    --olive: #4b8501;
+    --viridian: #03875b;
+    --prussian-green: #308280;
+    --blue: #0073e5;
+    --purple: #7764d8;
+    --magenta: #b34cb3;
+    --red-theme: #da3450;
 }
 * {
     letter-spacing: 0.5px;

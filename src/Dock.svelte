@@ -154,7 +154,7 @@
         width: 72px;
         height: calc(100vh - 1.7rem); /* minus the panel height*/
         background-color: var(--bg-dark-trans);
-        z-index: 98;
+        z-index: 97;
     }
 
     .grid-apps {

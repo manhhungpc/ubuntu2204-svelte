@@ -1,5 +1,5 @@
 <script lang="ts">
-    let checked = true;
+    export let checked = true;
     let value = "on";
     function handleClick(event) {
         const target = event.target;

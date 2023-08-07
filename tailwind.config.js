@@ -31,6 +31,7 @@ export default {
             "soft-white": "var(--bg-soft-white)",
             "darker-white": "var(--bg-darker-white)",
             "dark-hover": "var(--bg-dark-hover)",
+            "grey-1": "var(--bg-grey-1)",
             "grey-2": "var(--grey-2)",
             "red-1": "var(--red-1)",
             "green-1": "var(--green-1)",

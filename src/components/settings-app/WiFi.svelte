@@ -1,6 +1,7 @@
 <script lang="ts">
     import { Listgroup, ListgroupItem } from "flowbite-svelte";
     import ToggleSwitch from "../common/ToggleSwitch.svelte";
+    import { fade } from "svelte/transition";
 
     const wifi = [
         {
@@ -34,7 +35,7 @@
     ];
 </script>
 
-<div class="wrap-wifi">
+<div class="wrap-wifi" in:fade={{ duration: 200 }}>
     <div class="flex justify-between mb-4 px-2 py-3 w-[70%] max-w-[36rem] bg-dark-3 rounded-md">
         <div class="airplane-mode">
             <p>Airplane Mode</p>

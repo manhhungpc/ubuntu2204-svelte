@@ -15,8 +15,8 @@ Try it now: 🔗 https://ubuntu2204-svelte.vercel.app/
 -   [x] Google Chrome, VS Code, Settings (WIP), Terminal, Calculator
 -   [x] A "working" terminal
 -   [x] Resizable windows
+-   [x] Boot screen, lock screen
 -   [ ] (WIP) Text Editor, File Manager
--   [ ] (WIP) Boot screen, lock screen
 
 📝 You can always [suggest more features](https://github.com/manhhungpc/ubuntu2204-svelte/issues)
 
