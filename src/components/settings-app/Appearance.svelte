@@ -25,7 +25,7 @@
      * The below convert from percent (66.6) to iconSize (48) to display
      */
     $: iconSize = Math.round((percent / 100) * 48 + 16);
-    $: console.log(isDarkTheme);
+    $: console.log(`!border${chooseColorTheme.substring(1)}`);
 </script>
 
 <div class="wrap-appearance scrollbar-thin overflow-y-scroll">
@@ -35,7 +35,12 @@
             <div class="themes">
                 <div class="grid grid-cols-2 gap-3">
                     <div class="w-full flex justify-center">
-                        <button class="w-max" on:click={(e) => (isDarkTheme = false)} class:choose-theme={!isDarkTheme}>
+                        <button
+                            class="w-max"
+                            on:click={(e) => (isDarkTheme = false)}
+                            class:choose-theme={!isDarkTheme}
+                            style:border-color="var({chooseColorTheme})"
+                        >
                             <img
                                 src="/img/icons/ui/light-theme.png"
                                 alt="light-theme"
@@ -46,7 +51,12 @@
                         </button>
                     </div>
                     <div class="w-full flex justify-center">
-                        <button class="w-max" on:click={(e) => (isDarkTheme = true)} class:choose-theme={isDarkTheme}>
+                        <button
+                            class="w-max"
+                            on:click={(e) => (isDarkTheme = true)}
+                            class:choose-theme={isDarkTheme}
+                            style:border-color="var({chooseColorTheme})"
+                        >
                             <img
                                 src="/img/icons/ui/dark-theme.png"
                                 alt="dark-theme"
@@ -66,7 +76,7 @@
                 {#each colorThemes as theme}
                     {#if theme == chooseColorTheme}
                         <div style:border="3px solid var({theme})" class="rounded-[50%] ml-[20px]">
-                            <button class="p-[14px] rounded-[50%] m-[3px]" style:background-color="var({theme})" />
+                            <button class="selected-btn-theme" style:background-color="var({theme})" />
                         </div>
                     {:else}
                         <button
@@ -171,9 +181,11 @@
                 <span>Icon size</span>
                 <div class="w-60 z-0 flex flex-row items-center gap-3">
                     <span class="text-warm-grey">{iconSize % 2 === 0 ? iconSize : iconSize + 1}</span>
-                    <Slider bind:percent step={2} />
+                    <Slider bind:percent step={4} />
                 </div>
             </Button>
+
+            <hr class="border-none h-[1px] bg-black m-0" />
             <Button class="flex justify-between w-full py-4 bg-dark-3 hover:bg-[#2f2f2f] text-white" id="dock-1">
                 <span>Show on</span>
                 <div class="flex items-center gap-2">
@@ -202,6 +214,8 @@
                     />
                 </button>
             </Popover>
+
+            <hr class="border-none h-[1px] bg-black m-0" />
             <Button class="flex justify-between w-full py-4 bg-dark-3 hover:bg-[#2f2f2f] text-white" id="dock-2">
                 <span>Position on screen</span>
                 <div class="flex items-center gap-2">
@@ -226,6 +240,8 @@
                 <button class="block w-full text-start text-white p-3 hover:bg-dark-2">Bottom</button>
                 <button class="block w-full text-start text-white p-3 hover:bg-dark-2">Right</button>
             </Popover>
+
+            <hr class="border-none h-[1px] bg-black m-0" />
             <Button class="flex justify-between w-full py-4 bg-dark-3 hover:bg-[#2f2f2f] text-white">
                 <span>Congifure dock behavior</span>
                 <img src="/img/icons/pan-end-symbolic.svg" alt="tick" width="20" class="img-icon ml-2" />
@@ -264,8 +280,24 @@
         margin-left: 20px;
         border-radius: 50%;
     }
+    .selected-btn-theme {
+        padding: 14px;
+        border-radius: 50%;
+        margin: 3px;
+    }
 
     .choose-theme {
         @apply p-1 pb-[1px] rounded-lg border-4 border-solid border-main-orange;
+    }
+
+    @media screen and (max-height: 762px) {
+        .btn-theme {
+            padding: 12px;
+            margin-left: 20px;
+        }
+
+        .selected-btn-theme {
+            padding: 12px;
+        }
     }
 </style>

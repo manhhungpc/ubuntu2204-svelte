@@ -20,7 +20,7 @@
                     </div>
                     <ToggleSwitch checked={false} />
                 </div>
-                <div class="w-[552px] h-[130px] mt-4">
+                <div class="wrap-illustrate">
                     <img src="/img/icons/ui/hot-corner-multitasking.png" class="illustrate" alt="hot-corner" />
                 </div>
             </Button>
@@ -35,7 +35,7 @@
                     </div>
                     <ToggleSwitch />
                 </div>
-                <div class="w-[552px] h-[130px] mt-4">
+                <div class="wrap-illustrate">
                     <img src="/img/icons/ui/active-screen-edge.png" class="illustrate" alt="screen-edge" />
                 </div>
             </Button>
@@ -81,15 +81,18 @@
                 <div class="mb-3">
                     <RadioInput name="multi-monitor" checked>Workspaces on primary display only</RadioInput>
                 </div>
-                <img src="/img/icons/ui/multi-monitor-1.png" class="illustrate" alt="multi-monitor" />
+                <div class="wrap-illustrate">
+                    <img src="/img/icons/ui/multi-monitor-1.png" class="illustrate" alt="multi-monitor" />
+                </div>
             </Button>
             <hr class="border-none h-[1px] bg-black m-0" />
             <Button class="flex flex-col items-start w-full py-4 bg-dark-3 hover:bg-[#2f2f2f] text-white">
                 <div class="mb-3">
                     <RadioInput name="multi-monitor">Workspaces on primary display only</RadioInput>
                 </div>
-
-                <img src="/img/icons/ui/multi-monitor-2.png" class="illustrate" alt="multi-monitor" />
+                <div class="wrap-illustrate">
+                    <img src="/img/icons/ui/multi-monitor-2.png" class="illustrate" alt="multi-monitor" />
+                </div>
             </Button>
         </Listgroup>
     </div>
@@ -143,8 +146,19 @@
         margin-bottom: 30px;
     }
 
+    .wrap-illustrate {
+        /* w-[96%] h-[130px] mt-4 overflow-hidden */
+        width: 100%;
+        height: 130px;
+        margin-top: 4rem;
+        overflow: hidden;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border: 1px solid #000;
+    }
     .illustrate {
         height: max-content;
-        border: 1px solid #000;
+        /* border: 1px solid #000; */
     }
 </style>

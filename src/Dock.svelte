@@ -14,7 +14,7 @@
             // componentPath: "./apps/GoogleChrome.svelte",
         },
         {
-            name: "file-manager",
+            name: AppName.filemanager,
             imgSrc: "/img/apps/filemanager-app.png",
             // componentPath: null,
         },
@@ -44,12 +44,17 @@
             return (await import(`./apps/Terminal.svelte`)).default;
         } else if (name === AppName.settings) {
             return (await import(`./apps/Setting.svelte`)).default;
+        } else if (name === AppName.filemanager) {
+            return (await import(`./apps/FileManager.svelte`)).default;
         }
         return null;
     }
 
     function open(name: string, component: any, img: string) {
-        if ($openApps.find((app) => app.name === name)) return;
+        if ($openApps.find((app) => app.name === name)) {
+            topApp.set(name);
+            return;
+        }
         openApps.update((opens) => [...opens, { name, component, img }]);
         topApp.set(name);
     }
@@ -119,6 +124,9 @@
             >
                 {#if $topApp === app.name}
                     <div class="top-app" />
+                {/if}
+                {#if $openApps.find((open) => app.name === open.name)}
+                    <div class="open-app" />
                 {/if}
                 <img
                     src={app.imgSrc}
@@ -195,6 +203,17 @@
         left: 5px;
     }
 
+    .open-app::before {
+        content: "\A";
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        background: #b83b3b;
+        margin-top: 40%;
+        position: absolute;
+        left: 5px;
+    }
+
     .app-icon {
         width: 50px;
         padding: 0.4rem;
@@ -229,5 +248,21 @@
 
     .end-drag {
         margin: 1px 0.3rem;
+    }
+
+    @media screen and (max-height: 762px) {
+        .app-icon {
+            width: 46px;
+        }
+
+        .top-app::before {
+            margin-top: 35%;
+            left: 6px;
+        }
+
+        .open-app::before {
+            margin-top: 35%;
+            left: 6px;
+        }
     }
 </style>

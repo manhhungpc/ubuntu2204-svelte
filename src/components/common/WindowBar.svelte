@@ -1,6 +1,6 @@
 <script lang="ts">
     import { openApps, topApp } from "src/store";
-    export let name = "",
+    export let name: string,
         classStyle = "";
 
     function onClose() {

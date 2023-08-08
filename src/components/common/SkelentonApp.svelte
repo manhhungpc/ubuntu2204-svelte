@@ -49,7 +49,7 @@
         class="skelenton"
         use:draggable={{
             handle: ".window-bar",
-            bounds: { top: 25 },
+            bounds: { top: 25, left: -2000, right: -2000, bottom: -2000 },
             onDragEnd: ({ offsetX, offsetY }) => {
                 xPos = offsetX;
                 yPos = offsetY;

@@ -21,7 +21,7 @@
             imgSrc: "/img/apps/google-chrome.png",
         },
         {
-            name: "file-manager",
+            name: AppName.filemanager,
             displayName: "Files",
             imgSrc: "/img/apps/filemanager-app.png",
         },

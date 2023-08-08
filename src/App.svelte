@@ -14,10 +14,10 @@
     });
 </script>
 
+{#if booting}
+    <BootScreen />
+{/if}
 <main style:filter="brightness({$brightness}%)">
-    {#if booting}
-        <BootScreen />
-    {/if}
     <Panel />
     <Base />
     <Desktop />

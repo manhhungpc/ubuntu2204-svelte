@@ -27,7 +27,7 @@
     }
 </script>
 
-<div class="wrap-background" in:fade={{ duration: 100 }}>
+<div class="wrap-background scrollbar-thin" in:fade={{ duration: 100 }}>
     <div class="w-full flex flex-col items-center justify-center pt-4 bg-[#2d2d2d]">
         <div class="preview">
             <div class="preview-panel">
@@ -55,6 +55,7 @@
     .wrap-background {
         height: 100%;
         background-color: var(--bg-dark-3);
+        overflow: auto;
     }
 
     .preview {
@@ -83,7 +84,7 @@
         gap: 15px;
         row-gap: 15px;
         grid-template-columns: repeat(auto-fill, 160px);
-        padding: 15px 5px 0 5px;
+        padding: 15px 5px 20px 5px;
         justify-content: center;
     }
 

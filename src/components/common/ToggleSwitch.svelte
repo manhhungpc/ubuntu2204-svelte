@@ -34,11 +34,11 @@
     .s--slider button::before {
         content: "";
         position: absolute;
-        width: 1.7em;
-        height: 1.7em;
+        width: 1.6em;
+        height: 1.6em;
         background: #fff;
-        top: 0.15rem;
-        right: 1.6rem;
+        top: 0.2em;
+        right: 1.9em;
         transition: transform 0.3s;
     }
 
@@ -70,5 +70,12 @@
     .s--slider button:focus {
         box-shadow: 0 0px 8px var(--main-orange);
         border-radius: 1.7em;
+    }
+
+    @media screen and (max-height: 762px) {
+        .s--slider button::before {
+            top: 0.1em;
+            right: 1.6em;
+        }
     }
 </style>
