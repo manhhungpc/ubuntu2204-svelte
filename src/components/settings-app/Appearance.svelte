@@ -2,6 +2,7 @@
     import { Button, Listgroup, Popover } from "flowbite-svelte";
     import ToggleSwitch from "../common/ToggleSwitch.svelte";
     import Slider from "../common/Slider.svelte";
+    import { fade } from "svelte/transition";
 
     const colorThemes = [
         "--main-orange",
@@ -28,7 +29,7 @@
     $: console.log(`!border${chooseColorTheme.substring(1)}`);
 </script>
 
-<div class="wrap-appearance scrollbar-thin overflow-y-scroll">
+<div class="wrap-appearance scrollbar-thin overflow-y-scroll" in:fade={{ duration: 150 }}>
     <div class="wrap-styles">
         <div class="text-white text-sm font-bold mb-3">Style</div>
         <div class="styles">

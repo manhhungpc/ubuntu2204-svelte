@@ -1,6 +1,7 @@
 <script lang="ts">
     import { Button, Listgroup, ListgroupItem, Popover } from "flowbite-svelte";
     import ToggleSwitch from "../common/ToggleSwitch.svelte";
+    import { fade } from "svelte/transition";
 
     const searchApps = [
         { icon: "/img/apps/filemanager-app.png", name: "Files" },
@@ -12,7 +13,7 @@
     ];
 </script>
 
-<div class="wrap-search">
+<div class="wrap-search" in:fade={{ duration: 150 }}>
     <div class="text-sm text-warm-grey w-[36rem]">
         Control which result are shown in the Activities Overview. The order of search results can also be changed by
         moving rows in the list.

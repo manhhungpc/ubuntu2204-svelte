@@ -2,11 +2,12 @@
     import { Button, ButtonGroup, InputAddon, Listgroup, ListgroupItem, NumberInput, Radio } from "flowbite-svelte";
     import ToggleSwitch from "../common/ToggleSwitch.svelte";
     import RadioInput from "../common/RadioInput.svelte";
+    import { fade } from "svelte/transition";
 
     let fixedWorkspaces = 4;
 </script>
 
-<div class="wrap-multitask scrollbar-thin overflow-y-scroll">
+<div class="wrap-multitask scrollbar-thin overflow-y-scroll" in:fade={{ duration: 150 }}>
     <div class="general">
         <div class="text-sm font-bold">General</div>
         <Listgroup active class="mt-3 bg-dark-3 border border-solid border-black">

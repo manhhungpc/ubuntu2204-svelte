@@ -5,6 +5,7 @@
     import { locked, openApps, prompts, showApplication, background } from "src/store";
     import { AppName } from "./interfaces/AppName";
     import LockScreen from "./components/LockScreen.svelte";
+    import { fade } from "svelte/transition";
 
     const scale = tweened(1, { duration: 300, easing: cubicOut });
     const xPos = tweened(0, { duration: 300, easing: cubicOut });
@@ -21,11 +22,10 @@
     }
 </script>
 
-<main
-    class="desktop"
-    style:transform="translate({$xPos}vw, {$yPos}vh) scale({$scale})"
-    style:background-image="url({$background})"
->
+<main class="desktop" style:transform="translate({$xPos}vw, {$yPos}vh) scale({$scale})">
+    {#key $background}
+        <div class="background-img" style:background-image="url({$background})" transition:fade />
+    {/key}
     {#if $locked}
         <LockScreen />
     {/if}
@@ -40,6 +40,10 @@
         width: 100vw;
         height: 100vh;
         /* background-image: url(/img/Wallpaper/Jammy-Jellyfish_WP_1920x1080.webp); */
+    }
+    .background-img {
+        width: 100vw;
+        height: 100vh;
         background-repeat: no-repeat;
         background-attachment: fixed;
         background-position: center;

@@ -27,7 +27,7 @@
     }
 </script>
 
-<div class="wrap-background scrollbar-thin" in:fade={{ duration: 100 }}>
+<div class="wrap-background scrollbar-thin" in:fade={{ duration: 300 }}>
     <div class="w-full flex flex-col items-center justify-center pt-4 bg-[#2d2d2d]">
         <div class="preview">
             <div class="preview-panel">
@@ -38,7 +38,7 @@
                     <img src="/img/icons/audio-volume-high-symbolic.svg" alt="audio" class="preview-utils-icon" />
                 </div>
             </div>
-            <img src="/img/Wallpaper/Jammy-Jellyfish_WP_1920x1080.webp" alt="preview" width="250" />
+            <img src={$background} alt="preview" width="250" />
         </div>
         <div class="text-warm-grey text-sm mt-4 mb-3">This background selection only applies to the dark style</div>
     </div>

@@ -34,6 +34,21 @@
         { name: "About", icon: "/img/icons/dialog-information-symbolic.svg" },
     ];
 
+    const backgrounds = [
+        "/img/Wallpaper/Mirror_by_Uday_Nakade.jpg",
+        "/img/Wallpaper/Blue_flower_by_Elena_Stravoravdi.jpg",
+        "/img/Wallpaper/canvas_by_roytanck.jpg",
+        "/img/Wallpaper/Cherry_Tree_in_Lakones_by_elenastravoravdi.jpg",
+        "/img/Wallpaper/DSC2943_by_kcpru.jpg",
+        "/img/Wallpaper/jj_dark_by_Hiking93.jpg",
+        "/img/Wallpaper/jj_light_by_Hiking93.jpg",
+        "/img/Wallpaper/Optical_Fibers_in_Dark_by_Elena_Stravoravdi.jpg",
+        "/img/Wallpaper/ubuntu2_by_arman1992.jpg",
+        "/img/Wallpaper/ubuntu_by_arman1992.jpg",
+        "/img/Wallpaper/Jammy-Jellyfish_WP_1920x1080.webp",
+        "/img/Wallpaper/Jammy-Jellyfish_WP_4096x2304_Grey.png",
+    ];
+
     let selectSetting = { name: "Wi-Fi", component: WiFi };
 
     async function loadSettings(name: string) {
@@ -86,6 +101,18 @@
                     component: (await import(`src/components/settings-app/Multitasking.svelte`)).default,
                 };
                 break;
+            case "Online Accounts":
+                selectSetting = {
+                    name: "Online Accounts",
+                    component: (await import(`src/components/settings-app/OnlineAccounts.svelte`)).default,
+                };
+                break;
+            case "Sharing":
+                selectSetting = {
+                    name: "Sharing",
+                    component: (await import(`src/components/settings-app/Sharing.svelte`)).default,
+                };
+                break;
             default:
                 selectSetting = {
                     name: name,
@@ -96,6 +123,11 @@
     }
 </script>
 
+<svelte:head>
+    {#each backgrounds as background}
+        <link rel="preload" as="image" href={background} />
+    {/each}
+</svelte:head>
 <!-- svelte-ignore a11y-click-events-have-key-events -->
 <SkelentonApp appName={AppName.settings} addStyles="inset: 10% 36% 6% 10%;">
     <WindowBar name={AppName.settings}>
@@ -128,7 +160,9 @@
                         hoverClass=""
                         on:focus={(e) => (selectSetting.name = setting.name)}
                         on:click={(e) => loadSettings(setting.name)}
-                        class="text-white h-[45px] hover:bg-dark-hover hover:rounded-none focus:bg-main-orange focus:text-white focus:rounded-none"
+                        class="text-white h-[45px] hover:bg-dark-hover hover:rounded-none 
+                        {setting.name === selectSetting.name &&
+                            'hover:bg-main-orange bg-main-orange focus:text-white !rounded-none'}"
                     >
                         <img src={setting.icon} alt={setting.name} width="15" class="img-icon" />
                         <span class="setting-name">

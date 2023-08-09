@@ -1,6 +1,7 @@
 <script lang="ts">
     import { Button, Listgroup } from "flowbite-svelte";
     import ToggleSwitch from "../common/ToggleSwitch.svelte";
+    import { fade } from "svelte/transition";
 
     const appNotif = [
         { icon: "/img/apps/archive-manager.png", name: "Archive Manager" },
@@ -16,7 +17,7 @@
     ];
 </script>
 
-<div class="wrap-notif scrollbar-thin overflow-y-scroll">
+<div class="wrap-notif scrollbar-thin overflow-y-scroll" in:fade={{ duration: 150 }}>
     <div class="general-notif">
         <Listgroup active class=" bg-dark-3 border border-solid border-black">
             <Button class="flex justify-between w-full py-4 bg-dark-3 hover:bg-[#2f2f2f] text-white ">
