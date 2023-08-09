@@ -4,7 +4,7 @@
     import { fade, slide } from "svelte/transition";
 </script>
 
-<div class="lock-screen" in:slide={{ duration: 200, axis: "y" }} out:fade={{ duration: 300 }}>
+<div class="lock-screen" in:slide={{ duration: 200, axis: "y" }} out:fade={{ duration: 200 }}>
     <div class="pb-10">
         <Button class="pr-44 py-5 bg-grey-2 hover:bg-[#5757576d]" on:click={(e) => ($locked = false)}>
             <img src="/img/icons/system-users-symbolic.svg" alt="user-icon" class="img-icon" width="30" />

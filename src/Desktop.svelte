@@ -22,13 +22,13 @@
     }
 </script>
 
+{#if $locked}
+    <LockScreen />
+{/if}
 <main class="desktop" style:transform="translate({$xPos}vw, {$yPos}vh) scale({$scale})">
     {#key $background}
         <div class="background-img" style:background-image="url({$background})" transition:fade />
     {/key}
-    {#if $locked}
-        <LockScreen />
-    {/if}
     <AppGrid />
     {#each $openApps as app}
         <svelte:component this={app.component} />

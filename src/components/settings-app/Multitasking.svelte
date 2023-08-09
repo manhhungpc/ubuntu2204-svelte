@@ -151,7 +151,7 @@
         /* w-[96%] h-[130px] mt-4 overflow-hidden */
         width: 100%;
         height: 130px;
-        margin-top: 4rem;
+        margin-top: 1rem;
         overflow: hidden;
         display: flex;
         align-items: center;

@@ -72,6 +72,7 @@
         resize: both;
         overflow: hidden;
         border-radius: 12px;
+        border: 1px solid #000;
         /* transition: all 0.2s ease-in-out; */
     }
 
