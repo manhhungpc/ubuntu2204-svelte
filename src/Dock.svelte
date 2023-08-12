@@ -35,6 +35,8 @@
         },
     ];
 
+    const fixedApps = apps;
+
     async function loadComponent(name: string) {
         if (name === AppName.ggchrome) {
             return (await import(`./apps/GoogleChrome.svelte`)).default;
@@ -57,6 +59,29 @@
         }
         openApps.update((opens) => [...opens, { name, component, img }]);
         topApp.set(name);
+    }
+
+    $: {
+        // when open the apps that not in the dock (from "Show Application" screen ...)
+        $openApps.map((open) => {
+            if (!apps.find((app) => app.name == open.name)) {
+                //@ts-ignore
+                apps = [...apps, { name: open.name, imgSrc: open.img }];
+            }
+        });
+
+        // when close the apps that not open from the dock (from "Show Application" screen ...)
+        if (apps != fixedApps) {
+            const outDockApp = apps.filter((app) => !fixedApps.some((fixed) => app.name === fixed.name));
+            apps = fixedApps;
+            $openApps.map((open) => {
+                if (outDockApp.find((out) => out.name == open.name)) {
+                    //@ts-ignore
+                    apps = [...apps, { name: open.name, imgSrc: open.img }];
+                }
+            });
+        }
+        console.log($openApps, apps, $topApp);
     }
 
     const dragStart = (event: DragEvent, target: any) => {

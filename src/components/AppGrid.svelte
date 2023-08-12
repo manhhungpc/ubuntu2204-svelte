@@ -22,13 +22,16 @@
 
 <style>
     .wrap-app-grid {
+        position: absolute;
+        top: 0;
         display: grid;
         grid-template-columns: repeat(12, 1fr);
         grid-template-rows: repeat(12, 1fr);
         /* margin-top: 1.7rem; */
-        padding-top: 1.7rem; /* Panel */
+        margin-top: 1.7rem; /* Panel */
         padding-left: 72px; /* Dock */
-        height: 100%;
+        height: calc(100% - 1.7rem);
+        width: calc(100% - 72px);
     }
 
     .app-item {

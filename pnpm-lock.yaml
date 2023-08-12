@@ -583,7 +583,7 @@ packages:
       '@popperjs/core': 2.11.8
       flowbite: 1.8.1
       svelte: 3.58.0
-      tailwind-merge: 1.13.2
+      tailwind-merge: 1.14.0
     dev: false
 
   /flowbite@1.6.6:
@@ -1169,6 +1169,10 @@ packages:
 
   /tailwind-merge@1.13.2:
     resolution: {integrity: sha512-R2/nULkdg1VR/EL4RXg4dEohdoxNUJGLMnWIQnPKL+O9Twu7Cn3Rxi4dlXkDzZrEGtR+G+psSXFouWlpTyLhCQ==}
+    dev: false
+
+  /tailwind-merge@1.14.0:
+    resolution: {integrity: sha512-3mFKyCo/MBcgyOTlrY8T7odzZFx+w+qKSMAmdFzRvqBfLlSigU6TZnlFHK0lkMwj9Bj8OYU+9yW9lmGuS0QEnQ==}
     dev: false
 
   /tailwindcss@3.3.2:

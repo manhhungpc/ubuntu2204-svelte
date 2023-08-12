@@ -19,6 +19,11 @@ export default {
                     900: "#A5371B",
                 },
             },
+            screens:{
+                "h-sm": {
+                    "raw": '(max-height: 645px)'
+                }
+            }
         },
         colors: {
             "dark-1": "var(--bg-dark-1)",

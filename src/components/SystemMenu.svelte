@@ -2,7 +2,7 @@
     import { AccordionItem, Accordion } from "flowbite-svelte";
     import Slider from "./common/Slider.svelte";
     import { onMount } from "svelte";
-    import { brightness, audio, openApps, menuIcon, locked } from "src/store";
+    import { brightness, audio, menuIcon, locked, confirmOff, confirmRestart } from "src/store";
     import { showApp } from "src/utils/open";
     import { AppName } from "src/interfaces/AppName";
 
@@ -156,14 +156,10 @@
             </div>
             <div class="dropdown">
                 <button class="dropdown-item">Suspend</button>
-                <button class="dropdown-item">Restart...</button>
-                <button class="dropdown-item">Power Off...</button>
+                <button class="dropdown-item" on:click={() => ($confirmRestart = true)}>Restart...</button>
+                <button class="dropdown-item" on:click={() => ($confirmOff = true)}>Power Off...</button>
                 <hr class="bg-soft-white border-none h-[1px] w-[80%]" />
-
                 <button class="dropdown-item">Log Out</button>
-
-                <!-- <button class="dropdown-item">Turn Off</button>
-                <button class="dropdown-item">Wi-Fi Settings</button> -->
             </div>
         </AccordionItem>
     </Accordion>
@@ -171,11 +167,8 @@
 
 <style>
     .cont-menu {
-        /* width: 300px; */
         width: 19rem;
-        padding: 5px 7px;
-
-        /* height: 50vh; */
+        padding: 6px;
     }
     .cont-menu * {
         color: #fff;
@@ -199,7 +192,6 @@
     .dropdown {
         background-color: var(--bg-darker-white);
         border-radius: 0 0 5px 5px;
-        /* display: grid; */
     }
 
     .dropdown-item {

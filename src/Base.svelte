@@ -70,7 +70,7 @@
             <Input
                 placeholder="Type to search"
                 size="lg"
-                class="bg-dark-1 w-[18rem] py-2 rounded-full border-none placeholder-white text-white"
+                class="bg-dark-1 w-[18rem] py-2 h-sm:py-1 h-sm:w-64 rounded-full border-none placeholder-white text-white"
             >
                 <img
                     slot="left"
@@ -94,11 +94,11 @@
                     let:pagesCount
                     let:showPage
                 >
-                    <div class="grid grid-cols-8 h-full gap-x-8 gap-y-6">
+                    <div class="grid grid-cols-8 h-full gap-x-8 gap-y-6 h-sm:gap-y-0">
                         {#each apps_first as app}
                             <button class="button-app" on:click={async () => await open(app.name, app.icon)}>
                                 <div class="rounded-xl">
-                                    <img src={app.icon} alt={app.displayName} width="90" />
+                                    <img src={app.icon} alt={app.displayName} class="app-img" />
                                     <div class="text-base leading-tight">
                                         {app.displayName}
                                     </div>
@@ -110,7 +110,7 @@
                         {#each apps_second as app}
                             <button class="button-app">
                                 <div class="rounded-xl">
-                                    <img src={app.icon} alt={app.displayName} width="90" />
+                                    <img src={app.icon} alt={app.displayName} class="app-img" />
                                     <div class="text-base leading-tight">
                                         {app.displayName}
                                     </div>
@@ -169,6 +169,10 @@
         overflow: hidden; */
     }
 
+    .app-img {
+        width: 90px;
+    }
+
     .button-app:hover {
         white-space: normal;
         overflow: visible;
@@ -187,5 +191,20 @@
     .active-dot {
         transform: scale(1.3);
         background-color: var(--white);
+    }
+
+    @media screen and (max-height: 762px) {
+        .app-img {
+            width: 75px;
+        }
+        .all-apps {
+            width: calc(85vw - 72px);
+        }
+    }
+
+    @media screen and (max-height: 645px) {
+        .app-img {
+            width: 60px;
+        }
     }
 </style>
