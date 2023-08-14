@@ -81,7 +81,6 @@
                 }
             });
         }
-        console.log($openApps, apps, $topApp);
     }
 
     const dragStart = (event: DragEvent, target: any) => {

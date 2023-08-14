@@ -18,7 +18,7 @@
         "/img/Wallpaper/Optical_Fibers_in_Dark_by_Elena_Stravoravdi.jpg",
         "/img/Wallpaper/ubuntu2_by_arman1992.jpg",
         "/img/Wallpaper/ubuntu_by_arman1992.jpg",
-        "/img/Wallpaper/Jammy-Jellyfish_WP_1920x1080.webp",
+        "/img/Wallpaper/Jammy-Jellyfish_WP_2560x1440.png",
         "/img/Wallpaper/Jammy-Jellyfish_WP_4096x2304_Grey.png",
     ];
 

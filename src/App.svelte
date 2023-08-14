@@ -14,9 +14,9 @@
     });
 </script>
 
-{#if booting}
+<!-- {#if booting}
     <BootScreen />
-{/if}
+{/if} -->
 <main style:filter="brightness({$brightness}%)">
     <Panel />
     <Base />

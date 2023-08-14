@@ -229,5 +229,6 @@
 
     .date:hover {
         background-color: var(--bg-soft-white);
+        cursor: url(/cursor/hand_24x24.cur), pointer;
     }
 </style>

@@ -1,7 +1,5 @@
 <script lang="ts">
-    import { Button } from "flowbite-svelte";
-    import { locked } from "src/store";
-    import { fade, slide } from "svelte/transition";
+    import { fade } from "svelte/transition";
 </script>
 
 <div class="lock-screen" out:fade={{ duration: 150, delay: 1500 }}>

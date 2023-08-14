@@ -25,7 +25,7 @@ export const prompts = writable([{ done: false, file: "" }]);
 export const cmdRunning = writable(true);
 
 export const locked = writable(false);
-export const background = writable("/img/Wallpaper/Jammy-Jellyfish_WP_1920x1080.webp");
+export const background = writable("/img/Wallpaper/Jammy-Jellyfish_WP_2560x1440.png");
 
 export const confirmOff = writable(false);
 export const confirmRestart = writable(false);

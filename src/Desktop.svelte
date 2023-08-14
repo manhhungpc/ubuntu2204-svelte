@@ -7,6 +7,7 @@
     import LockScreen from "./components/LockScreen.svelte";
     import { fade } from "svelte/transition";
     import Popup from "./components/common/Popup.svelte";
+    import { preloadImages } from "./utils/preload";
 
     const scale = tweened(1, { duration: 300, easing: cubicOut });
     const xPos = tweened(0, { duration: 300, easing: cubicOut });
@@ -23,6 +24,11 @@
     }
 </script>
 
+<svelte:head>
+    {#each preloadImages() as image}
+        <link rel="preload" as="image" href={image} />
+    {/each}
+</svelte:head>
 {#if $locked}
     <LockScreen />
 {/if}
