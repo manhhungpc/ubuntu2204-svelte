@@ -47,6 +47,7 @@
 * {
     letter-spacing: 0.5px;
     cursor: url("/cursor/arrow_24x24.cur"), auto;
+    font-family: "Ubuntu", sans-serif;
 }
 
 button {
@@ -59,11 +60,6 @@ body {
     margin: 0;
     display: flex;
     overflow: hidden;
-    /* background-image: url(/img/Wallpaper/Jammy-Jellyfish_WP_2560x1440.jpg);
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-    background-position: center;
-    background-size: cover; */
 }
 
 h2 {

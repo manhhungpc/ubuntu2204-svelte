@@ -113,6 +113,12 @@
                     component: (await import(`src/components/settings-app/Sharing.svelte`)).default,
                 };
                 break;
+            case "Sound":
+                selectSetting = {
+                    name: "Sound",
+                    component: (await import(`src/components/settings-app/Sound.svelte`)).default,
+                };
+                break;
             default:
                 selectSetting = {
                     name: name,

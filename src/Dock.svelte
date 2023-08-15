@@ -192,7 +192,7 @@
     .grid-apps {
         display: flex;
         flex-direction: column;
-        margin-top: 0.75rem;
+        margin-top: 0.5rem;
     }
 
     .icon-show-app {
