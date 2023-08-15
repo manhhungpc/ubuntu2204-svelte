@@ -8,6 +8,8 @@
     import { fade } from "svelte/transition";
     import Popup from "./components/common/Popup.svelte";
     import { preloadImages } from "./utils/preload";
+    import { onMount } from "svelte";
+    import BootScreen from "./components/BootScreen.svelte";
 
     const scale = tweened(1, { duration: 300, easing: cubicOut });
     const xPos = tweened(0, { duration: 300, easing: cubicOut });
@@ -22,16 +24,26 @@
     $: if (!$openApps.some((app) => app.name == AppName.terminal)) {
         prompts.set([{ done: false, file: "" }]);
     }
+    let booting = true;
+
+    onMount(() => {
+        booting = false;
+    });
 </script>
 
 <svelte:head>
+    <link rel="preload" as="image" href="/img/Wallpaper/Jammy-Jellyfish_WP_2560x1440.png" />
     {#each preloadImages() as image}
         <link rel="preload" as="image" href={image} />
     {/each}
 </svelte:head>
+
 {#if $locked}
     <LockScreen />
 {/if}
+<!-- {#if booting}
+    <BootScreen />
+{/if} -->
 <main class="desktop" style:transform="translate({$xPos}vw, {$yPos}vh) scale({$scale})">
     {#key $background}
         <div class="background-img" style:background-image="url({$background})" transition:fade />

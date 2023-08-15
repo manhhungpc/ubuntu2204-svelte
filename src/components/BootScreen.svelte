@@ -2,7 +2,7 @@
     import { fade } from "svelte/transition";
 </script>
 
-<div class="lock-screen" out:fade={{ duration: 150, delay: 1500 }}>
+<div class="lock-screen" transition:fade={{ duration: 200, delay: 1500 }}>
     <div class="pt-[40vh]">
         <img src="/img/icons/process-working-symbolic.svg" alt="user-icon" class="img-icon animate-spin" width="60" />
     </div>
