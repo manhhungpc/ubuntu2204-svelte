@@ -1,5 +1,6 @@
 <script lang="ts">
-    export let checked = true;
+    export let checked = true,
+        disabled = false;
     let value = "on";
     function handleClick(event) {
         const target = event.target;
@@ -13,7 +14,7 @@
 </script>
 
 <div class="s s--slider">
-    <button role="switch" aria-checked={checked} on:click={handleClick} />
+    <button role="switch" aria-checked={checked} on:click={handleClick} {disabled} />
 </div>
 
 <style>

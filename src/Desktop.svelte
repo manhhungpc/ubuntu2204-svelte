@@ -41,9 +41,9 @@
 {#if $locked}
     <LockScreen />
 {/if}
-<!-- {#if booting}
+{#if booting}
     <BootScreen />
-{/if} -->
+{/if}
 <main class="desktop" style:transform="translate({$xPos}vw, {$yPos}vh) scale({$scale})">
     {#key $background}
         <div class="background-img" style:background-image="url({$background})" transition:fade />

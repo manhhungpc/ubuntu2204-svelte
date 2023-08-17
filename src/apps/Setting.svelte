@@ -119,6 +119,24 @@
                     component: (await import(`src/components/settings-app/Sound.svelte`)).default,
                 };
                 break;
+            case "Default Applications":
+                selectSetting = {
+                    name: "Default Applications",
+                    component: (await import(`src/components/settings-app/DefaultApplication.svelte`)).default,
+                };
+                break;
+            case "Date & Time":
+                selectSetting = {
+                    name: "Date & Time",
+                    component: (await import(`src/components/settings-app/DateTime.svelte`)).default,
+                };
+                break;
+            case "About":
+                selectSetting = {
+                    name: "About",
+                    component: (await import(`src/components/settings-app/About.svelte`)).default,
+                };
+                break;
             default:
                 selectSetting = {
                     name: name,
