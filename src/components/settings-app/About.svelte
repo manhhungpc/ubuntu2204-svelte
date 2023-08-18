@@ -1,5 +1,5 @@
 <script lang="ts">
-    import { Listgroup, Button, ListgroupItem } from "flowbite-svelte";
+    import { Listgroup } from "flowbite-svelte";
     import { fade } from "svelte/transition";
 </script>
 

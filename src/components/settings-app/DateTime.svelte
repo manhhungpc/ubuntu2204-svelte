@@ -2,6 +2,7 @@
     import { Listgroup, Button, Popover, ListgroupItem } from "flowbite-svelte";
     import ToggleSwitch from "../common/ToggleSwitch.svelte";
     import { datetime } from "src/store";
+    import { fade } from "svelte/transition";
 
     let normalText =
             "flex justify-between w-full py-4 bg-dark-3 hover:bg-dark-3 hover:text-white text-white focus:text-white",
@@ -14,7 +15,7 @@
     const timeZone = `${timezoneOffset < 0 ? "+" : "-"}${Math.abs(timezoneOffset).toString().padStart(2, "0")}`;
 </script>
 
-<div class="wrap-datetime">
+<div class="wrap-datetime" in:fade={{ duration: 150 }}>
     <div class="date-time">
         <Listgroup active class="w-full bg-dark-3 border border-solid border-black">
             <Button class="flex justify-between w-full py-4 bg-dark-3 hover:bg-[#2f2f2f] text-white">

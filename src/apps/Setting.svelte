@@ -119,6 +119,24 @@
                     component: (await import(`src/components/settings-app/Sound.svelte`)).default,
                 };
                 break;
+            case "Power":
+                selectSetting = {
+                    name: "Power",
+                    component: (await import(`src/components/settings-app/Power.svelte`)).default,
+                };
+                break;
+            case "Displays":
+                selectSetting = {
+                    name: "Displays",
+                    component: (await import(`src/components/settings-app/Displays.svelte`)).default,
+                };
+                break;
+            case "Mouse & Touchpad":
+                selectSetting = {
+                    name: "Mouse & Touchpad",
+                    component: (await import(`src/components/settings-app/Mouse.svelte`)).default,
+                };
+                break;
             case "Default Applications":
                 selectSetting = {
                     name: "Default Applications",

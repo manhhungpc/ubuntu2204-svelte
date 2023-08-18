@@ -1,12 +1,6 @@
 <script lang="ts">
-    import { Listgroup, Button, Popover, ListgroupItem } from "flowbite-svelte";
-    import ToggleSwitch from "../common/ToggleSwitch.svelte";
-    import { datetime } from "src/store";
-
-    let normalText =
-            "flex justify-between w-full py-4 bg-dark-3 hover:bg-dark-3 hover:text-white text-white focus:text-white",
-        disabledText =
-            "flex justify-between w-full py-4 bg-dark-3 hover:bg-dark-3 hover:text-warm-grey text-warm-grey focus:text-warm-grey";
+    import { Button, Popover } from "flowbite-svelte";
+    import { fade } from "svelte/transition";
 
     let defaultApp = [
         {
@@ -20,28 +14,28 @@
         },
         {
             title: "Calendar",
-            icon: "public/img/apps/calendar-app.png",
+            icon: "/img/apps/calendar-app.png",
             name: "Calendar",
         },
         {
             title: "Music",
-            icon: "public/img/apps/applications-multimedia.png",
+            icon: "/img/apps/applications-multimedia.png",
             name: "Videos",
         },
         {
             title: "Video",
-            icon: "public/img/apps/applications-multimedia.png",
+            icon: "/img/apps/applications-multimedia.png",
             name: "Videos",
         },
         {
             title: "Photos",
-            icon: "public/img/apps/shotwell.png",
+            icon: "/img/apps/shotwell.png",
             name: "Shotwell Viewer",
         },
     ];
 </script>
 
-<div class="wrap-defapp">
+<div class="wrap-defapp" in:fade={{ duration: 150 }}>
     <div class="default-apps">
         {#each defaultApp as app, i}
             <div class="flex items-center justify-center gap-3 text-warm-grey">
