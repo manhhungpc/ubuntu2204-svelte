@@ -29,3 +29,5 @@ export const background = writable("/img/Wallpaper/Jammy-Jellyfish_WP_2560x1440.
 
 export const confirmOff = writable(false);
 export const confirmRestart = writable(false);
+
+export const maximize: Writable<string[]> = writable([]);

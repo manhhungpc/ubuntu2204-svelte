@@ -5,17 +5,28 @@
     import WindowBar from "src/components/common/WindowBar.svelte";
     import { AppName } from "src/interfaces/AppName";
 
-    const files = [
-        { icon: "/img/icons/lock-symbolic.svg", name: "Recent" },
-        { icon: "/img/icons/lock-symbolic.svg", name: "Starred" },
-        { icon: "/img/icons/lock-symbolic.svg", name: "Home" },
-        { icon: "/img/icons/lock-symbolic.svg", name: "Desktop" },
-        { icon: "/img/icons/lock-symbolic.svg", name: "Documents" },
-        { icon: "/img/icons/lock-symbolic.svg", name: "Download" },
+    const folders = [
+        { icon: "/img/icons/emoji-recent-symbolic.svg", name: "Recent" },
+        { icon: "/img/icons/starred-symbolic.svg", name: "Starred" },
+        { icon: "/img/icons/user-home-symbolic.svg", name: "Home" },
+        { icon: "/img/icons/folder-documents-symbolic.svg", name: "Documents" },
+        { icon: "/img/icons/folder-download-symbolic.svg", name: "Download" },
+        { icon: "/img/icons/folder-pictures-symbolic.svg", name: "Pictures" },
+        { icon: "/img/icons/folder-videos-symbolic.svg", name: "Videos" },
+    ];
+
+    const subFolders = [
+        { icon: "/img/apps/folder.png", name: "My_Personal_Folder" },
+        { icon: "/img/apps/folder.png", name: "Pet_Project" },
+        { icon: "/img/apps/image-x-generic.png", name: "From-Vietnam.png" },
+        { icon: "/img/apps/image-x-generic.png", name: "with-Love.jpg" },
+        { icon: "/img/apps/folder.png", name: "normalText.txt" },
+        { icon: "/img/apps/application-pdf.png", name: "Give_Repo_A_Star.pdf" },
+        { icon: "/img/apps/text.png", name: "sudo_commands.txt" },
     ];
 </script>
 
-<SkelentonApp appName={AppName.filemanager} addStyles="inset: 10% 26% 6% 10%;">
+<SkelentonApp appName={AppName.filemanager} addStyles="height: 85vh; width: 60vw;">
     <WindowBar name={AppName.filemanager} classStyle="justify-between">
         <div class="ml-2 flex justify-between items-center h-full">
             <button class="routing-btn rounded-l-md">
@@ -62,19 +73,19 @@
     <div class="main-app">
         <div class="folders">
             <Listgroup active class="w-60 h-full overflow-y-scroll scrollbar-thin bg-dark-3 rounded-none">
-                {#each files as file}
+                {#each folders as folder}
                     <ListgroupItem
                         hoverClass=""
                         class="text-white h-[45px] hover:bg-dark-hover hover:rounded-none focus:bg-main-orange focus:text-white focus:rounded-none"
                     >
-                        <img src={file.icon} alt={file.name} width="15" class="img-icon" />
+                        <img src={folder.icon} alt={folder.name} width="15" class="img-icon" />
                         <span class="folder-name">
-                            {file.name}
+                            {folder.name}
                         </span>
-                        {#if file.name == "Applications" || file.name == "Privacy"}
+                        {#if folder.name == "Applications" || folder.name == "Privacy"}
                             <img
                                 src="/img/icons/pan-end-symbolic.svg"
-                                alt={file.name}
+                                alt={folder.name}
                                 width="20"
                                 class="absolute left-52 img-icon"
                             />
@@ -84,7 +95,23 @@
             </Listgroup>
         </div>
         <div class="show-files">
-            <Wip />
+            <div class="showfile-header">
+                <span class="showfile-text">Name</span>
+                <span class="showfile-text">Size</span>
+                <span class="showfile-text">Modified</span>
+            </div>
+            <div>
+                {#each subFolders as subFolder}
+                    <div class="file-n-subfolder" style="border-bottom: 1px solid #ffffff0d;">
+                        <div class="flex items-center gap-2">
+                            <img src={subFolder.icon} alt="icon" width="30" />
+                            <span class="text-white">{subFolder.name} </span>
+                        </div>
+                        <div>318,7 kB</div>
+                        <div>{new Date().toLocaleDateString("en-GB")}</div>
+                    </div>
+                {/each}
+            </div>
         </div>
     </div>
 </SkelentonApp>
@@ -101,6 +128,7 @@
         height: 100%;
         width: 15rem;
         border-right: 1px solid #000;
+        border-top: 1px solid #000;
     }
 
     .folders::-webkit-scrollbar {
@@ -148,5 +176,30 @@
     .bar-btn {
         padding: 6px 8px;
         background-color: var(--grey-2);
+    }
+
+    .showfile-header,
+    .file-n-subfolder {
+        display: grid;
+        grid-template-columns: 70% auto auto;
+        color: var(--warm-grey);
+        font-size: 12px;
+        font-weight: 700;
+    }
+
+    .showfile-text {
+        border: 1px solid #1e1e1e;
+        padding: 5px 5px;
+    }
+
+    .file-n-subfolder {
+        align-items: center;
+        padding: 6px 10px;
+        /* padding-left: 10px; */
+        font-weight: 100;
+        row-gap: 10px;
+    }
+    .file-n-subfolder:hover {
+        background-color: #2f2f2f;
     }
 </style>

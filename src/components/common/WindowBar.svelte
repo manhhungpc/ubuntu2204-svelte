@@ -1,5 +1,5 @@
 <script lang="ts">
-    import { openApps, topApp } from "src/store";
+    import { openApps, topApp, maximize } from "src/store";
     export let name: string,
         classStyle = "";
 
@@ -7,6 +7,16 @@
         $openApps = $openApps.filter((e) => e.name != name);
         if ($openApps.length == 0) topApp.set("");
     }
+
+    function onMaximize() {
+        if ($maximize.find((m) => m == name)) {
+            $maximize = $maximize.filter((m) => m != name);
+        } else {
+            $maximize = [...$maximize, name];
+        }
+    }
+
+    $: console.log($maximize);
 </script>
 
 <div class="window-bar">
@@ -17,8 +27,12 @@
         <button class="bar-button">
             <img src="/img/icons/window-minimize-symbolic.svg" alt="minimize" class="window-icon" />
         </button>
-        <button class="bar-button">
-            <img src="/img/icons/window-maximize-symbolic.svg" alt="minimize" class="window-icon" />
+        <button class="bar-button" on:click={onMaximize}>
+            {#if $maximize.find((m) => m == name)}
+                <img src="/img/icons/window-restore-symbolic.svg" alt="minimize" class="window-icon" />
+            {:else}
+                <img src="/img/icons/window-maximize-symbolic.svg" alt="maximize" class="window-icon" />
+            {/if}
         </button>
         <button class="bar-button" on:click={onClose}>
             <img src="/img/icons/window-close-symbolic.svg" alt="minimize" class="window-icon" />

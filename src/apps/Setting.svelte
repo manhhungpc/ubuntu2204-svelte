@@ -171,7 +171,7 @@
     {/each}
 </svelte:head>
 <!-- svelte-ignore a11y-click-events-have-key-events -->
-<SkelentonApp appName={AppName.settings} addStyles="inset: 10% 36% 6% 10%;">
+<SkelentonApp appName={AppName.settings} addStyles="height: 85vh; width: 55vw;">
     <WindowBar name={AppName.settings}>
         <div class="flex justify-between items-center min-w-[15rem] w-52 h-full" style="border-right: 1px solid #000;">
             <button class="ml-2 bg-grey-2 pt-2 pb-1 px-2 rounded-md">

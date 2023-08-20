@@ -44,7 +44,7 @@
 <SkelentonApp
     {focusOnLine}
     appName={AppName.terminal}
-    addStyles="inset: 10% 50% 30% 10%; 
+    addStyles="height: 65vh; width: 40vw;
             color: var(--white); 
             font-family: 'Ubuntu Mono', monospace;
             background-color: var(--dark-purple);
