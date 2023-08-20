@@ -5,7 +5,7 @@ export const execute = async (cmd: string, file: string) => {
     const sudoCommand = cmd.includes("sudo") ? cmd : "sudo" + cmd;
 
     // check if type wrong command or exceed "sudo" wrong command
-    if (!commands[cmd] && !commands[sudoCommand]) {
+    if (!commands[cmd.split(" ")[1]] && !commands[sudoCommand]) {
         return [
             `${cmd}: command not found`,
             "Type `help` to see available commands",

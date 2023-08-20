@@ -14,8 +14,8 @@
     function getRandomNumber(min: number, max: number) {
         min = Math.ceil(min);
         max = Math.floor(max);
-        return 1;
-        // return Math.floor(Math.random() * (max - min + 1) + min);
+        // return 1;
+        return Math.floor(Math.random() * (max - min + 1) + min);
     }
 
     let count = 0;
@@ -82,6 +82,7 @@
         $prompts[index].done = true;
         $prompts = [...$prompts, { done: false, file: "" }];
         $cmdRunning = false;
+        isDone = true;
     }
 
     $: console.log(lines);
@@ -109,7 +110,7 @@
                 class="text-white border-none bg-transparent focus:outline-none"
             />
         {:else}
-            <p class="my-0">{line}</p>
+            <p class="my-[2px]">{line}</p>
         {/if}
     {/each}
 </div>
