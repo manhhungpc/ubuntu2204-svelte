@@ -14,7 +14,7 @@
 </script>
 
 <div class="s s--slider">
-    <button role="switch" aria-checked={checked} on:click={handleClick} {disabled} />
+    <button role="switch" aria-checked={checked} on:click={handleClick} on:click {disabled} />
 </div>
 
 <style>

@@ -137,6 +137,24 @@
                     component: (await import(`src/components/settings-app/Mouse.svelte`)).default,
                 };
                 break;
+            case "Keyboard":
+                selectSetting = {
+                    name: "Keyboard",
+                    component: (await import(`src/components/settings-app/Keyboard.svelte`)).default,
+                };
+                break;
+            case "Printers":
+                selectSetting = {
+                    name: "Printers",
+                    component: (await import(`src/components/settings-app/Printer.svelte`)).default,
+                };
+                break;
+            case "Color":
+                selectSetting = {
+                    name: "Color",
+                    component: (await import(`src/components/settings-app/Color.svelte`)).default,
+                };
+                break;
             case "Default Applications":
                 selectSetting = {
                     name: "Default Applications",

@@ -1,6 +1,7 @@
 <script lang="ts">
     import { AppName } from "src/interfaces/AppName";
     import { showApp } from "src/utils/open";
+    import { draggable } from "@neodrag/svelte";
 
     async function loadComponent() {
         return (await import(`../apps/FileManager.svelte`)).default;
@@ -10,6 +11,7 @@
 <div class="wrap-app-grid">
     <button
         class="flex flex-col justify-start items-center"
+        use:draggable={{ grid: [80, 80], bounds: "parent" }}
         on:click={async (e) => {
             const component = await loadComponent();
             showApp(AppName.filemanager, component, "/img/apps/filemanager-app.png");
