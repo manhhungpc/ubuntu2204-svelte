@@ -56,7 +56,7 @@
             case "Wi-Fi":
                 selectSetting = {
                     name: "Wi-Fi",
-                    component: (await import(`src/components/settings-app/WiFi.svelte`)).default,
+                    component: WiFi,
                 };
                 break;
             case "Network":
@@ -153,6 +153,18 @@
                 selectSetting = {
                     name: "Color",
                     component: (await import(`src/components/settings-app/Color.svelte`)).default,
+                };
+                break;
+            case "Region & Language":
+                selectSetting = {
+                    name: "Region & Language",
+                    component: (await import(`src/components/settings-app/Region.svelte`)).default,
+                };
+                break;
+            case "Accessibility":
+                selectSetting = {
+                    name: "Accessibility",
+                    component: (await import(`src/components/settings-app/Accessibility.svelte`)).default,
                 };
                 break;
             case "Default Applications":
