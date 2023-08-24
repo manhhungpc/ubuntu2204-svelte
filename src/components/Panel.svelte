@@ -43,7 +43,7 @@
         {
             name: AppName.calculator,
             displayName: "Calculator",
-            imgSrc: "/img/apps/accessories-calculator.png",
+            imgSrc: "/img/icons/calculator-app-symbolic.svg",
         },
     ];
 

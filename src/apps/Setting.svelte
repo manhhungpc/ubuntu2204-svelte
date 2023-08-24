@@ -4,6 +4,8 @@
     import WiFi from "src/components/settings-app/WiFi.svelte";
     import SkelentonApp from "src/components/common/SkelentonApp.svelte";
     import { AppName } from "src/interfaces/AppName";
+    import { applicationSetting, privacySetting } from "src/store";
+    import { fly } from "svelte/transition";
 
     const settings = [
         { name: "Wi-Fi", icon: "/img/icons/network-wireless-symbolic.svg" },
@@ -32,6 +34,36 @@
         { name: "Default Applications", icon: "/img/icons/starred-symbolic.svg" },
         { name: "Date & Time", icon: "/img/icons/preferences-system-time-symbolic.svg" },
         { name: "About", icon: "/img/icons/dialog-information-symbolic.svg" },
+    ];
+
+    const applications = [
+        { displayName: "Additional Drivers", icon: "/img/apps/cpu-x.png" },
+        { displayName: "Calculator", icon: "/img/apps/accessories-calculator.png" },
+        { displayName: "Text Editor", icon: "/img/apps/text-editor.png" },
+        { displayName: "AisleRiot Solitaire", icon: "/img/apps/gnome-aisleriot.png" },
+        { displayName: "Calendar", icon: "/img/apps/calendar-app.png" },
+        { displayName: "Language Support", icon: "/img/apps/preferences-desktop-locale.png" },
+        { displayName: "Videos", icon: "/img/apps/applications-multimedia.png" },
+        { displayName: "Document Scanner", icon: "/img/apps/scanner.png" },
+        { displayName: "Disks", icon: "/img/apps/disk-utility-app.png" },
+        { displayName: "Help", icon: "/img/apps/system-help.png" },
+        { displayName: "Mines", icon: "/img/apps/gnome-mines.png" },
+        { displayName: "Cheese", icon: "/img/apps/cheese.png" },
+        { displayName: "Settings", icon: "/img/apps/system-settings.png" },
+        { displayName: "Shotwell", icon: "/img/apps/shotwell.png" },
+        { displayName: "Power Statistics", icon: "/img/apps/power-statistics.png" },
+        { displayName: "Sudoku", icon: "/img/apps/sudoku-app.png" },
+        { displayName: "Ubuntu Software", icon: "/img/apps/software-center.png" },
+        { displayName: "Rhythmbox", icon: "/img/apps/rhythmbox.png" },
+    ];
+
+    const privacy = [
+        { name: "Connectivity", icon: "/img/icons/network-workgroup-symbolic.svg" },
+        { name: "Location Services", icon: "/img/icons/mark-location-symbolic.svg" },
+        { name: "Thunderbolt", icon: "/img/icons/thunderbolt-symbolic.svg" },
+        { name: "File History & Trash", icon: "/img/icons/filemanager-app-symbolic.svg" },
+        { name: "Screen", icon: "/img/icons/computer-symbolic.svg" },
+        { name: "Diagnostocs", icon: "/img/icons/help-app-symbolic.svg" },
     ];
 
     const backgrounds = [
@@ -99,6 +131,20 @@
                 selectSetting = {
                     name: "Multitasking",
                     component: (await import(`src/components/settings-app/Multitasking.svelte`)).default,
+                };
+                break;
+            case "Applications":
+                $applicationSetting = true;
+                selectSetting = {
+                    name: "Applications",
+                    component: (await import(`src/components/settings-app/Applications.svelte`)).default,
+                };
+                break;
+            case "Privacy":
+                $privacySetting = true;
+                selectSetting = {
+                    name: "Privacy",
+                    component: (await import(`src/components/settings-app/Privacy.svelte`)).default,
                 };
                 break;
             case "Online Accounts":
@@ -204,15 +250,33 @@
 <SkelentonApp appName={AppName.settings} addStyles="height: 85vh; width: 55vw;">
     <WindowBar name={AppName.settings}>
         <div class="flex justify-between items-center min-w-[15rem] w-52 h-full" style="border-right: 1px solid #000;">
-            <button class="ml-2 bg-grey-2 pt-2 pb-1 px-2 rounded-md">
-                <img
-                    src="/img/icons/preferences-system-search-symbolic.svg"
-                    alt="search-btn"
-                    width="15"
-                    height="15"
-                    class="img-icon"
-                />
-            </button>
+            {#if $applicationSetting || $privacySetting}
+                <button
+                    class="ml-2 bg-grey-2 pt-2 pb-1 px-2 rounded-md"
+                    on:click={() => {
+                        $applicationSetting = false;
+                        $privacySetting = false;
+                    }}
+                >
+                    <img
+                        src="/img/icons/pan-start-symbolic.svg"
+                        alt="search-btn"
+                        width="18"
+                        height="18"
+                        class="img-icon"
+                    />
+                </button>
+            {:else}
+                <button class="ml-2 bg-grey-2 pt-2 pb-1 px-2 rounded-md">
+                    <img
+                        src="/img/icons/preferences-system-search-symbolic.svg"
+                        alt="search-btn"
+                        width="15"
+                        height="15"
+                        class="img-icon"
+                    />
+                </button>
+            {/if}
             <span class="text-white text-sm">Settings</span>
             <button class="mr-2 bg-grey-2 pt-2 pb-1 px-2 rounded-md">
                 <img src="/img/icons/open-menu-symbolic.svg" alt="search-btn" width="15" height="15" class="img-icon" />
@@ -223,6 +287,43 @@
     </WindowBar>
     <div class="main-app">
         <div class="list-setting">
+            {#if $applicationSetting}
+                <div
+                    transition:fly={{ duration: 200, x: 250, opacity: 1 }}
+                    class="h-full overflow-y-scroll scrollbar-thin z-20"
+                >
+                    <Listgroup active class="w-60 bg-dark-3 rounded-none">
+                        {#each applications as app}
+                            <ListgroupItem
+                                hoverClass=""
+                                class="text-white h-[45px] hover:bg-dark-hover hover:rounded-none"
+                                active
+                            >
+                                <img src={app.icon} alt={app.displayName} width="25" />
+                                <span class="setting-name">
+                                    {app.displayName}
+                                </span>
+                            </ListgroupItem>
+                        {/each}
+                    </Listgroup>
+                </div>
+            {:else if $privacySetting}
+                <div transition:fly={{ duration: 200, x: 250, opacity: 1 }} class="h-full z-20">
+                    <Listgroup active class="w-60 h-full bg-dark-3 rounded-none">
+                        {#each privacy as prv}
+                            <ListgroupItem
+                                hoverClass=""
+                                class="text-white h-[45px] hover:bg-dark-hover hover:rounded-none"
+                            >
+                                <img src={prv.icon} alt={prv.name} width="18" />
+                                <span class="setting-name">
+                                    {prv.name}
+                                </span>
+                            </ListgroupItem>
+                        {/each}
+                    </Listgroup>
+                </div>
+            {/if}
             <Listgroup
                 active
                 class="w-60 h-full overflow-hidden hover:overflow-y-scroll scrollbar-thin bg-dark-3 rounded-none"
@@ -302,5 +403,6 @@
     .setting-info {
         width: 100%;
         background-color: var(--bg-dark-app);
+        z-index: 30;
     }
 </style>

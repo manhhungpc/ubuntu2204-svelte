@@ -31,3 +31,6 @@ export const confirmOff = writable(false);
 export const confirmRestart = writable(false);
 
 export const maximize: Writable<string[]> = writable([]);
+
+export const applicationSetting = writable(false);
+export const privacySetting = writable(false);
