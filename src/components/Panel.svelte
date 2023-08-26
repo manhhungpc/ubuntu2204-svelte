@@ -1,7 +1,7 @@
 <script lang="ts">
     import { Dropdown, Popover } from "flowbite-svelte";
     import SystemMenu from "./SystemMenu.svelte";
-    import { audio, datetime, doNotDisturb, locked, menuIcon, topApp } from "src/store";
+    import { audio, datetime, doNotDisturb, locked, menuIcon, showApplication, topApp } from "src/store";
     import CalendarView from "./CalendarView.svelte";
     import { AppName } from "src/interfaces/AppName";
 
@@ -23,7 +23,7 @@
         {
             name: AppName.filemanager,
             displayName: "Files",
-            imgSrc: "/img/apps/filemanager-app.png",
+            imgSrc: "/img/icons/filemanager-app-symbolic.svg",
         },
         {
             name: AppName.vscode,
@@ -44,6 +44,11 @@
             name: AppName.calculator,
             displayName: "Calculator",
             imgSrc: "/img/icons/calculator-app-symbolic.svg",
+        },
+        {
+            name: AppName.texteditor,
+            displayName: "Text Editor",
+            imgSrc: "/img/icons/text-editor-symbolic.svg",
         },
     ];
 
@@ -71,7 +76,7 @@
 
 <div class="wrap-panel" style:background-color={$locked ? "var(--bg-grey-1)" : ""}>
     <div class="activity-info">
-        <button class="activities">Activities</button>
+        <button class="activities" on:click={(e) => showApplication.update((curr) => !curr)}>Activities</button>
         {#if $topApp != ""}
             <div class="current-app">
                 <img

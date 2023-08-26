@@ -1,6 +1,5 @@
 export function preloadImages() {
     const paths = import.meta.glob("/public/img/icons/*.svg");
-    console.log("🚀 ~ file: preload.ts:3 ~ paths:", paths);
 
     const images = [];
 

@@ -8,7 +8,7 @@
     let carousel; // for calling methods of the carousel instance
     const apps_first = [
         { name: AppName.calculator, displayName: "Calculator", icon: "/img/apps/accessories-calculator.png" },
-        { displayName: "Text Editor", icon: "/img/apps/text-editor.png" },
+        { name: AppName.texteditor, displayName: "Text Editor", icon: "/img/apps/text-editor.png" },
         { displayName: "Additional Drivers", icon: "/img/apps/cpu-x.png" },
         { displayName: "AisleRiot Solitaire", icon: "/img/apps/gnome-aisleriot.png" },
         { displayName: "Calendar", icon: "/img/apps/calendar-app.png" },
@@ -48,6 +48,8 @@
     async function loadComponent(name: string) {
         if (name === AppName.calculator) {
             return (await import(`./apps/Calculator.svelte`)).default;
+        } else if (name === AppName.texteditor) {
+            return (await import(`./apps/TextEditor.svelte`)).default;
         }
         return null;
     }

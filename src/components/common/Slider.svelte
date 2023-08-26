@@ -24,7 +24,7 @@
 
 <style>
     #wrap-slider {
-        cursor: url(/cursor/hand_24x24.cur), pointer;
+        cursor: url(/cursor/hand_24x24.svg), pointer;
     }
     .overlay {
         /* margin: 0 auto !important; */

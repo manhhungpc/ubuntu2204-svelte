@@ -21,7 +21,11 @@
         { icon: "/img/apps/image-x-generic.png", name: "From-Vietnam.png" },
         { icon: "/img/apps/image-x-generic.png", name: "with-Love.jpg" },
         { icon: "/img/apps/folder.png", name: "normalText.txt" },
-        { icon: "/img/apps/application-pdf.png", name: "Give_Repo_A_Star.pdf" },
+        {
+            icon: "/img/apps/application-pdf.png",
+            name: "Give_Repo_A_Star.pdf",
+            link: "https://github.com/manhhungpc/ubuntu2204-svelte",
+        },
         { icon: "/img/apps/text.png", name: "sudo_commands.txt" },
     ];
 </script>
@@ -102,14 +106,22 @@
             </div>
             <div>
                 {#each subFolders as subFolder}
-                    <div class="file-n-subfolder" style="border-bottom: 1px solid #ffffff0d;">
+                    <button
+                        class="file-n-subfolder"
+                        style="border-bottom: 1px solid #ffffff0d;"
+                        on:click={() => {
+                            if (subFolder.link) {
+                                window.open("https://github.com/manhhungpc/ubuntu2204-svelte", "_blank");
+                            }
+                        }}
+                    >
                         <div class="flex items-center gap-2">
                             <img src={subFolder.icon} alt="icon" width="30" />
                             <span class="text-white">{subFolder.name} </span>
                         </div>
-                        <div>318,7 kB</div>
-                        <div>{new Date().toLocaleDateString("en-GB")}</div>
-                    </div>
+                        <div class="flex justify-start ml-3">{(Math.random() * 400).toFixed(1)} kB</div>
+                        <div class="flex justify-start ml-3">{new Date().toLocaleDateString("en-GB")}</div>
+                    </button>
                 {/each}
             </div>
         </div>
@@ -195,7 +207,7 @@
     .file-n-subfolder {
         align-items: center;
         padding: 6px 10px;
-        /* padding-left: 10px; */
+        width: 100%;
         font-weight: 100;
         row-gap: 10px;
     }

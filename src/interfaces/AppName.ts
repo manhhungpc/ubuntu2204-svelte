@@ -4,5 +4,6 @@ export enum AppName {
     settings = "settings",
     terminal = "terminal",
     calculator = "calculator",
-    filemanager = "file-manager"
+    filemanager = "file-manager",
+    texteditor = "text-editor"
 }
