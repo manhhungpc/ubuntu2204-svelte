@@ -113,7 +113,7 @@
     }
 
     .editor:hover {
-        cursor: url(/cursor/xterm.svg), text;
+        cursor: text;
     }
     .editor:focus {
         outline: none;
