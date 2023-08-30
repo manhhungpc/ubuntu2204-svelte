@@ -5,6 +5,7 @@
     import { brightness, audio, menuIcon, locked, confirmOff, confirmRestart } from "src/store";
     import { showApp } from "src/utils/open";
     import { AppName } from "src/interfaces/AppName";
+    import { fade, scale } from "svelte/transition";
 
     let audioLevel = $audio,
         brightnessLevel = $brightness,
@@ -76,7 +77,7 @@
     }
 </script>
 
-<div class="cont-menu">
+<div class="cont-menu" transition:fade={{ duration: 150 }}>
     <div class="flex items-center menu-item">
         <img src={audioImg} alt="audio" class="menu-icon" />
         <Slider percent={audioLevel} isAudio={true} />
