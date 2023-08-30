@@ -1,5 +1,5 @@
 <script lang="ts">
-    import { Listgroup, Button, Popover } from "flowbite-svelte";
+    import { Listgroup, Button } from "flowbite-svelte";
     import { fade } from "svelte/transition";
     import RadioInput from "../common/RadioInput.svelte";
 </script>
@@ -92,6 +92,6 @@
     }
 
     .drag-img:hover {
-        cursor: url("dnd_none_24x24.cur"), grab;
+        cursor: grab;
     }
 </style>

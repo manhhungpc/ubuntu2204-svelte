@@ -1,6 +1,5 @@
 <script lang="ts">
     import { Listgroup, Button } from "flowbite-svelte";
-    import RadioInput from "../common/RadioInput.svelte";
     import { fade } from "svelte/transition";
     import ToggleSwitch from "../common/ToggleSwitch.svelte";
 </script>

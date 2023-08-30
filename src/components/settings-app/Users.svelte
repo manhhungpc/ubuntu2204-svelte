@@ -1,7 +1,6 @@
 <script lang="ts">
-    import { Avatar, Button, Listgroup, ListgroupItem } from "flowbite-svelte";
+    import { Avatar, Button, Listgroup } from "flowbite-svelte";
     import { fade } from "svelte/transition";
-    import Slider from "../common/Slider.svelte";
     import ToggleSwitch from "../common/ToggleSwitch.svelte";
 </script>
 

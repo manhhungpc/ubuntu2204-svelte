@@ -1,5 +1,5 @@
 <script lang="ts">
-    import { Button, Listgroup, ListgroupItem, Select, StepIndicator } from "flowbite-svelte";
+    import { Button, Listgroup, ListgroupItem, Select } from "flowbite-svelte";
     import Slider from "../common/Slider.svelte";
     import { audio } from "src/store";
     import { fade } from "svelte/transition";

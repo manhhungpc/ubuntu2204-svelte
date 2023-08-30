@@ -1,5 +1,5 @@
 <script lang="ts">
-    import { Listgroup, Button, Popover } from "flowbite-svelte";
+    import { Listgroup, Button } from "flowbite-svelte";
     import ToggleSwitch from "../common/ToggleSwitch.svelte";
     import { fade } from "svelte/transition";
     import Slider from "../common/Slider.svelte";

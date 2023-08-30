@@ -1,5 +1,5 @@
 <script lang="ts">
-    import { Checkbox, Popover } from "flowbite-svelte";
+    import { Popover } from "flowbite-svelte";
     import { fade } from "svelte/transition";
 
     const medias = ["CD audio", "DVD video", "Music player", "Photos", "Software"];
