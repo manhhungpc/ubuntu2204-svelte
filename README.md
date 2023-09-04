@@ -1,22 +1,21 @@
+![GitHub Repo stars](https://img.shields.io/github/stars/manhhungpc/ubuntu2204-svelte?style=social)
+
 # Ubuntu 22.04 in Svelte
 
 This open-source project aims to replicate the Ubuntu 22.04 desktop experience on the web, using Svelte!
 
 <img src="./public/md/Screenshot-demo.png"/>
 
-> The project still in development, and many new feature will be added
-
-Try it now: 🔗 https://ubuntu2204-svelte.vercel.app/
+Try it now: 🔗 https://ubuntu2204-svelte.pages.dev/
 
 ## What it has?
 
 -   [x] Desktop, Dock (side bar) and Panel (top bar)
 -   [x] System Menu, Calendar
--   [x] Google Chrome, VS Code, Settings (WIP), Terminal, Calculator
+-   [x] Google Chrome, VS Code, Settings, Terminal, Calculator, Text Editor, File Manager
 -   [x] A "working" terminal
 -   [x] Resizable windows
 -   [x] Boot screen, lock screen
--   [ ] (WIP) Text Editor, File Manager
 
 📝 You can always [suggest more features](https://github.com/manhhungpc/ubuntu2204-svelte/issues)
 
