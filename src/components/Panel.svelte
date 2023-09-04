@@ -54,6 +54,13 @@
 
     let audioImg = "";
 
+    function fadeFlowbite(node) {
+        return {
+            duration: 150,
+            css: (t) => `opacity: ${t};`,
+        };
+    }
+
     $: {
         if ($audio === 0) {
             audioImg = "/img/icons/audio-volume-muted-symbolic.svg";
@@ -66,7 +73,6 @@
         }
     }
 
-    $: console.log();
     $: if ($topApp != "") {
         const currentApp = apps.find((app) => app.name == $topApp);
         currentAppIcon = currentApp.imgSrc;
@@ -102,7 +108,7 @@
                 style:filter="brightness(0) invert(1)"
             />
         {/if}
-        <Dropdown class="p-0 m-0 rounded-full">
+        <Dropdown class="p-0 m-0 rounded-full" transition={fadeFlowbite}>
             <CalendarView />
         </Dropdown>
     </div>
@@ -127,6 +133,7 @@
                 placement="bottom"
                 defaultClass=""
                 class="!-left-2 bg-dark-2"
+                transition={fadeFlowbite}
             >
                 <SystemMenu />
             </Popover>

@@ -15,8 +15,6 @@
             $maximize = [...$maximize, name];
         }
     }
-
-    $: console.log($maximize);
 </script>
 
 <div class="window-bar">

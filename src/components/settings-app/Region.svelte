@@ -1,8 +1,6 @@
 <script lang="ts">
-    import { Listgroup, Button, Popover } from "flowbite-svelte";
+    import { Listgroup, Button } from "flowbite-svelte";
     import { fade } from "svelte/transition";
-    import ToggleSwitch from "../common/ToggleSwitch.svelte";
-    import Slider from "../common/Slider.svelte";
 </script>
 
 <div class="wrap-a11y scrollbar-thin overflow-y-auto" in:fade={{ duration: 150 }}>
@@ -48,10 +46,10 @@
         width: 100%;
         color: #fff;
         background-color: var(--bg-dark-hover);
-        padding: 5px;
+        padding: 8px;
         border-radius: 5px;
         border: 1px solid #000;
-        font-size: 12px;
+        font-size: 14px;
     }
 
     .manage-lang-btn:hover {

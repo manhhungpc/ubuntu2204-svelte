@@ -1,7 +1,6 @@
 <script lang="ts">
     import { Listgroup, Button } from "flowbite-svelte";
     import { fade } from "svelte/transition";
-    import { Input } from "flowbite-svelte";
 </script>
 
 <div class="wrap-sharing" in:fade={{ duration: 150 }}>
@@ -41,5 +40,9 @@
         width: calc(100% - 16px); /* Minus the padding */
         border: 1px solid #000;
         padding: 10px 8px;
+    }
+
+    .name-input:hover {
+        cursor: text;
     }
 </style>

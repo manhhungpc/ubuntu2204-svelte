@@ -1,5 +1,5 @@
 <script lang="ts">
-    import { Button, ButtonGroup, InputAddon, Listgroup, ListgroupItem, NumberInput, Radio } from "flowbite-svelte";
+    import { Button, ButtonGroup, Listgroup, ListgroupItem, NumberInput } from "flowbite-svelte";
     import ToggleSwitch from "../common/ToggleSwitch.svelte";
     import RadioInput from "../common/RadioInput.svelte";
     import { fade } from "svelte/transition";

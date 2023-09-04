@@ -195,6 +195,12 @@
                     component: (await import(`src/components/settings-app/Printer.svelte`)).default,
                 };
                 break;
+            case "Removable Media":
+                selectSetting = {
+                    name: "Removable Media",
+                    component: (await import(`src/components/settings-app/RemovableMedia.svelte`)).default,
+                };
+                break;
             case "Color":
                 selectSetting = {
                     name: "Color",
@@ -211,6 +217,12 @@
                 selectSetting = {
                     name: "Accessibility",
                     component: (await import(`src/components/settings-app/Accessibility.svelte`)).default,
+                };
+                break;
+            case "Users":
+                selectSetting = {
+                    name: "Users",
+                    component: (await import(`src/components/settings-app/Users.svelte`)).default,
                 };
                 break;
             case "Default Applications":
